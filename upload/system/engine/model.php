@@ -9,8 +9,6 @@
 
 /**
 * Model class
- *
- * @mixin Registry
 */
 abstract class Model {
 	protected $registry;

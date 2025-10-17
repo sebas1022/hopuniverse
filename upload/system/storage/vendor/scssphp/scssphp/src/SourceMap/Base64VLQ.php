@@ -1,5 +1,4 @@
 <?php
-
 /**
  * SCSSPHP
  *
@@ -11,6 +10,8 @@
  */
 
 namespace ScssPhp\ScssPhp\SourceMap;
+
+use ScssPhp\ScssPhp\SourceMap\Base64;
 
 /**
  * Base 64 VLQ
@@ -34,10 +35,8 @@ namespace ScssPhp\ScssPhp\SourceMap;
  *
  * @author John Lenz <johnlenz@google.com>
  * @author Anthon Pang <anthon.pang@gmail.com>
- *
- * @internal
  */
-final class Base64VLQ
+class Base64VLQ
 {
     // A Base64 VLQ digit can represent 5 bits, so it is base-32.
     const VLQ_BASE_SHIFT = 5;
@@ -50,8 +49,12 @@ final class Base64VLQ
 
     /**
      * Returns the VLQ encoded value.
+     *
+     * @param integer $value
+     *
+     * @return string
      */
-    public static function encode(int $value): string
+    public static function encode($value)
     {
         $encoded = '';
         $vlq = self::toVLQSigned($value);
@@ -73,17 +76,75 @@ final class Base64VLQ
     }
 
     /**
+     * Decodes VLQValue.
+     *
+     * @param string $str
+     * @param integer $index
+     *
+     * @return integer
+     */
+    public static function decode($str, &$index)
+    {
+        $result = 0;
+        $shift = 0;
+
+        do {
+            $c = $str[$index++];
+            $digit = Base64::decode($c);
+            $continuation = ($digit & self::VLQ_CONTINUATION_BIT) != 0;
+            $digit &= self::VLQ_BASE_MASK;
+            $result = $result + ($digit << $shift);
+            $shift = $shift + self::VLQ_BASE_SHIFT;
+        } while ($continuation);
+
+        return self::fromVLQSigned($result);
+    }
+
+    /**
      * Converts from a two-complement value to a value where the sign bit is
      * is placed in the least significant bit.  For example, as decimals:
      *   1 becomes 2 (10 binary), -1 becomes 3 (11 binary)
      *   2 becomes 4 (100 binary), -2 becomes 5 (101 binary)
+     *
+     * @param integer $value
+     *
+     * @return integer
      */
-    private static function toVLQSigned(int $value): int
+    private static function toVLQSigned($value)
     {
         if ($value < 0) {
             return ((-$value) << 1) + 1;
         }
 
-        return $value << 1;
+        return ($value << 1) + 0;
+    }
+
+    /**
+     * Converts to a two-complement value from a value where the sign bit is
+     * is placed in the least significant bit.  For example, as decimals:
+     *   2 (10 binary) becomes 1, 3 (11 binary) becomes -1
+     *   4 (100 binary) becomes 2, 5 (101 binary) becomes -2
+     *
+     * @param integer $value
+     *
+     * @return integer
+     */
+    private static function fromVLQSigned($value)
+    {
+        $negate = ($value & 1) === 1;
+
+        //$value >>>= 1; // unsigned right shift
+        $value = ($value >> 1) & PHP_INT_MAX;
+
+        if (! $negate) {
+            return $value;
+        }
+
+        // We need to OR 0x80000000 here to ensure the 32nd bit (the sign bit) is
+        // always set for negative numbers. If `value` were 1, (meaning `negate` is
+        // true and all other bits were zeros), `value` would now be 0. -0 is just
+        // 0, and doesn't flip the 32nd bit as intended. All positive numbers will
+        // successfully flip the 32nd bit without issue, so it's a noop for them.
+        return -$value | 0x80000000;
     }
 }

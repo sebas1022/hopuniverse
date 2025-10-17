@@ -4,78 +4,50 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit7e91736ee6f2ba04cea5881fb95f1857
+class ComposerStaticInita8cb75283b86ff94542c6f1327c4ce59
 {
     public static $files = array (
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
-        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        '23c18046f52bef3eea034657bafda50f' => __DIR__ . '/..' . '/symfony/polyfill-php81/bootstrap.php',
-        '89efb1254ef2d1c5d80096acd12c4098' => __DIR__ . '/..' . '/twig/twig/src/Resources/core.php',
-        'ffecb95d45175fd40f75be8a23b34f90' => __DIR__ . '/..' . '/twig/twig/src/Resources/debug.php',
-        'c7baa00073ee9c61edf148c51917cfb4' => __DIR__ . '/..' . '/twig/twig/src/Resources/escaper.php',
-        'f844ccf1d25df8663951193c3fc307c8' => __DIR__ . '/..' . '/twig/twig/src/Resources/string_loader.php',
-        'c8e8d17e7ab157f630af324c6fb87d41' => __DIR__ . '/..' . '/zoujingli/wechat-developer/helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'W' => 
         array (
             'Wechat\\' => 7,
-            'WePay\\' => 6,
-            'WePayV3\\' => 8,
-            'WeMini\\' => 7,
-            'WeChat\\' => 7,
         ),
         'T' => 
         array (
             'Twig\\' => 5,
-            'Tools\\PHPStan\\' => 14,
         ),
         'S' => 
         array (
-            'Symfony\\Polyfill\\Php81\\' => 23,
-            'Symfony\\Polyfill\\Php80\\' => 23,
-            'Symfony\\Polyfill\\Php73\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
-            'Symfony\\Contracts\\Translation\\' => 30,
             'Symfony\\Component\\Validator\\' => 28,
-            'Symfony\\Component\\Filesystem\\' => 29,
-            'SourceSpan\\' => 11,
+            'Symfony\\Component\\Translation\\' => 30,
             'ScssPhp\\ScssPhp\\' => 16,
+        ),
+        'R' => 
+        array (
+            'React\\Promise\\' => 14,
         ),
         'P' => 
         array (
-            'Psr\\Http\\Message\\' => 17,
-            'Psr\\Http\\Client\\' => 16,
-        ),
-        'L' => 
-        array (
-            'League\\Uri\\' => 11,
+            'Psr\\Log\\' => 8,
         ),
         'G' => 
         array (
             'GuzzleHttp\\Subscriber\\Oauth\\' => 28,
-            'GuzzleHttp\\Psr7\\' => 16,
-            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\Subscriber\\Log\\' => 26,
+            'GuzzleHttp\\Stream\\' => 18,
+            'GuzzleHttp\\Ring\\' => 16,
             'GuzzleHttp\\' => 11,
         ),
         'C' => 
         array (
             'Cardinity\\' => 10,
-        ),
-        'B' => 
-        array (
-            'Braintree\\' => 10,
-        ),
-        'A' => 
-        array (
-            'AliPay\\' => 7,
         ),
     );
 
@@ -84,41 +56,9 @@ class ComposerStaticInit7e91736ee6f2ba04cea5881fb95f1857
         array (
             0 => __DIR__ . '/..' . '/zoujingli/wechat-php-sdk/Wechat',
         ),
-        'WePay\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/zoujingli/wechat-developer/WePay',
-        ),
-        'WePayV3\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/zoujingli/wechat-developer/WePayV3',
-        ),
-        'WeMini\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/zoujingli/wechat-developer/WeMini',
-        ),
-        'WeChat\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/zoujingli/wechat-developer/WeChat',
-        ),
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
-        ),
-        'Tools\\PHPStan\\' => 
-        array (
-            0 => __DIR__ . '/../../../../..' . '/tools/phpstan',
-        ),
-        'Symfony\\Polyfill\\Php81\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php81',
-        ),
-        'Symfony\\Polyfill\\Php80\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
-        ),
-        'Symfony\\Polyfill\\Php73\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php73',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
@@ -128,51 +68,41 @@ class ComposerStaticInit7e91736ee6f2ba04cea5881fb95f1857
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
-        'Symfony\\Contracts\\Translation\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/translation-contracts',
-        ),
         'Symfony\\Component\\Validator\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/validator',
         ),
-        'Symfony\\Component\\Filesystem\\' => 
+        'Symfony\\Component\\Translation\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/filesystem',
-        ),
-        'SourceSpan\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/scssphp/source-span/src',
+            0 => __DIR__ . '/..' . '/symfony/translation',
         ),
         'ScssPhp\\ScssPhp\\' => 
         array (
             0 => __DIR__ . '/..' . '/scssphp/scssphp/src',
         ),
-        'Psr\\Http\\Message\\' => 
+        'React\\Promise\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/react/promise/src',
         ),
-        'Psr\\Http\\Client\\' => 
+        'Psr\\Log\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-client/src',
-        ),
-        'League\\Uri\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/uri-interfaces',
-            1 => __DIR__ . '/..' . '/league/uri',
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'GuzzleHttp\\Subscriber\\Oauth\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/oauth-subscriber/src',
         ),
-        'GuzzleHttp\\Psr7\\' => 
+        'GuzzleHttp\\Subscriber\\Log\\' => 
         array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+            0 => __DIR__ . '/..' . '/guzzlehttp/log-subscriber/src',
         ),
-        'GuzzleHttp\\Promise\\' => 
+        'GuzzleHttp\\Stream\\' => 
         array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+            0 => __DIR__ . '/..' . '/guzzlehttp/streams/src',
+        ),
+        'GuzzleHttp\\Ring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/ringphp/src',
         ),
         'GuzzleHttp\\' => 
         array (
@@ -182,17 +112,27 @@ class ComposerStaticInit7e91736ee6f2ba04cea5881fb95f1857
         array (
             0 => __DIR__ . '/..' . '/cardinity/cardinity-sdk-php/src',
         ),
-        'Braintree\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/braintree/braintree_php/lib/Braintree',
-        ),
-        'AliPay\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/zoujingli/wechat-developer/AliPay',
-        ),
+    );
+
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/..' . '/klarna/kco_rest/src',
     );
 
     public static $prefixesPsr0 = array (
+        'T' => 
+        array (
+            'Twig_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/twig/lib',
+            ),
+        ),
+        'D' => 
+        array (
+            'Divido' => 
+            array (
+                0 => __DIR__ . '/..' . '/divido/divido-php/lib',
+            ),
+        ),
         'B' => 
         array (
             'Braintree' => 
@@ -202,26 +142,13 @@ class ComposerStaticInit7e91736ee6f2ba04cea5881fb95f1857
         ),
     );
 
-    public static $classMap = array (
-        'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
-        'CURLStringFile' => __DIR__ . '/..' . '/symfony/polyfill-php81/Resources/stubs/CURLStringFile.php',
-        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
-        'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
-        'ReturnTypeWillChange' => __DIR__ . '/..' . '/symfony/polyfill-php81/Resources/stubs/ReturnTypeWillChange.php',
-        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
-        'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
-        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
-        'We' => __DIR__ . '/..' . '/zoujingli/wechat-developer/We.php',
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit7e91736ee6f2ba04cea5881fb95f1857::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit7e91736ee6f2ba04cea5881fb95f1857::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit7e91736ee6f2ba04cea5881fb95f1857::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit7e91736ee6f2ba04cea5881fb95f1857::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInita8cb75283b86ff94542c6f1327c4ce59::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInita8cb75283b86ff94542c6f1327c4ce59::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInita8cb75283b86ff94542c6f1327c4ce59::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInita8cb75283b86ff94542c6f1327c4ce59::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

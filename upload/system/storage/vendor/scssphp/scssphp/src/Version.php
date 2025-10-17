@@ -1,5 +1,4 @@
 <?php
-
 /**
  * SCSSPHP
  *
@@ -17,7 +16,7 @@ namespace ScssPhp\ScssPhp;
  *
  * @author Leaf Corcoran <leafot@gmail.com>
  */
-final class Version
+class Version
 {
-    const VERSION = '2.0.1';
+    const VERSION = '1.1.1';
 }

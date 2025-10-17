@@ -1,7 +1,5 @@
 <?php
 class ControllerExtensionModulePPBraintreeButton extends Controller {
-	private $error = array();
-
 	public function index() {
 		$this->load->language('extension/module/pp_braintree_button');
 

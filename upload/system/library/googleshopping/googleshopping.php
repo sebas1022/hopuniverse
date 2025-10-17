@@ -1,9 +1,10 @@
 <?php
+
 namespace googleshopping;
 
-use \googleshopping\Exception\Connection as ConnectionException;
-use \googleshopping\Exception\AccessForbidden as AccessForbiddenException;
 use \googleshopping\traits\StoreLoader;
+use \googleshopping\exception\Connection as ConnectionException;
+use \googleshopping\exception\AccessForbidden as AccessForbiddenException;
 
 class Googleshopping extends Library {
     use StoreLoader;
@@ -366,7 +367,7 @@ class Googleshopping extends Library {
 
                 do {
                     ${'custom_label_' . ($i++)} = trim(strtolower(array_pop($campaigns)));
-                } while ($campaigns);
+                } while (!empty($campaigns));
             }
 
             $mpn = !empty($row['mpn']) ? $row['mpn'] : '';
@@ -582,7 +583,7 @@ class Googleshopping extends Library {
         return implode(",", array_map(array($this, 'integer'), $product_ids));
     }
 
-    public function integer($product_id) {
+    public function integer(&$product_id) {
         if (!is_numeric($product_id)) {
             return 0;
         } else {
@@ -664,7 +665,7 @@ class Googleshopping extends Library {
                     $product_reports = $this->getProductReports($chunk);
 
                     if (!empty($product_reports)) {
-                        $this->updateProductReports($product_reports);
+                        $this->updateProductReports($product_reports, $this->store_id);
                         $report_count += count($product_reports);
                     }
                 }
@@ -945,7 +946,7 @@ class Googleshopping extends Library {
         return $log_message;
     }
 
-    protected function sendEmailReport($report) {
+    protected function sendEmailReport(&$report) {
         if (!$this->setting->get('advertise_google_cron_email_status')) {
             return; //Do nothing
         }
@@ -1064,7 +1065,7 @@ class Googleshopping extends Library {
 
     protected function setRuntimeExceptionErrorHandler() {
         set_error_handler(function($code, $message, $file, $line) {
-            if (!(error_reporting() & $code)) {
+            if (error_reporting() === 0) {
                 return false;
             }
 

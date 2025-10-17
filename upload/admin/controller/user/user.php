@@ -442,11 +442,11 @@ class ControllerUserUser extends Controller {
 			}
 		}
 
-		if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
+		if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
 			$this->error['firstname'] = $this->language->get('error_firstname');
 		}
 
-		if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
+		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
 
@@ -474,12 +474,6 @@ class ControllerUserUser extends Controller {
 			if ($this->request->post['password'] != $this->request->post['confirm']) {
 				$this->error['confirm'] = $this->language->get('error_confirm');
 			}
-		}
-
-		$total_users = $this->model_user_user->getTotalUsers();
-
-		if ($total_users <= 1 && isset($this->request->post['status']) && $this->request->post['status'] == 0) {
-			$this->error['warning'] = $this->language->get('error_single_user');
 		}
 
 		return !$this->error;

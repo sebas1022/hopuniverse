@@ -33,7 +33,7 @@ class ModelExtensionPaymentAlipayCross extends Model {
 		return $method_data;
 	}
 
-	public function buildRequestMysign($para_sort) {
+	function buildRequestMysign($para_sort) {
 		$prestr = $this->createLinkstring($para_sort);
 
 		$mysign = "";
@@ -49,7 +49,7 @@ class ModelExtensionPaymentAlipayCross extends Model {
 	}
 
 
-	public function buildRequestPara($alipay_config, $para_temp) {
+	function buildRequestPara($alipay_config, $para_temp) {
 		$this->alipay_config = $alipay_config;
 
 		$para_filter = $this->paraFilter($para_temp);
@@ -64,7 +64,7 @@ class ModelExtensionPaymentAlipayCross extends Model {
 		return $para_sort;
 	}
 
-	public function verifyNotify($alipay_config){
+	function verifyNotify($alipay_config){
 		$this->alipay_config = $alipay_config;
 
 		if(empty($_POST)) {
@@ -88,7 +88,7 @@ class ModelExtensionPaymentAlipayCross extends Model {
 		}
 	}
 
-	public function getSignVeryfy($para_temp, $sign) {
+	function getSignVeryfy($para_temp, $sign) {
 		$para_filter = $this->paraFilter($para_temp);
 
 		$para_sort = $this->argSort($para_filter);
@@ -106,7 +106,7 @@ class ModelExtensionPaymentAlipayCross extends Model {
 		return $isSgin;
 	}
 
-	public function getResponse($notify_id) {
+	function getResponse($notify_id) {
 		$partner = trim($this->alipay_config['partner']);
 		$veryfy_url = $this->config->get('payment_alipay_cross_test') == "sandbox" ? $this->https_verify_url_test : $this->https_verify_url;
 		$veryfy_url .= "partner=" . $partner . "&notify_id=" . $notify_id;
@@ -115,36 +115,33 @@ class ModelExtensionPaymentAlipayCross extends Model {
 		return $responseTxt;
 	}
 
-	public function createLinkstring($para) {
-		$arg = "";
-		foreach ($para as $key => $val) {
+	function createLinkstring($para) {
+		$arg  = "";
+		while (list ($key, $val) = each ($para)) {
 			$arg .= $key . "=" . $val . "&";
 		}
+		//remove the last char '&'
+		$arg = substr($arg, 0, count($arg)-2);
 
-		// Remove the last char '&'
-		return rtrim($arg, '&');
+		return $arg;
 	}
 
-	public function paraFilter($para) {
+	function paraFilter($para) {
 		$para_filter = array();
-		foreach ($para as $key => $val) {
-			if ($key == "sign" || $key == "sign_type" || $val == "") {
-				continue;
-			} else {
-				$para_filter[$key] = $para[$key];
-			}
+		while (list ($key, $val) = each ($para)) {
+			if($key == "sign" || $key == "sign_type" || $val == "")continue;
+			else	$para_filter[$key] = $para[$key];
 		}
-
 		return $para_filter;
 	}
 
-	public function argSort($para) {
+	function argSort($para) {
 		ksort($para);
 		reset($para);
 		return $para;
 	}
 
-	public function getHttpResponseGET($url,$cacert_url) {
+	function getHttpResponseGET($url,$cacert_url) {
 		$curl = curl_init($url);
 		curl_setopt($curl, CURLOPT_HEADER, 0 );
 		curl_setopt($curl,CURLOPT_RETURNTRANSFER, 1);
@@ -160,12 +157,12 @@ class ModelExtensionPaymentAlipayCross extends Model {
 		return $responseText;
 	}
 
-	public function md5Sign($prestr, $key) {
+	function md5Sign($prestr, $key) {
 		$prestr = $prestr . $key;
 		return md5($prestr);
 	}
 
-	public function md5Verify($prestr, $sign, $key)
+	function md5Verify($prestr, $sign, $key)
 	{
 		$prestr = $prestr . $key;
 		$mysgin = md5($prestr);

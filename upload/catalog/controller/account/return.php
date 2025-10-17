@@ -44,13 +44,11 @@ class ControllerAccountReturn extends Controller {
 			$page = 1;
 		}
 
-		$limit = 10;
-
 		$data['returns'] = array();
 
 		$return_total = $this->model_account_return->getTotalReturns();
 
-		$results = $this->model_account_return->getReturns(($page - 1) * $limit, $limit);
+		$results = $this->model_account_return->getReturns(($page - 1) * 10, 10);
 
 		foreach ($results as $result) {
 			$data['returns'][] = array(
@@ -66,12 +64,12 @@ class ControllerAccountReturn extends Controller {
 		$pagination = new Pagination();
 		$pagination->total = $return_total;
 		$pagination->page = $page;
-		$pagination->limit = $limit;
+		$pagination->limit = $this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit');
 		$pagination->url = $this->url->link('account/return', 'page={page}', true);
 
 		$data['pagination'] = $pagination->render();
 
-		$data['results'] = sprintf($this->language->get('text_pagination'), ($return_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($return_total - $limit)) ? $return_total : ((($page - 1) * $limit) + $limit), $return_total, ceil($return_total / $limit));
+		$data['results'] = sprintf($this->language->get('text_pagination'), ($return_total) ? (($page - 1) * $this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit')) + 1 : 0, ((($page - 1) * $this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit')) > ($return_total - $this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit'))) ? $return_total : ((($page - 1) * $this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit')) + $this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit')), $return_total, ceil($return_total / $this->config->get('theme_' . $this->config->get('config_theme') . '_product_limit')));
 
 		$data['continue'] = $this->url->link('account/account', '', true);
 
@@ -89,7 +87,7 @@ class ControllerAccountReturn extends Controller {
 		$this->load->language('account/return');
 
 		if (isset($this->request->get['return_id'])) {
-			$return_id = (int)$this->request->get['return_id'];
+			$return_id = $this->request->get['return_id'];
 		} else {
 			$return_id = 0;
 		}
@@ -459,59 +457,31 @@ class ControllerAccountReturn extends Controller {
 	}
 
 	protected function validate() {
-		if (!empty($this->request->post['order_id'])) {
-			if (!$this->request->post['order_id']) {
-				$this->error['order_id'] = $this->language->get('error_order_id');
-			}
-		} else {
+		if (!$this->request->post['order_id']) {
 			$this->error['order_id'] = $this->language->get('error_order_id');
 		}
 
-		if (!empty($this->request->post['firstname'])) {
-			if ((utf8_strlen($this->request->post['firstname']) < 1) || (utf8_strlen($this->request->post['firstname']) > 32)) {
-				$this->error['firstname'] = $this->language->get('error_firstname');
-			}
-		} else {
+		if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
 			$this->error['firstname'] = $this->language->get('error_firstname');
 		}
 
-		if (!empty($this->request->post['lastname'])) {
-			if ((utf8_strlen($this->request->post['lastname']) < 1) || (utf8_strlen($this->request->post['lastname']) > 32)) {
-				$this->error['lastname'] = $this->language->get('error_lastname');
-			}
-		} else {
+		if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
 			$this->error['lastname'] = $this->language->get('error_lastname');
 		}
 
-		if (!empty($this->request->post['email'])) {
-			if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
-				$this->error['email'] = $this->language->get('error_email');
-			}
-		} else {
+		if ((utf8_strlen($this->request->post['email']) > 96) || !filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
-		if (!empty($this->request->post['telephone'])) {
-			if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
-				$this->error['telephone'] = $this->language->get('error_telephone');
-			}
-		} else {
+		if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 			$this->error['telephone'] = $this->language->get('error_telephone');
 		}
 
-		if (!empty($this->request->post['product'])) {
-			if ((utf8_strlen($this->request->post['product']) < 1) || (utf8_strlen($this->request->post['product']) > 255)) {
-				$this->error['product'] = $this->language->get('error_product');
-			}
-		} else {
+		if ((utf8_strlen($this->request->post['product']) < 1) || (utf8_strlen($this->request->post['product']) > 255)) {
 			$this->error['product'] = $this->language->get('error_product');
 		}
 
-		if (!empty($this->request->post['model'])) {
-			if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
-				$this->error['model'] = $this->language->get('error_model');
-			}
-		} else {
+		if ((utf8_strlen($this->request->post['model']) < 1) || (utf8_strlen($this->request->post['model']) > 64)) {
 			$this->error['model'] = $this->language->get('error_model');
 		}
 

@@ -9,12 +9,8 @@
 
 /**
 * Proxy class
- *
- * @template TWraps of Model
- *
- * @mixin TWraps
 */
-class Proxy extends \stdClass {
+class Proxy {
     /**
      * 
      *
@@ -40,7 +36,11 @@ class Proxy extends \stdClass {
 		$args = func_get_args();
 		
 		foreach ($args as $arg) {
-			$arg_data[] =& $arg;
+			if ($arg instanceof Ref) {
+				$arg_data[] =& $arg->getRef();
+			} else {
+				$arg_data[] =& $arg;
+			}
 		}
 		
 		if (isset($this->{$key})) {		

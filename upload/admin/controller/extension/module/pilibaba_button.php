@@ -1,7 +1,5 @@
 <?php
 class ControllerExtensionModulePilibabaButton extends Controller {
-	private $error = array();
-
 	public function index() {
 		$this->load->language('extension/module/pilibaba_button');
 

@@ -1,7 +1,5 @@
 <?php
 class ControllerExtensionReportSaleShipping extends Controller {
-	private $error = array();
-
 	public function index() {
 		$this->load->language('extension/report/sale_shipping');
 

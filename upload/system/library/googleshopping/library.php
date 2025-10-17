@@ -2,9 +2,6 @@
 
 namespace googleshopping;
 
-/**
- * @mixin \Registry
- */
 abstract class Library {
     protected $registry;
 

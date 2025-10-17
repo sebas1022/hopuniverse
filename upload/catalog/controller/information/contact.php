@@ -17,7 +17,7 @@ class ControllerInformationContact extends Controller {
 			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
 
 			$mail->setTo($this->config->get('config_email'));
-			$mail->setFrom($this->config->get('config_email'));
+			$mail->setFrom($this->request->post['email']);
 			$mail->setReplyTo($this->request->post['email']);
 			$mail->setSender(html_entity_decode($this->request->post['name'], ENT_QUOTES, 'UTF-8'));
 			$mail->setSubject(html_entity_decode(sprintf($this->language->get('email_subject'), $this->request->post['name']), ENT_QUOTES, 'UTF-8'));
@@ -142,27 +142,15 @@ class ControllerInformationContact extends Controller {
 	}
 
 	protected function validate() {
-		if (!empty($this->request->post['name'])) {
-			if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 32)) {
-				$this->error['name'] = $this->language->get('error_name');
-			}
-		} else {
+		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 32)) {
 			$this->error['name'] = $this->language->get('error_name');
 		}
 
-		if (!empty($this->request->post['email'])) {
-			if (!filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
-				$this->error['email'] = $this->language->get('error_email');
-			}
-		} else {
+		if (!filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {
 			$this->error['email'] = $this->language->get('error_email');
 		}
 
-		if (!empty($this->request->post['enquiry'])) {
-			if ((utf8_strlen($this->request->post['enquiry']) < 10) || (utf8_strlen($this->request->post['enquiry']) > 3000)) {
-				$this->error['enquiry'] = $this->language->get('error_enquiry');
-			}
-		} else {
+		if ((utf8_strlen($this->request->post['enquiry']) < 10) || (utf8_strlen($this->request->post['enquiry']) > 3000)) {
 			$this->error['enquiry'] = $this->language->get('error_enquiry');
 		}
 

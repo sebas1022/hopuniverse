@@ -1,5 +1,6 @@
 <?php
-use \googleshopping\Exception\Connection as ConnectionException;
+
+use \googleshopping\exception\Connection as ConnectionException;
 use \googleshopping\Googleshopping;
 use \googleshopping\traits\LibraryLoader;
 use \googleshopping\traits\StoreLoader;
@@ -268,7 +269,7 @@ class ControllerExtensionAdvertiseGoogle extends Controller {
 
                 if (!empty($select)) {
                     $this->model_extension_advertise_google->setAdvertisingBySelect($select, $target_ids, $this->store_id);
-                } else {
+                } else if (!empty($filter_data)) {
                     $this->model_extension_advertise_google->setAdvertisingByFilter($filter_data, $target_ids, $this->store_id);
                 }
 
@@ -1687,7 +1688,7 @@ class ControllerExtensionAdvertiseGoogle extends Controller {
         }
 
         foreach ($data['menus'] as &$menu) {
-            if (isset($menu['id']) && $menu['id'] == 'menu-marketing') {
+            if ($menu['id'] == 'menu-marketing') {
                 $children = array();
 
                 $this->load->model('setting/store');

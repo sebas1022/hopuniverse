@@ -8,12 +8,12 @@ class Request extends Runtime
 {
     /** @type ResultObjectInterface */
     private $result;
-
+    
     /**
-     * @param \Exception|null $previous
-     * @param ResultObjectInterface|null $result
+     * @param \Exception $previous
+     * @param ResultObjectInterface $result
      */
-    public function __construct(?\Exception $previous = null, ?ResultObjectInterface $result = null)
+    public function __construct(\Exception $previous = null, ResultObjectInterface $result = null)
     {
         $this->message .= ' Response data: ' . serialize($result);
         parent::__construct($this->message, $this->code, $previous);

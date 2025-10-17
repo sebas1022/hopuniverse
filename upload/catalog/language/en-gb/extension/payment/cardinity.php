@@ -22,4 +22,3 @@ $_['error_payment_declined']			= 'Payment was declined by issuing bank.';
 
 // Button
 $_['button_confirm']					= 'Pay Now';
-$_['text_loading']					= 'Loading...';

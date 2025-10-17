@@ -313,9 +313,6 @@ div.required .control-label:before {
 #content {
 	min-height: 600px;
 }
-#product-category #content, #product-product #tab-description, #information-information #content {
-	font-size: 13px;
-}
 /* footer */
 footer {
 	margin-top: 30px;
@@ -343,12 +340,6 @@ footer h5 {
 /* alert */
 .alert {
 	padding: 8px 14px 8px 14px;
-}
-.alert > .close {
-	position: relative;
-	top: -2px;
-	right: 0px;
-	color: inherit;
 }
 /* breadcrumb */
 .breadcrumb {

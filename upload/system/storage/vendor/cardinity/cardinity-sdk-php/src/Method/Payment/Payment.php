@@ -3,8 +3,6 @@
 namespace Cardinity\Method\Payment;
 
 use Cardinity\Method\ResultObject;
-use Cardinity\Method\Payment\ThreeDS2Data;
-use Cardinity\Method\Payment\ThreeDS2AuthorizationInformation;
 
 class Payment extends ResultObject
 {
@@ -16,7 +14,8 @@ class Payment extends ResultObject
     private $amount;
 
     /** @type string Three-letter ISO currency code representing the currency in
-        which the charge was made. */
+        which the charge was made.
+        Supported currencies: EUR, USD. */
     private $currency;
 
     /** @type string Payment creation time as defined in RFC 3339 Section 5.6.
@@ -44,21 +43,11 @@ class Payment extends ResultObject
         Value assigned by Cardinity. */
     private $status;
 
-    /** @type string Payment status reason.
-    Value assigned by Cardinity. */
-    private $threedsStatusReason;
-
     /** @type string Error message.
         Returned only if status is declined.
         Provides human readable information why the payment failed.
         Value assigned by Cardinity. */
     private $error;
-
-    /** @type string Optional. Merchant advice code for a transaction.
-        Returned only if status is declined.
-        Provides information about transaction or the reason why transaction was declined.
-        Value assigned by Cardinity. */
-    private $merchantAdviceCode;
 
     /** @type string Optional. Order ID provided by a merchant.
         Must be between 2 and 50 characters [A-Za-z0-9'.-]. */
@@ -81,8 +70,7 @@ class Payment extends ResultObject
      */
     private $paymentInstrument;
 
-    /** @deprecated
-     * @type string Used to provide additional information (PATCH verb) once
+    /** @type string Used to provide additional information (PATCH verb) once
         customer completes authorization process. */
     private $authorizeData;
 
@@ -90,14 +78,7 @@ class Payment extends ResultObject
         payment authorization is needed (i.e. payment status is pending).
         Value assigned by Cardinity. */
     private $authorizationInformation;
-
-    /** @type ThreeDS2AuthorizationInformation */
-    private $threeDS2AuthorizationInformation;
-
-    /** @type string a descriptor to include in statement provided by a merchant. limit will vary based on merchant name
-        Maximum length 25 characters. */
-    private $statementDescriptorSuffix;
-
+ 
     /**
      * Gets the value of id.
      * @return mixed
@@ -106,7 +87,7 @@ class Payment extends ResultObject
     {
         return $this->id;
     }
-
+ 
     /**
      * Sets the value of id.
      * @param mixed $id the id
@@ -116,7 +97,7 @@ class Payment extends ResultObject
     {
         $this->id = $id;
     }
-
+ 
     /**
      * Gets the value of amount.
      * @return mixed
@@ -125,7 +106,7 @@ class Payment extends ResultObject
     {
         return $this->amount;
     }
-
+ 
     /**
      * Sets the value of amount.
      * @param mixed $amount the amount
@@ -135,7 +116,7 @@ class Payment extends ResultObject
     {
         $this->amount = $amount;
     }
-
+ 
     /**
      * Gets the value of currency.
      * @return mixed
@@ -144,7 +125,7 @@ class Payment extends ResultObject
     {
         return $this->currency;
     }
-
+ 
     /**
      * Sets the value of currency.
      * @param mixed $currency the currency
@@ -154,7 +135,7 @@ class Payment extends ResultObject
     {
         $this->currency = $currency;
     }
-
+ 
     /**
      * Gets the value of created.
      * @return mixed
@@ -163,7 +144,7 @@ class Payment extends ResultObject
     {
         return $this->created;
     }
-
+ 
     /**
      * Sets the value of created.
      * @param mixed $created the created
@@ -173,7 +154,7 @@ class Payment extends ResultObject
     {
         $this->created = $created;
     }
-
+ 
     /**
      * Gets the value of type.
      * @return mixed
@@ -182,7 +163,7 @@ class Payment extends ResultObject
     {
         return $this->type;
     }
-
+ 
     /**
      * Sets the value of type.
      * @param mixed $type the type
@@ -192,7 +173,7 @@ class Payment extends ResultObject
     {
         $this->type = $type;
     }
-
+ 
     /**
      * Gets the value of live.
      * @return mixed
@@ -201,7 +182,7 @@ class Payment extends ResultObject
     {
         return $this->live;
     }
-
+ 
     /**
      * Sets the value of live.
      * @param mixed $live the live
@@ -211,7 +192,7 @@ class Payment extends ResultObject
     {
         $this->live = $live;
     }
-
+ 
     /**
      * Gets the value of settle.
      * @return mixed
@@ -220,7 +201,7 @@ class Payment extends ResultObject
     {
         return $this->settle;
     }
-
+ 
     /**
      * Sets the value of settle.
      * @param mixed $settle the settle
@@ -230,7 +211,7 @@ class Payment extends ResultObject
     {
         $this->settle = $settle;
     }
-
+ 
     /**
      * Gets the value of status.
      * @return mixed
@@ -239,7 +220,7 @@ class Payment extends ResultObject
     {
         return $this->status;
     }
-
+ 
     /**
      * Sets the value of status.
      * @param mixed $status the status
@@ -249,27 +230,7 @@ class Payment extends ResultObject
     {
         $this->status = $status;
     }
-
-    /**
-     * Gets the value of status.
-     * @return mixed
-     */
-    public function getThreedsStatusReason()
-    {
-        return $this->threedsStatusReason;
-    }
-
-    /**
-     * Sets the value of threeds status reason.
-     * @param mixed $threedsStatusReason the status reason
-     * @return void
-     */
-    public function setThreedsStatusReason($threedsStatusReason)
-    {
-        $this->threedsStatusReason = $threedsStatusReason;
-    }
-
-
+ 
     /**
      * Gets the value of error.
      * @return mixed
@@ -278,7 +239,7 @@ class Payment extends ResultObject
     {
         return $this->error;
     }
-
+ 
     /**
      * Sets the value of error.
      * @param mixed $error the error
@@ -288,26 +249,7 @@ class Payment extends ResultObject
     {
         $this->error = $error;
     }
-
-    /**
-     * Gets the value of merchantAdviceCode.
-     * @return mixed
-     */
-    public function getMerchantAdviceCode()
-    {
-        return $this->merchantAdviceCode;
-    }
-
-    /**
-     * Sets the value of merchantAdviceCode.
-     * @param string $merchantAdviceCode the code
-     * @return void
-     */
-    public function setMerchantAdviceCode(string $merchantAdviceCode): void
-    {
-        $this->merchantAdviceCode = $merchantAdviceCode;
-    }
-
+ 
     /**
      * Gets the value of orderId.
      * @return mixed
@@ -316,7 +258,7 @@ class Payment extends ResultObject
     {
         return $this->orderId;
     }
-
+ 
     /**
      * Sets the value of orderId.
      * @param mixed $orderId the order id
@@ -326,7 +268,7 @@ class Payment extends ResultObject
     {
         $this->orderId = $orderId;
     }
-
+ 
     /**
      * Gets the value of description.
      * @return mixed
@@ -335,7 +277,7 @@ class Payment extends ResultObject
     {
         return $this->description;
     }
-
+ 
     /**
      * Sets the value of description.
      * @param mixed $description the description
@@ -345,7 +287,7 @@ class Payment extends ResultObject
     {
         $this->description = $description;
     }
-
+ 
     /**
      * Gets the value of country.
      * @return mixed
@@ -354,7 +296,7 @@ class Payment extends ResultObject
     {
         return $this->country;
     }
-
+ 
     /**
      * Sets the value of country.
      * @param mixed $country the country
@@ -364,7 +306,7 @@ class Payment extends ResultObject
     {
         $this->country = $country;
     }
-
+ 
     /**
      * Gets the value of paymentMethod.
      * @return mixed
@@ -373,7 +315,7 @@ class Payment extends ResultObject
     {
         return $this->paymentMethod;
     }
-
+ 
     /**
      * Sets the value of paymentMethod.
      * @param mixed $paymentMethod the payment method
@@ -383,7 +325,7 @@ class Payment extends ResultObject
     {
         $this->paymentMethod = $paymentMethod;
     }
-
+ 
     /**
      * Gets the value of paymentInstrument.
      * @return PaymentInstrumentInterface
@@ -392,7 +334,7 @@ class Payment extends ResultObject
     {
         return $this->paymentInstrument;
     }
-
+ 
     /**
      * Sets the value of paymentInstrument.
      * @param PaymentInstrumentInterface $paymentInstrument the payment instrument
@@ -402,9 +344,8 @@ class Payment extends ResultObject
     {
         $this->paymentInstrument = $paymentInstrument;
     }
-
+ 
     /**
-     * @deprecated method is deprecated and shouldn't be used.
      * Gets the value of authorizeData.
      * @return mixed
      */
@@ -412,9 +353,8 @@ class Payment extends ResultObject
     {
         return $this->authorizeData;
     }
-
+ 
     /**
-     * @deprecated method is deprecated and shouldn't be used.
      * Sets the value of authorizeData.
      * @param mixed $authorizeData the authorize data
      * @return void
@@ -423,7 +363,7 @@ class Payment extends ResultObject
     {
         $this->authorizeData = $authorizeData;
     }
-
+ 
     /**
      * Gets the value of authorizationInformation.
      * @return AuthorizationInformation
@@ -432,7 +372,7 @@ class Payment extends ResultObject
     {
         return $this->authorizationInformation;
     }
-
+ 
     /**
      * Sets the value of authorizationInformation.
      * @param AuthorizationInformation $authorizationInformation the authorization information
@@ -441,60 +381,6 @@ class Payment extends ResultObject
     public function setAuthorizationInformation(AuthorizationInformation $authorizationInformation)
     {
         $this->authorizationInformation = $authorizationInformation;
-    }
-
-    /**
-     * @return ThreeDS2AuthorizationInformation
-     */
-    public function getThreeds2Data()
-    {
-        return $this->threeDS2AuthorizationInformation;
-    }
-
-    /**
-     * @param ThreeDS2AuthorizationInformation
-     * @return VOID
-     */
-    public function setThreeds2Data(
-        ThreeDS2AuthorizationInformation $threeDS2AuthorizationInformation
-    ){
-        $this->threeDS2AuthorizationInformation = $threeDS2AuthorizationInformation;
-    }
-
-     /**
-     * Gets the value of statementDescriptorSuffix.
-     * @return mixed
-     */
-    public function getStatementDescriptorSuffix()
-    {
-        return $this->statementDescriptorSuffix;
-    }
-
-    /**
-     * Sets the value of statementDescriptorSuffix.
-     * @param mixed $statementDescriptorSuffix the description included in statement
-     * @return void
-     */
-    public function setStatementDescriptorSuffix($statementDescriptorSuffix)
-    {
-        $this->statementDescriptorSuffix = $statementDescriptorSuffix;
-    }
-
-
-    /**
-     * @return BOOL is it 3D secure v1?
-     */
-    public function isThreedsV1() : bool
-    {
-        return $this->authorizationInformation != null;
-    }
-
-    /**
-     * @return BOOL is it 3D secure v2?
-     */
-    public function isThreedsV2() : bool
-    {
-        return $this->threeDS2AuthorizationInformation != null;
     }
 
     /**
@@ -513,14 +399,5 @@ class Payment extends ResultObject
     public function isApproved()
     {
         return $this->getStatus() === 'approved';
-    }
-
-    /**
-     * Check if payment is declined
-     * @return boolean
-     */
-    public function isDeclined()
-    {
-        return $this->getStatus() === 'declined';
     }
 }
