@@ -8,11 +8,11 @@ define('HTTPS_SERVER', 'https://hopuniverse.com/admin/');
 define('HTTPS_CATALOG', 'https://hopuniverse.com/');
 
 // DIR
-define('DIR_APPLICATION', '/var/www/hopuniverse.com/admin/');
-define('DIR_SYSTEM', '/var/www/hopuniverse.com/system/');
+define('DIR_APPLICATION', '/var/www/hopuniverse.com/upload/admin/');
+define('DIR_SYSTEM', '/var/www/hopuniverse.com/upload/system/');
 define('DIR_IMAGE', '/var/www/hopuniverse.com/upload/image/');
 define('DIR_STORAGE', '/var/www/hopuniverse_storage/');
-define('DIR_CATALOG', '/var/www/hopuniverse.com/catalog/');
+define('DIR_CATALOG', '/var/www/hopuniverse.com/upload/catalog/');
 define('DIR_LANGUAGE', DIR_SYSTEM . 'library/language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/template/');
 define('DIR_CONFIG', DIR_SYSTEM . 'config/');

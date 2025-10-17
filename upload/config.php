@@ -6,8 +6,8 @@ define('HTTP_SERVER', 'https://hopuniverse.com/');
 define('HTTPS_SERVER', 'https://hopuniverse.com/');
 
 // DIR
-define('DIR_APPLICATION', '/var/www/hopuniverse.com/catalog/');
-define('DIR_SYSTEM', '/var/www/hopuniverse.com/system/');
+define('DIR_APPLICATION', '/var/www/hopuniverse.com/upload/catalog/');
+define('DIR_SYSTEM', '/var/www/hopuniverse.com/upload/system/');
 define('DIR_IMAGE', '/var/www/hopuniverse.com/upload/image/');
 define('DIR_STORAGE', '/var/www/hopuniverse_storage/');
 define('DIR_LANGUAGE', DIR_SYSTEM . 'library/language/');
