@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]>
+<html dir="{{ direction }}" lang="{{ lang }}" class="ie8">
+<![endif]-->
+<!--[if IE 9 ]>
+<html dir="{{ direction }}" lang="{{ lang }}" class="ie9">
+<![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="{{ direction }}" lang="{{ lang }}">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{{ title }}</title>
+<base href="{{ base }}" />
+{% if (description) %} 
+<meta name="description" content="{{ description }}" />
+{% endif %} 
+{% if (keywords) %} 
+<meta name="keywords" content="{{ keywords }}" />
+{% endif %} 
+<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
+<link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="catalog/view/theme/part/slick/slick.css" rel="stylesheet">
+<link href="catalog/view/theme/part/slick/slick-theme.css" rel="stylesheet">
+<link href="catalog/view/theme/part/main.css" rel="stylesheet">
+{% for style in styles %} 
+<link href="{{ style['href'] }}" type="text/css" rel="{{ style['rel'] }}" media="{{ style['media'] }}" />
+{% endfor %} 
+<script src="catalog/view/theme/part/main.js" type="text/javascript"></script>
+<script src="catalog/view/theme/part/slick/slick.min.js" type="text/javascript"></script>
+{% for link in links %} 
+<link href="{{ link['href'] }}" rel="{{ link['rel'] }}" />
+{% endfor %} 
+{% for script in scripts %} 
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %} 
+{% for analytic in analytics %} 
+{{ analytic }} 
+{% endfor %}   
+{% if part_font == 0 %}		
+{% set regfonts = ['', 'Arial', 'Verdana', 'Helvetica', 'Lucida Grande', 'Trebuchet MS', 'Times New Roman', 'Tahoma', 'Georgia'] %}
+{% if part_font not in regfonts %}
+<link href='//fonts.googleapis.com/css?family={{ part_font }}' rel='stylesheet' type='text/css'>
+{% endif %}
+{% endif %}
+<style type="text/css">
+{% if part_font %}
+{% set font = part_font|replace({"+" : " "}) %}
+body {font-family:{{ font }};}
+{% endif %}	
+:root {
+--main:{{ part_color_main }};
+--main2:{{ part_color_main2 }};
+--main3:{{ part_color_main3 }};
+--text:{{ part_text_color }};
+--text2:{{ part_text_color2 }};
+}
+{% if part_custom_css %}
+{{ part_custom_css }}
+{% endif %}
+</style>
+{% if part_custom_js %}
+<script>
+{{ part_custom_js }}
+</script>
+{% endif %}
+</head>
+<body>
+<nav id="top">
+<div class="container">
+{{ currency }}
+{{ language }}
+<div id="top-links" class="nav pull-right">
+<ul class="list-inline">
+<li><a href="{{ contact }}"><i class="fa fa-phone"></i></a> <span class="hidden-xs hidden-sm hidden-md">{{ telephone }}</span></li>
+<li class="dropdown"><a href="{{ account }}" title="{{ text_account }}" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_account }}</span> <span class="caret"></span></a>
+<ul class="dropdown-menu dropdown-menu-right">
+{% if logged %}
+<li><a href="{{ account }}">{{ text_account }}</a></li>
+<li><a href="{{ order }}">{{ text_order }}</a></li>
+<li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
+<li><a href="{{ download }}">{{ text_download }}</a></li>
+<li><a href="{{ logout }}">{{ text_logout }}</a></li>
+{% else %}
+<li><a href="{{ register }}">{{ text_register }}</a></li>
+<li><a href="{{ login }}">{{ text_login }}</a></li>
+{% endif %}
+</ul>
+</li>
+<li><a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}" ><i class="fa fa-heart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_wishlist }}</span></a></li>
+<li><a href="{{ compare }}" id="compare-total"><i class="fa fa-exchange"></i> <span class="hidden-xs hidden-sm hidden-md">{{ text_compare }}</span></a></li>
+</ul>
+</div>
+</div>
+</nav>
+<header>
+<div class="container">
+<div class="logo">
+{% if logo %}
+{% if home == og_url %}
+<img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" />
+{% else %}
+<a href="{{ home }}"><img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-responsive" /></a>
+{% endif %}
+{% else %}
+<h1><a href="{{ home }}">{{ name }}</a></h1>
+{% endif %}
+</div>
+<div class="header-menu">
+<button type="button" class="hidden-lg hidden-md" id="mob-menu-close">
+<span aria-hidden="true">&times;</span>
+</button>
+<ul>
+{{ menu }}
+{% if part_url %}
+{% for result in part_url %}
+<li><a href="{{ result.href }}" class="menu-link">{{ result.title }}</a></li>
+{% endfor %}
+{% endif %}
+</ul>
+</div>
+<ul class="menu-right">
+<li><button type="button" class="hidden-lg hidden-md" id="mob-menu">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<line x1="3" y1="12" x2="21" y2="12"></line>
+<line x1="3" y1="6" x2="21" y2="6"></line>
+<line x1="3" y1="18" x2="21" y2="18"></line>
+</svg></button></li>
+<li><button type="button" data-toggle="modal" data-target="#searchmodal" >
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" >
+<circle cx="11" cy="11" r="8"></circle>
+<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+</svg></button></li>
+<li>{{ cart }}</li>
+</ul>
+</div>
+</header>
+{{ search }}

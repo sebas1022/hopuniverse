@@ -1,0 +1,74 @@
+</div>
+</div>
+</div>
+<div class="carusel-main carusel{{ module }}">
+{% for banner in banners %}
+<div class="carusel-main-item" style="background-image:url({{ banner.image }})"></div>
+{% endfor %}
+</div>
+<div class="container">
+<div class="row">
+<div id="content" class="col-sm-12">
+
+<script type="text/javascript">
+<!--
+   $('.carusel{{ module }}').slick({
+     dots: false,
+	 arrows: false,
+     infinite: true,
+	 slidesToShow: 6,
+	      slidesToScroll: 1,
+     autoplay: true,
+     autoplaySpeed: 5000,
+    responsive: [
+	{
+      breakpoint: 991,
+      settings: {
+        slidesToShow: 5
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 4
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 3
+      }
+    }
+
+  ]
+
+   });
+   -->
+</script>
+<style>
+.carusel-main {
+width: 100%;
+padding: 0;
+margin: 0 0 50px 0;
+}
+.slide {
+width: 100%;
+margin: auto;
+}
+.carusel-main-item {
+min-height: 100px;
+background-position: center;
+background-repeat: no-repeat;
+background-size: contain;
+padding: 0;
+margin: 0;
+}
+#content  {
+	min-height: 1px;
+}
+@media (max-width: 768px) {
+.carusel-main-item {
+min-height: 80px;
+}
+}
+</style>

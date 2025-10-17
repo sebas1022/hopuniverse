@@ -1,0 +1,1549 @@
+2025-10-15 22:07:16 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+MOD: part theme
+
+FILE: admin/view/template/common/footer.twig
+CODE: {{ text_footer }}
+LINE: 0
+
+FILE: catalog/controller/checkout/cart.php
+CODE: $this->language->get('text_items')
+LINE: 372
+LINE: 471
+
+FILE: catalog/controller/common/cart.php
+CODE: $this->language->get('text_items')
+LINE: 49
+
+FILE: catalog/controller/common/header.php
+CODE: $data['name'] = $this->config->get('config_name');
+LINE: 112
+
+FILE: catalog/model/catalog/product.php
+CODE: 'p.price',
+LINE: 162
+CODE: } elseif ($data['sort'] == 'p.price') {
+LINE: 172
+
+FILE: catalog/controller/common/menu.php
+CODE: 'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+LINE: 28
+
+FILE: (sub modification) catalog/controller/checkout/cart.php
+CODE: public function remove() {
+LINE: 461
+CODE: $data['products'][] = array(
+LINE: 133
+
+FILE: catalog/controller/product/search.php
+CODE: 'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+LINE: 236
+CODE: $this->response->setOutput($this->load->view('product/search', $data));
+LINE: 457
+
+FILE: catalog/controller/extension/module/bestseller.php
+CODE: $result['product_id'],
+LINE: 49
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($result['image']) {
+LINE: 25
+CODE: if ($product_info['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 61
+
+FILE: catalog/controller/extension/module/latest.php
+CODE: $result['product_id'],
+LINE: 49
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($result['image']) {
+LINE: 25
+CODE: if ($product_info['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 61
+
+FILE: catalog/controller/extension/module/special.php
+CODE: $result['product_id'],
+LINE: 56
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($result['image']) {
+LINE: 32
+CODE: if ($product_info['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 68
+
+FILE: catalog/controller/extension/module/featured.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+LINE: 56
+CODE: if ($result['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product_info['image']) {
+LINE: 32
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 68
+
+FILE: (sub modification) catalog/controller/extension/module/bestseller.php
+CODE: $data['products'][] = array(
+LINE: 57
+
+FILE: (sub modification) catalog/controller/extension/module/latest.php
+CODE: $data['products'][] = array(
+LINE: 57
+
+FILE: (sub modification) catalog/controller/extension/module/special.php
+CODE: $data['products'][] = array(
+LINE: 64
+
+FILE: (sub modification) catalog/controller/extension/module/featured.php
+CODE: $data['products'][] = array(
+LINE: 64
+
+FILE: catalog/controller/product/product.php
+CODE: $this->document->addScript('catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js');
+LINE: 236
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific-popup.css');
+LINE: 237
+CODE: if ($product_info['quantity'] <= 0) {
+LINE: 261
+
+FILE: catalog/controller/product/category.php
+CODE: if ($result['image']) {
+LINE: 175
+CODE: $image,
+LINE: 210
+CODE: $result['product_id'],
+LINE: 209
+CODE: $data['products'][] = array(
+LINE: 207
+
+FILE: catalog/controller/product/compare.php
+CODE: if ($result['image']) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/manufacturer.php
+CODE: if ($result['image']) {
+LINE: 164
+CODE: $image,
+LINE: 199
+CODE: $result['product_id'],
+LINE: 198
+CODE: $data['products'][] = array(
+LINE: 196
+
+FILE: (sub modification) catalog/controller/product/product.php
+CODE: if ($result['image']) {
+LINE: 409
+CODE: $image,
+LINE: 444
+CODE: $result['product_id'],
+LINE: 443
+CODE: $data['products'][] = array(
+LINE: 441
+
+FILE: (sub modification) catalog/controller/product/search.php
+CODE: if ($result['image']) {
+LINE: 201
+CODE: $image,
+LINE: 236
+CODE: $result['product_id'],
+LINE: 235
+CODE: $data['products'][] = array(
+LINE: 233
+
+FILE: catalog/controller/product/special.php
+CODE: if ($result['image']) {
+LINE: 93
+CODE: $image,
+LINE: 128
+CODE: $result['product_id'],
+LINE: 127
+CODE: $data['products'][] = array(
+LINE: 125
+
+FILE: catalog/language/en-gb/common/footer.php
+CODE: <a href="http://www.opencart.com">OpenCart</a>
+LINE: 16
+
+FILE: catalog/controller/extension/module/slideshow.php
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/swiper/css/swiper.min.css');
+LINE: 8
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 18
+
+FILE: catalog/controller/extension/module/carousel.php
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/swiper/css/swiper.min.css');
+LINE: 8
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 18
+----------------------------------------------------------------
+2025-10-15 22:08:46 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+MOD: part theme
+
+FILE: admin/view/template/common/footer.twig
+CODE: {{ text_footer }}
+LINE: 0
+
+FILE: catalog/controller/checkout/cart.php
+CODE: $this->language->get('text_items')
+LINE: 372
+LINE: 471
+
+FILE: catalog/controller/common/cart.php
+CODE: $this->language->get('text_items')
+LINE: 49
+
+FILE: catalog/controller/common/header.php
+CODE: $data['name'] = $this->config->get('config_name');
+LINE: 112
+
+FILE: catalog/model/catalog/product.php
+CODE: 'p.price',
+LINE: 162
+CODE: } elseif ($data['sort'] == 'p.price') {
+LINE: 172
+
+FILE: catalog/controller/common/menu.php
+CODE: 'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+LINE: 28
+
+FILE: (sub modification) catalog/controller/checkout/cart.php
+CODE: public function remove() {
+LINE: 461
+CODE: $data['products'][] = array(
+LINE: 133
+
+FILE: catalog/controller/product/search.php
+CODE: 'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+LINE: 236
+CODE: $this->response->setOutput($this->load->view('product/search', $data));
+LINE: 457
+
+FILE: catalog/controller/extension/module/bestseller.php
+CODE: $result['product_id'],
+LINE: 49
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($result['image']) {
+LINE: 25
+CODE: if ($product_info['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 61
+
+FILE: catalog/controller/extension/module/latest.php
+CODE: $result['product_id'],
+LINE: 49
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($result['image']) {
+LINE: 25
+CODE: if ($product_info['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 61
+
+FILE: catalog/controller/extension/module/special.php
+CODE: $result['product_id'],
+LINE: 56
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($result['image']) {
+LINE: 32
+CODE: if ($product_info['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 68
+
+FILE: catalog/controller/extension/module/featured.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+LINE: 56
+CODE: if ($result['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product_info['image']) {
+LINE: 32
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 68
+
+FILE: (sub modification) catalog/controller/extension/module/bestseller.php
+CODE: $data['products'][] = array(
+LINE: 57
+
+FILE: (sub modification) catalog/controller/extension/module/latest.php
+CODE: $data['products'][] = array(
+LINE: 57
+
+FILE: (sub modification) catalog/controller/extension/module/special.php
+CODE: $data['products'][] = array(
+LINE: 64
+
+FILE: (sub modification) catalog/controller/extension/module/featured.php
+CODE: $data['products'][] = array(
+LINE: 64
+
+FILE: catalog/controller/product/product.php
+CODE: $this->document->addScript('catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js');
+LINE: 236
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific-popup.css');
+LINE: 237
+CODE: if ($product_info['quantity'] <= 0) {
+LINE: 261
+
+FILE: catalog/controller/product/category.php
+CODE: if ($result['image']) {
+LINE: 175
+CODE: $image,
+LINE: 210
+CODE: $result['product_id'],
+LINE: 209
+CODE: $data['products'][] = array(
+LINE: 207
+
+FILE: catalog/controller/product/compare.php
+CODE: if ($result['image']) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/product/manufacturer.php
+CODE: if ($result['image']) {
+LINE: 164
+CODE: $image,
+LINE: 199
+CODE: $result['product_id'],
+LINE: 198
+CODE: $data['products'][] = array(
+LINE: 196
+
+FILE: (sub modification) catalog/controller/product/product.php
+CODE: if ($result['image']) {
+LINE: 409
+CODE: $image,
+LINE: 444
+CODE: $result['product_id'],
+LINE: 443
+CODE: $data['products'][] = array(
+LINE: 441
+
+FILE: (sub modification) catalog/controller/product/search.php
+CODE: if ($result['image']) {
+LINE: 201
+CODE: $image,
+LINE: 236
+CODE: $result['product_id'],
+LINE: 235
+CODE: $data['products'][] = array(
+LINE: 233
+
+FILE: catalog/controller/product/special.php
+CODE: if ($result['image']) {
+LINE: 93
+CODE: $image,
+LINE: 128
+CODE: $result['product_id'],
+LINE: 127
+CODE: $data['products'][] = array(
+LINE: 125
+
+FILE: catalog/language/en-gb/common/footer.php
+CODE: <a href="http://www.opencart.com">OpenCart</a>
+LINE: 16
+
+FILE: catalog/controller/extension/module/slideshow.php
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/swiper/css/swiper.min.css');
+LINE: 8
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 18
+
+FILE: catalog/controller/extension/module/carousel.php
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/swiper/css/swiper.min.css');
+LINE: 8
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 18
+----------------------------------------------------------------
+2025-10-16 20:46:31 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+2025-10-16 21:06:28 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+MOD: isotop theme
+
+FILE: admin/view/template/common/footer.twig
+CODE: {{ text_footer }}
+LINE: 0
+
+FILE: catalog/controller/checkout/cart.php
+CODE: $this->language->get('text_items')
+LINE: 372
+LINE: 471
+
+FILE: catalog/controller/common/cart.php
+CODE: $this->language->get('text_items')
+LINE: 49
+
+FILE: catalog/controller/common/header.php
+CODE: $data['name'] = $this->config->get('config_name');
+LINE: 51
+
+FILE: catalog/model/catalog/product.php
+CODE: 'p.price',
+LINE: 162
+CODE: } elseif ($data['sort'] == 'p.price') {
+LINE: 172
+
+FILE: catalog/controller/common/menu.php
+CODE: 'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+LINE: 28
+
+FILE: (sub modification) catalog/controller/checkout/cart.php
+CODE: public function remove() {
+LINE: 461
+CODE: $data['products'][] = array(
+LINE: 133
+
+FILE: catalog/controller/extension/module/4category.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 32
+
+FILE: catalog/controller/extension/module/account.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/advant_blocks.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/amazon_login.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/amazon_pay.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/banner.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/banner_system.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/bestseller.php
+CODE: $result['product_id'],
+LINE: 49
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 6
+
+FILE: catalog/controller/extension/module/carousel.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/category.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 26
+
+FILE: catalog/controller/extension/module/category_product_tab.php
+CODE: $result['product_id'],
+LINE: 94
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 8
+
+FILE: catalog/controller/extension/module/divido_calculator.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 6
+
+FILE: catalog/controller/extension/module/featured.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+LINE: 56
+CODE: $this->load->model('catalog/product');
+LINE: 6
+
+FILE: catalog/controller/extension/module/filter.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 41
+
+FILE: catalog/controller/extension/module/google_hangouts.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/html.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/information.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/klarna_checkout_module.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/latest.php
+CODE: $result['product_id'],
+LINE: 49
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 6
+
+FILE: catalog/controller/extension/module/laybuy_layout.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/paypal_smart_button.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 57
+LINE: 147
+
+FILE: catalog/controller/extension/module/pilibaba_button.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/pp_braintree_button.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/sagepay_direct_cards.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/sagepay_server_cards.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/slideshow.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/special.php
+CODE: $result['product_id'],
+LINE: 56
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 6
+
+FILE: catalog/controller/extension/module/store.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/product/product.php
+CODE: $this->document->addScript('catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js');
+LINE: 236
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific-popup.css');
+LINE: 237
+CODE: if ($product_info['quantity'] <= 0) {
+LINE: 261
+
+FILE: catalog/controller/product/category.php
+CODE: $result['product_id'],
+LINE: 199
+
+FILE: catalog/controller/product/compare.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/product/manufacturer.php
+CODE: $result['product_id'],
+LINE: 188
+
+FILE: (sub modification) catalog/controller/product/product.php
+CODE: $result['product_id'],
+LINE: 433
+
+FILE: catalog/controller/product/search.php
+CODE: $result['product_id'],
+LINE: 225
+
+FILE: catalog/controller/product/special.php
+CODE: $result['product_id'],
+LINE: 117
+
+FILE: (sub modification) catalog/controller/extension/module/featured.php
+CODE: $image = $this->model_tool_image->resize($product_info['image'], $setting['width'], $setting['height']);
+LINE: 24
+
+FILE: (sub modification) catalog/controller/extension/module/bestseller.php
+CODE: $image = $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height']);
+LINE: 17
+
+FILE: (sub modification) catalog/controller/extension/module/special.php
+CODE: $image = $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height']);
+LINE: 24
+
+FILE: (sub modification) catalog/controller/extension/module/latest.php
+CODE: $image = $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height']);
+LINE: 17
+
+FILE: (sub modification) catalog/controller/product/special.php
+CODE: foreach ($results as $result) {
+LINE: 83
+
+FILE: (sub modification) catalog/controller/product/search.php
+CODE: foreach ($results as $result) {
+LINE: 191
+
+FILE: (sub modification) catalog/controller/product/category.php
+CODE: foreach ($results as $result) {
+LINE: 138
+LINE: 166
+----------------------------------------------------------------
+MOD: part theme
+
+FILE: (sub modification) admin/view/template/common/footer.twig
+CODE: {{ text_footer }}
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: (sub modification) catalog/controller/checkout/cart.php
+CODE: $this->language->get('text_items')
+LINE: 442
+
+FILE: (sub modification) catalog/controller/common/cart.php
+CODE: $this->language->get('text_items')
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: (sub modification) catalog/controller/common/header.php
+CODE: $data['name'] = $this->config->get('config_name');
+LINE: 112
+
+FILE: (sub modification) catalog/model/catalog/product.php
+CODE: 'p.price',
+LINE: 163
+CODE: } elseif ($data['sort'] == 'p.price') {
+LINE: 174
+
+FILE: (sub modification) catalog/controller/common/menu.php
+CODE: 'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: (sub modification) catalog/controller/checkout/cart.php
+CODE: public function remove() {
+LINE: 515
+CODE: $data['products'][] = array(
+LINE: 133
+
+FILE: (sub modification) catalog/controller/product/search.php
+CODE: 'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+LINE: 238
+CODE: $this->response->setOutput($this->load->view('product/search', $data));
+LINE: 459
+
+FILE: (sub modification) catalog/controller/extension/module/bestseller.php
+CODE: $result['product_id'],
+LINE: 50
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($result['image']) {
+LINE: 26
+CODE: if ($product_info['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 63
+
+FILE: (sub modification) catalog/controller/extension/module/latest.php
+CODE: $result['product_id'],
+LINE: 50
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($result['image']) {
+LINE: 26
+CODE: if ($product_info['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 63
+
+FILE: (sub modification) catalog/controller/extension/module/special.php
+CODE: $result['product_id'],
+LINE: 57
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($result['image']) {
+LINE: 33
+CODE: if ($product_info['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 70
+
+FILE: (sub modification) catalog/controller/extension/module/featured.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+LINE: 57
+CODE: if ($result['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product_info['image']) {
+LINE: 33
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 70
+
+FILE: (sub modification) catalog/controller/extension/module/bestseller.php
+CODE: $data['products'][] = array(
+LINE: 58
+
+FILE: (sub modification) catalog/controller/extension/module/latest.php
+CODE: $data['products'][] = array(
+LINE: 58
+
+FILE: (sub modification) catalog/controller/extension/module/special.php
+CODE: $data['products'][] = array(
+LINE: 65
+
+FILE: (sub modification) catalog/controller/extension/module/featured.php
+CODE: $data['products'][] = array(
+LINE: 65
+
+FILE: (sub modification) catalog/controller/product/product.php
+CODE: $this->document->addScript('catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js');
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific-popup.css');
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product_info['quantity'] <= 0) {
+LINE: 262
+
+FILE: (sub modification) catalog/controller/product/category.php
+CODE: if ($result['image']) {
+LINE: 177
+CODE: $image,
+LINE: 213
+CODE: $result['product_id'],
+LINE: 211
+CODE: $data['products'][] = array(
+LINE: 209
+
+FILE: (sub modification) catalog/controller/product/compare.php
+CODE: if ($result['image']) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: (sub modification) catalog/controller/product/manufacturer.php
+CODE: if ($result['image']) {
+LINE: 164
+CODE: $image,
+LINE: 200
+CODE: $result['product_id'],
+LINE: 198
+CODE: $data['products'][] = array(
+LINE: 196
+
+FILE: (sub modification) catalog/controller/product/product.php
+CODE: if ($result['image']) {
+LINE: 410
+CODE: $image,
+LINE: 446
+CODE: $result['product_id'],
+LINE: 444
+CODE: $data['products'][] = array(
+LINE: 442
+
+FILE: (sub modification) catalog/controller/product/search.php
+CODE: if ($result['image']) {
+LINE: 202
+CODE: $image,
+LINE: 238
+CODE: $result['product_id'],
+LINE: 236
+CODE: $data['products'][] = array(
+LINE: 234
+
+FILE: (sub modification) catalog/controller/product/special.php
+CODE: if ($result['image']) {
+LINE: 94
+CODE: $image,
+LINE: 130
+CODE: $result['product_id'],
+LINE: 128
+CODE: $data['products'][] = array(
+LINE: 126
+
+FILE: catalog/language/en-gb/common/footer.php
+CODE: <a href="http://www.opencart.com">OpenCart</a>
+LINE: 16
+
+FILE: (sub modification) catalog/controller/extension/module/slideshow.php
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/swiper/css/swiper.min.css');
+LINE: 8
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 18
+
+FILE: (sub modification) catalog/controller/extension/module/carousel.php
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/swiper/css/swiper.min.css');
+LINE: 8
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 18
+----------------------------------------------------------------
+2025-10-16 21:06:29 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+MOD: isotop theme
+
+FILE: admin/view/template/common/footer.twig
+CODE: {{ text_footer }}
+LINE: 0
+
+FILE: catalog/controller/checkout/cart.php
+CODE: $this->language->get('text_items')
+LINE: 372
+LINE: 471
+
+FILE: catalog/controller/common/cart.php
+CODE: $this->language->get('text_items')
+LINE: 49
+
+FILE: catalog/controller/common/header.php
+CODE: $data['name'] = $this->config->get('config_name');
+LINE: 51
+
+FILE: catalog/model/catalog/product.php
+CODE: 'p.price',
+LINE: 162
+CODE: } elseif ($data['sort'] == 'p.price') {
+LINE: 172
+
+FILE: catalog/controller/common/menu.php
+CODE: 'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+LINE: 28
+
+FILE: (sub modification) catalog/controller/checkout/cart.php
+CODE: public function remove() {
+LINE: 461
+CODE: $data['products'][] = array(
+LINE: 133
+
+FILE: catalog/controller/extension/module/4category.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 32
+
+FILE: catalog/controller/extension/module/account.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/advant_blocks.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/amazon_login.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/amazon_pay.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/banner.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/banner_system.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/bestseller.php
+CODE: $result['product_id'],
+LINE: 49
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 6
+
+FILE: catalog/controller/extension/module/carousel.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/category.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 26
+
+FILE: catalog/controller/extension/module/category_product_tab.php
+CODE: $result['product_id'],
+LINE: 94
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 8
+
+FILE: catalog/controller/extension/module/divido_calculator.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 6
+
+FILE: catalog/controller/extension/module/featured.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+LINE: 56
+CODE: $this->load->model('catalog/product');
+LINE: 6
+
+FILE: catalog/controller/extension/module/filter.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 41
+
+FILE: catalog/controller/extension/module/google_hangouts.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/html.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/information.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/klarna_checkout_module.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/latest.php
+CODE: $result['product_id'],
+LINE: 49
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 6
+
+FILE: catalog/controller/extension/module/laybuy_layout.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/paypal_smart_button.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 57
+LINE: 147
+
+FILE: catalog/controller/extension/module/pilibaba_button.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/pp_braintree_button.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/sagepay_direct_cards.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/sagepay_server_cards.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/slideshow.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/extension/module/special.php
+CODE: $result['product_id'],
+LINE: 56
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+LINE: 6
+
+FILE: catalog/controller/extension/module/store.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('catalog/product');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/product/product.php
+CODE: $this->document->addScript('catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js');
+LINE: 236
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific-popup.css');
+LINE: 237
+CODE: if ($product_info['quantity'] <= 0) {
+LINE: 261
+
+FILE: catalog/controller/product/category.php
+CODE: $result['product_id'],
+LINE: 199
+
+FILE: catalog/controller/product/compare.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/product/manufacturer.php
+CODE: $result['product_id'],
+LINE: 188
+
+FILE: (sub modification) catalog/controller/product/product.php
+CODE: $result['product_id'],
+LINE: 433
+
+FILE: catalog/controller/product/search.php
+CODE: $result['product_id'],
+LINE: 225
+
+FILE: catalog/controller/product/special.php
+CODE: $result['product_id'],
+LINE: 117
+
+FILE: (sub modification) catalog/controller/extension/module/featured.php
+CODE: $image = $this->model_tool_image->resize($product_info['image'], $setting['width'], $setting['height']);
+LINE: 24
+
+FILE: (sub modification) catalog/controller/extension/module/bestseller.php
+CODE: $image = $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height']);
+LINE: 17
+
+FILE: (sub modification) catalog/controller/extension/module/special.php
+CODE: $image = $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height']);
+LINE: 24
+
+FILE: (sub modification) catalog/controller/extension/module/latest.php
+CODE: $image = $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height']);
+LINE: 17
+
+FILE: (sub modification) catalog/controller/product/special.php
+CODE: foreach ($results as $result) {
+LINE: 83
+
+FILE: (sub modification) catalog/controller/product/search.php
+CODE: foreach ($results as $result) {
+LINE: 191
+
+FILE: (sub modification) catalog/controller/product/category.php
+CODE: foreach ($results as $result) {
+LINE: 138
+LINE: 166
+----------------------------------------------------------------
+MOD: part theme
+
+FILE: (sub modification) admin/view/template/common/footer.twig
+CODE: {{ text_footer }}
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: (sub modification) catalog/controller/checkout/cart.php
+CODE: $this->language->get('text_items')
+LINE: 442
+
+FILE: (sub modification) catalog/controller/common/cart.php
+CODE: $this->language->get('text_items')
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: (sub modification) catalog/controller/common/header.php
+CODE: $data['name'] = $this->config->get('config_name');
+LINE: 112
+
+FILE: (sub modification) catalog/model/catalog/product.php
+CODE: 'p.price',
+LINE: 163
+CODE: } elseif ($data['sort'] == 'p.price') {
+LINE: 174
+
+FILE: (sub modification) catalog/controller/common/menu.php
+CODE: 'name'  => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: (sub modification) catalog/controller/checkout/cart.php
+CODE: public function remove() {
+LINE: 515
+CODE: $data['products'][] = array(
+LINE: 133
+
+FILE: (sub modification) catalog/controller/product/search.php
+CODE: 'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+LINE: 238
+CODE: $this->response->setOutput($this->load->view('product/search', $data));
+LINE: 459
+
+FILE: (sub modification) catalog/controller/extension/module/bestseller.php
+CODE: $result['product_id'],
+LINE: 50
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($result['image']) {
+LINE: 26
+CODE: if ($product_info['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 63
+
+FILE: (sub modification) catalog/controller/extension/module/latest.php
+CODE: $result['product_id'],
+LINE: 50
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($result['image']) {
+LINE: 26
+CODE: if ($product_info['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 63
+
+FILE: (sub modification) catalog/controller/extension/module/special.php
+CODE: $result['product_id'],
+LINE: 57
+CODE: $product_info['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($result['image']) {
+LINE: 33
+CODE: if ($product_info['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 70
+
+FILE: (sub modification) catalog/controller/extension/module/featured.php
+CODE: $result['product_id'],
+NOT FOUND - OPERATION SKIPPED!
+CODE: $product_info['product_id'],
+LINE: 57
+CODE: if ($result['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product_info['image']) {
+LINE: 33
+CODE: if ($product['image']) {
+NOT FOUND - OPERATION SKIPPED!
+CODE: $image,
+LINE: 70
+
+FILE: (sub modification) catalog/controller/extension/module/bestseller.php
+CODE: $data['products'][] = array(
+LINE: 58
+
+FILE: (sub modification) catalog/controller/extension/module/latest.php
+CODE: $data['products'][] = array(
+LINE: 58
+
+FILE: (sub modification) catalog/controller/extension/module/special.php
+CODE: $data['products'][] = array(
+LINE: 65
+
+FILE: (sub modification) catalog/controller/extension/module/featured.php
+CODE: $data['products'][] = array(
+LINE: 65
+
+FILE: (sub modification) catalog/controller/product/product.php
+CODE: $this->document->addScript('catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js');
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/magnific/magnific-popup.css');
+NOT FOUND - OPERATION SKIPPED!
+CODE: if ($product_info['quantity'] <= 0) {
+LINE: 262
+
+FILE: (sub modification) catalog/controller/product/category.php
+CODE: if ($result['image']) {
+LINE: 177
+CODE: $image,
+LINE: 213
+CODE: $result['product_id'],
+LINE: 211
+CODE: $data['products'][] = array(
+LINE: 209
+
+FILE: (sub modification) catalog/controller/product/compare.php
+CODE: if ($result['image']) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: (sub modification) catalog/controller/product/manufacturer.php
+CODE: if ($result['image']) {
+LINE: 164
+CODE: $image,
+LINE: 200
+CODE: $result['product_id'],
+LINE: 198
+CODE: $data['products'][] = array(
+LINE: 196
+
+FILE: (sub modification) catalog/controller/product/product.php
+CODE: if ($result['image']) {
+LINE: 410
+CODE: $image,
+LINE: 446
+CODE: $result['product_id'],
+LINE: 444
+CODE: $data['products'][] = array(
+LINE: 442
+
+FILE: (sub modification) catalog/controller/product/search.php
+CODE: if ($result['image']) {
+LINE: 202
+CODE: $image,
+LINE: 238
+CODE: $result['product_id'],
+LINE: 236
+CODE: $data['products'][] = array(
+LINE: 234
+
+FILE: (sub modification) catalog/controller/product/special.php
+CODE: if ($result['image']) {
+LINE: 94
+CODE: $image,
+LINE: 130
+CODE: $result['product_id'],
+LINE: 128
+CODE: $data['products'][] = array(
+LINE: 126
+
+FILE: catalog/language/en-gb/common/footer.php
+CODE: <a href="http://www.opencart.com">OpenCart</a>
+LINE: 16
+
+FILE: (sub modification) catalog/controller/extension/module/slideshow.php
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/swiper/css/swiper.min.css');
+LINE: 8
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 18
+
+FILE: (sub modification) catalog/controller/extension/module/carousel.php
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/swiper/css/swiper.min.css');
+LINE: 8
+CODE: 'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
+LINE: 18
+----------------------------------------------------------------

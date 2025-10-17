@@ -1,0 +1,61 @@
+{% if columns %}
+<div id="banners" class="row">
+	{% for column in columns %}
+	<div class="{{ column.size }}">
+		{% for column_value in column.column_value %}
+		{% if column_value.link %}
+		<a href="{{ column_value.link }}"><img class="img-responsive" src="{{ column_value.image }}" /></a>
+		{% else %}
+		<a><img class="img-responsive" src="{{ column_value.image }}" alt="{{ column_value.title }}" /></a>
+		{% endif %}
+		{% endfor %}
+	</div>
+	{% endfor %}
+</div>
+{% endif %}
+<style>
+#banners a{
+	position: relative;
+	overflow: hidden;
+	display: inline-block;
+}
+#banners a:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    height: 100%;
+    background: rgba(255,255,255,.2);
+    content: '';
+    transition: transform 0.6s;
+    -webkit-transition: -webkit-transform 0.6s;
+    -ms-transition: -ms-transform 0.6s;
+    -moz-transition: -moz-transform 0.6s;
+    -o-transition: -o-transform 0.6s;
+    transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,-150%,0);
+    -webkit-transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,-150%,0);
+    -ms-transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,-150%,0);
+    -moz-transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,-150%,0);
+    -o-transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,-150%,0);
+}
+#banners a:hover:before {
+    transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,150%,0);
+    -webkit-transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,150%,0);
+    -ms-transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,150%,0);
+    -moz-transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,150%,0);
+    -o-transform: scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,150%,0);
+}
+@media(min-width: 980px){
+	#banners img{
+		margin-bottom: 30px;
+	}
+}
+
+@media(max-width: 767px){
+	#banners img{
+		margin-bottom: 10px;
+	}
+}
+}
+</style>
