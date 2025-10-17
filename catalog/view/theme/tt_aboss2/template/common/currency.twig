@@ -1,0 +1,38 @@
+{% if currencies|length > 1 %}
+<li class="currency">
+    <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-currency">
+        <h3 class="text-ex switcher-title">{{ text_currency }}</h3>
+        <ul class="switcher-option">
+            {% for currency in currencies %}
+            {% if currency.code == code %}
+            <li>
+                <button class="item-selected currency-select btn btn-link btn-block" type="button" name="{{ currency.code }}">
+                    {% if currency.symbol_left %} 
+                    {{ currency.symbol_left }}
+                    {% endif %}     
+                    {{ currency.title }}
+                    {% if currency.symbol_right %} 
+                    {{ currency.symbol_right }}
+                    {% endif %}
+                </button>
+            </li>
+            {% else %}
+            <li>
+                <button class="currency-select btn btn-link btn-block" type="button" name="{{ currency.code }}">
+                    {% if currency.symbol_left %} 
+                    {{ currency.symbol_left }}
+                    {% endif %}     
+                    {{ currency.title }}
+                    {% if currency.symbol_right %} 
+                    {{ currency.symbol_right }}
+                    {% endif %}
+                </button>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        <input type="hidden" name="code" value="" />
+        <input type="hidden" name="redirect" value="{{ redirect }}" />
+    </form>
+</li>
+{% endif %}
