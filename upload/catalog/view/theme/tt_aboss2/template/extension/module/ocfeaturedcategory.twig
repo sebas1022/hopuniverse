@@ -1,0 +1,87 @@
+<div class="featured-category">
+	<div class="featured-categories-title module-title">
+		<h2>{{ text_headingtitle }}</h2>
+		<p class="module-description">{{ text_subtitle }}</p>
+	</div>
+	{% set count, rows = 0, config_slide.f_rows %}
+	{% if not rows %}
+	{% set rows = 1 %}
+	{% endif %}
+	<div class="owl-featured-categories owl-carousel owl-theme">
+		{% for category in categories %}
+		{% if count % rows == 0 %}
+		<div class="row_items">
+			{% endif %}
+			<div class="featured-category-content">
+				<div class="main-featured-category">
+					<a href="{{ category.href }}"></a>
+					<div class="icon">
+						<img src="{{ category.thumbnail_image }}" alt="" class="image"/>
+						<img src="{{ category.homethumb_image }}" alt="" class="image-hover"/>
+					</div>
+					<div class="text">
+						<h3>{{ category.name }}</h3>
+						{% if config_slide.show_description %}
+						<p class="featured-category-desc">{{ category.description }}</p>
+						{% endif %}
+					</div>
+				</div>
+				{% if config_slide.show_sub_category %}
+				{% set number_sub = config_slide.number_sub %}
+				{% if category.children %}
+				{% set sub_count = 0 %}
+				<div class="sub-featured-category">
+					<ul>
+						{% for subcate in category.children %}
+						{% if sub_count < number_sub %}
+						<li><a href="{{ subcate.href }}">{{ subcate.name }}</a></li>
+						{% endif %}
+						{% set sub_count = sub_count + 1 %}
+						{% endfor %}
+					</ul>
+				</div>
+				{% endif %}
+				{% endif %}
+			</div>
+			{% if (count % rows == 0) or (count == categories|length) %}
+		</div>
+		{% endif %}
+		{% endfor %}
+	</div>
+</div>
+{% if config_slide.use_slider %}
+<script type="text/javascript">
+	$(document).ready(function() { 
+		$(".owl-featured-categories").owlCarousel({
+			slideSpeed: {% if config_slide.f_speed %} {{ config_slide.f_speed }} {% else %} 3000 {% endif %},
+			items : {% if config_slide.items %} {{ config_slide.items }} {% else %} 3 {% endif %},
+			autoPlay : {% if config_slide.autoplay %} true {% else %} false {% endif %},
+			nav : {% if config_slide.f_show_nextback %} true {% else %} false {% endif %},
+			paginationNumbers : true,
+			dots : {% if config_slide.f_show_ctr %} true {% else %} false {% endif %},
+			stopOnHover : false,
+			navText : ['<i class="ion-chevron-left"></i>','<i class="ion-chevron-right"></i>'],
+			responsive:{
+			    0:{
+			        items: 1,
+			    },
+			    480:{
+			        items: 2,
+			    },
+			    640:{
+			        items: 3,
+			    },
+			    768:{
+			        items: 4,
+			    },
+			    992:{
+			        items: 5,
+			    },
+			    1200:{
+			        items: 6,
+			    },
+			},    
+		});
+	});
+</script>
+{% endif %}

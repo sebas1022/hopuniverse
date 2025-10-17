@@ -1,0 +1,67 @@
+<div class="module module-testimonial">
+	{% set count = 0 %}
+	{% if rows %}		
+	{% set rows = slide.rows %}
+	{% else %}
+	{% set rows = 1 %}
+	{% endif %}
+	{% if testimonials %}
+	<div class="block-content">
+		<div class="testimonial-slider owl-carousel owl-theme">
+			{% for testimonial in testimonials %}
+			{% if count % rows == 0 %}
+			<div class="row_items">
+				{% endif %}
+				{% set count = count + 1 %}
+				<div class="testimonial-content">
+					<div class="testimonial-image">
+						<a href="{{ more }}"><img src="{{ testimonial.image }}" alt="{{ testimonial.customer_name }}"></a>
+													
+					</div>
+					<h4 class="testimonial-author"><a href="{{ more }}">{{ testimonial.customer_name }}</a></h4>
+					<div class="testimonial-box">							
+						{{ testimonial.content }}
+					</div>
+				</div><!--testimonial-content-->
+				{% if count % rows == 0 or count == testimonials|length %}
+			</div>
+			{% endif %}
+			{% endfor %}
+		</div>
+
+	</div><!--block-content-->
+	{% else %}
+	<p class="text_empty">{{ text_empty }}</p>
+	{% endif %}
+</div><!--module-testimonial-->					
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".testimonial-slider").owlCarousel({
+			nav : {% if slide['navigation'] %} true  {% else %} false {% endif %},
+			dots :{% if slide['pagination'] %} true {% else %} false {% endif %},
+			autoPlay : {% if slide['auto'] %} {{ slide['auto'] }} {% else %} false {% endif %},
+			items : {{ slide['items'] }},
+			loop: true,
+			margin: 0,
+			navSpeed : {{ slide['speed'] }},
+			dotsSpeed : {{ slide['speed'] }},
+			autoplaySpeed : {{ slide['speed'] }},
+			lazyLoad: true,
+			navText : ['<i class="ion-ios-arrow-left"></i>','<i class="ion-ios-arrow-right"></i>'],
+			responsive:{
+				0:{
+					items: 1,
+				},
+				480:{
+					items: 1,
+				},
+				768:{
+					items: 1,
+				},
+				992:{
+					items: 1,
+				},
+			},
+		});
+	});
+</script>

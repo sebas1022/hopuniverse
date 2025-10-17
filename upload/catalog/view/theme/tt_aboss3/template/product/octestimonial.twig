@@ -1,0 +1,48 @@
+{{ header }}
+<div class="wrapper testimonial-product">
+    <div class="page-content">
+        <h2 class="page-title">{{ heading_title }}</h2>
+        <ul class="breadcrumb">
+            {% for breadcrumb in breadcrumbs %}
+            <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+            {% endfor %}
+        </ul>
+        <div class="container">
+            <div id="content">
+                {{ content_top }}
+                {% if testimonials %}
+                {% for testimonial in testimonials %}
+                <div class="testimonial-content clearfix">
+                    <div class="col-sm-2">
+                        <div class="testimonial-image text-center">
+                            <img src="{{ testimonial['image'] }}" alt="{{ heading_title }}">
+                        </div>
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="testimonial-info">
+                            <div class="testimonial-desc">{{ testimonial['content'] }}</div>
+                            <div class="testimonial-name text-right">
+                                <h5>--{{ testimonial['customer_name'] }}--</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {{ content_bottom }}
+            </div>
+            <div class="toolbar-bottom">
+                <div class="row">
+                    <div class="col-sm-6 show-page">{{ pagination }}</div>
+                    <div class="col-sm-6 text-result text-right">{{ results }}</div>
+                </div>
+            </div>
+            {% else %}
+            <p>{{ text_empty }}</p>
+            <div class="buttons">
+                <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{{ footer }}

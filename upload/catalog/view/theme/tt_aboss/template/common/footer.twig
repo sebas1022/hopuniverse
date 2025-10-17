@@ -1,0 +1,62 @@
+    <div class="bottom-content">
+        {% if block6 %}
+        {{ block6 }}
+        {% endif %}
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                {% if block7 %}
+                <div class="footer-column col-sm-12 col-md-4">
+                    {{ block7 }}
+                </div>
+                {% endif %}
+
+                {% if block8 %}
+                <div class="footer-column col-sm-12 col-md-2">
+                    {{ block8 }}
+                </div>
+                {% endif %}
+
+                {% if block9 %}
+                <div class="footer-column col-sm-12 col-md-2">
+                    {{ block9 }}
+                </div>
+                {% endif %}
+
+                {% if block10 %}
+                <div class="footer-column col-sm-12 col-md-4">
+                    {{ block10 }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </footer>
+    <div id="back-top">{{ text_backtop }}</div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            // hide #back-top first
+            $("#back-top").hide();
+            // fade in #back-top
+            $(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > ($('header').height()+$('header').offset().top)) {
+                        $('#back-top').fadeIn();
+                    } else {
+                        $('#back-top').fadeOut();
+                    }
+                });
+                // scroll body to 0px on click
+                $('#back-top').click(function () {
+                    $('body,html').animate({scrollTop: 0}, 800);
+                    return false;
+                });
+            });
+        });
+    </script>
+    <!--
+    OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
+    Please donate via PayPal to donate@opencart.com
+    //-->
+    </div><!-- wrapper -->
+</body></html>
