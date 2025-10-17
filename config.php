@@ -9,8 +9,8 @@ define('HTTPS_SERVER', 'https://hopuniverse.com/');
 define('DIR_APPLICATION', '/var/www/hopuniverse.com/catalog/');
 define('DIR_SYSTEM', '/var/www/hopuniverse.com/system/');
 define('DIR_IMAGE', '/var/www/hopuniverse.com/image/');
-define('DIR_STORAGE', '/var/www/hopuniverse.com/storage/');
-define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
+define('DIR_STORAGE', '/var/www/hopuniverse_storage/');
+define('DIR_LANGUAGE', DIR_SYSTEM . 'library/language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/theme/');
 define('DIR_CONFIG', DIR_SYSTEM . 'config/');
 define('DIR_CACHE', DIR_STORAGE . 'cache/');
@@ -28,3 +28,4 @@ define('DB_PASSWORD', 'HopUniverse2025!');
 define('DB_DATABASE', 'hopuniverse_db');
 define('DB_PORT', '3306');
 define('DB_PREFIX', 'oc_');
+

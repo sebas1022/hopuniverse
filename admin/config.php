@@ -11,9 +11,9 @@ define('HTTPS_CATALOG', 'https://hopuniverse.com/');
 define('DIR_APPLICATION', '/var/www/hopuniverse.com/admin/');
 define('DIR_SYSTEM', '/var/www/hopuniverse.com/system/');
 define('DIR_IMAGE', '/var/www/hopuniverse.com/image/');
-define('DIR_STORAGE', '/var/www/hopuniverse.com/storage/');
+define('DIR_STORAGE', '/var/www/hopuniverse_storage/');
 define('DIR_CATALOG', '/var/www/hopuniverse.com/catalog/');
-define('DIR_LANGUAGE', DIR_APPLICATION . 'language/');
+define('DIR_LANGUAGE', DIR_SYSTEM . 'library/language/');
 define('DIR_TEMPLATE', DIR_APPLICATION . 'view/template/');
 define('DIR_CONFIG', DIR_SYSTEM . 'config/');
 define('DIR_CACHE', DIR_STORAGE . 'cache/');
@@ -34,3 +34,4 @@ define('DB_PREFIX', 'oc_');
 
 // OpenCart API
 define('OPENCART_SERVER', 'https://www.opencart.com/');
+
