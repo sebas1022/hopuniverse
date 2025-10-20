@@ -18,3 +18,9 @@ vqmod/logs/*
 vqmod/vqcache/*
 vqmod/checked.cache
 vqmod/mods.cache
+
+# Storage directory
+storage/cache/*
+storage/session/*
+storage/logs/*
+!storage/**/index.html
