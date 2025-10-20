@@ -5,7 +5,9 @@ class ControllerCommonLogin extends Controller {
 	public function index() {
 		$debug_log = DIR_LOGS . 'login_debug.log';
 		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - === LOGIN INDEX START ===\n", FILE_APPEND);
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - SESSION_ID: " . session_id() . "\n", FILE_APPEND);
 		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - REQUEST_METHOD: " . (isset($this->request->server['REQUEST_METHOD']) ? $this->request->server['REQUEST_METHOD'] : 'NOT SET') . "\n", FILE_APPEND);
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - SESSION DATA: " . print_r($this->session->data, true) . "\n", FILE_APPEND);
 		
 		$this->load->language('common/login');
 
@@ -22,11 +24,16 @@ class ControllerCommonLogin extends Controller {
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->session->data['user_token'] = token(32);
+			file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Generated user_token: " . $this->session->data['user_token'] . "\n", FILE_APPEND);
+			file_put_contents($debug_log, date('Y-m-d H:i:s') . " - SESSION DATA AFTER TOKEN: " . print_r($this->session->data, true) . "\n", FILE_APPEND);
 
 			if (isset($this->request->post['redirect']) && (strpos($this->request->post['redirect'], HTTP_SERVER) === 0 || strpos($this->request->post['redirect'], HTTPS_SERVER) === 0)) {
+				file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Redirecting to: " . $this->request->post['redirect'] . '&user_token=' . $this->session->data['user_token'] . "\n", FILE_APPEND);
 				$this->response->redirect($this->request->post['redirect'] . '&user_token=' . $this->session->data['user_token']);
 			} else {
-				$this->response->redirect($this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true));
+				$redirect_url = $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true);
+				file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Redirecting to: " . $redirect_url . "\n", FILE_APPEND);
+				$this->response->redirect($redirect_url);
 			}
 		}
 
