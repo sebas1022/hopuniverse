@@ -3,14 +3,22 @@ class ControllerCommonLogin extends Controller {
 	private $error = array();
 
 	public function index() {
+		error_log('=== LOGIN INDEX START ===');
+		error_log('REQUEST_METHOD: ' . (isset($this->request->server['REQUEST_METHOD']) ? $this->request->server['REQUEST_METHOD'] : 'NOT SET'));
+		
 		$this->load->language('common/login');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		error_log('User isLogged: ' . ($this->user->isLogged() ? 'YES' : 'NO'));
+		
 		if ($this->user->isLogged() && isset($this->request->get['user_token']) && ($this->request->get['user_token'] == $this->session->data['user_token'])) {
+			error_log('DEBUG: User already logged, redirecting to dashboard');
 			$this->response->redirect($this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true));
 		}
 
+		error_log('DEBUG: Is POST? ' . (($this->request->server['REQUEST_METHOD'] == 'POST') ? 'YES' : 'NO'));
+		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->session->data['user_token'] = token(32);
 
