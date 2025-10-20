@@ -5,9 +5,10 @@ class ControllerCommonLogin extends Controller {
 	public function index() {
 		$debug_log = DIR_LOGS . 'login_debug.log';
 		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - === LOGIN INDEX START ===\n", FILE_APPEND);
-		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - SESSION_ID: " . session_id() . "\n", FILE_APPEND);
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - SESSION_ID (OpenCart): " . $this->session->getId() . "\n", FILE_APPEND);
 		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - REQUEST_METHOD: " . (isset($this->request->server['REQUEST_METHOD']) ? $this->request->server['REQUEST_METHOD'] : 'NOT SET') . "\n", FILE_APPEND);
 		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - SESSION DATA: " . print_r($this->session->data, true) . "\n", FILE_APPEND);
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - COOKIES: " . print_r($_COOKIE, true) . "\n", FILE_APPEND);
 		
 		$this->load->language('common/login');
 
