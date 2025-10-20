@@ -85,31 +85,49 @@ class ControllerCommonLogin extends Controller {
 	}
 
 	protected function validate() {
+		error_log('=== DEBUG LOGIN START ===');
+		error_log('Username isset: ' . (isset($this->request->post['username']) ? 'YES' : 'NO'));
+		error_log('Password isset: ' . (isset($this->request->post['password']) ? 'YES' : 'NO'));
+		error_log('Username value: ' . (isset($this->request->post['username']) ? $this->request->post['username'] : 'NOT SET'));
+		
 		if(!isset($this->request->post['username']) || !isset($this->request->post['password']) || !$this->request->post['username'] || !$this->request->post['password']) {
+			error_log('DEBUG: Empty username or password');
 			$this->error['warning'] = $this->language->get('error_login');
 		} else {
 			$this->load->model('user/user');
 
 			// Check how many login attempts have been made.
 			$login_info = $this->model_user_user->getLoginAttempts($this->request->post['username']);
+			error_log('DEBUG: Login attempts: ' . print_r($login_info, true));
 
 			if ($login_info && ($login_info['total'] >= $this->config->get('config_login_attempts')) && strtotime('-1 hour') < strtotime($login_info['date_modified'])) {
+				error_log('DEBUG: Too many login attempts');
 				$this->error['error_attempts'] = $this->language->get('error_attempts');
 			}
 		}
 
 		if(!$this->error) {
-			if (!$this->user->login($this->request->post['username'], html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8'))) {
+			error_log('DEBUG: About to attempt login');
+			$login_result = $this->user->login($this->request->post['username'], html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8'));
+			error_log('DEBUG: Login result: ' . ($login_result ? 'SUCCESS' : 'FAILED'));
+			
+			if (!$login_result) {
+				error_log('DEBUG: Login failed - adding attempt');
 				$this->error['warning'] = $this->language->get('error_login');
 
 				$this->model_user_user->addLoginAttempt($this->request->post['username']);
 
 				unset($this->session->data['user_token']);
 			} else {
+				error_log('DEBUG: Login successful - deleting attempts');
 				$this->model_user_user->deleteLoginAttempts($this->request->post['username']);
 			}
 		}
 
+		error_log('DEBUG: Has errors: ' . ($this->error ? 'YES' : 'NO'));
+		error_log('DEBUG: Return value: ' . (!$this->error ? 'TRUE' : 'FALSE'));
+		error_log('=== DEBUG LOGIN END ===');
+		
 		return !$this->error;
 	}
 }
