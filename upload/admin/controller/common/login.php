@@ -3,21 +3,22 @@ class ControllerCommonLogin extends Controller {
 	private $error = array();
 
 	public function index() {
-		error_log('=== LOGIN INDEX START ===');
-		error_log('REQUEST_METHOD: ' . (isset($this->request->server['REQUEST_METHOD']) ? $this->request->server['REQUEST_METHOD'] : 'NOT SET'));
+		$debug_log = DIR_LOGS . 'login_debug.log';
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - === LOGIN INDEX START ===\n", FILE_APPEND);
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - REQUEST_METHOD: " . (isset($this->request->server['REQUEST_METHOD']) ? $this->request->server['REQUEST_METHOD'] : 'NOT SET') . "\n", FILE_APPEND);
 		
 		$this->load->language('common/login');
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
-		error_log('User isLogged: ' . ($this->user->isLogged() ? 'YES' : 'NO'));
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - User isLogged: " . ($this->user->isLogged() ? 'YES' : 'NO') . "\n", FILE_APPEND);
 		
 		if ($this->user->isLogged() && isset($this->request->get['user_token']) && ($this->request->get['user_token'] == $this->session->data['user_token'])) {
-			error_log('DEBUG: User already logged, redirecting to dashboard');
+			file_put_contents($debug_log, date('Y-m-d H:i:s') . " - User already logged, redirecting to dashboard\n", FILE_APPEND);
 			$this->response->redirect($this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true));
 		}
 
-		error_log('DEBUG: Is POST? ' . (($this->request->server['REQUEST_METHOD'] == 'POST') ? 'YES' : 'NO'));
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Is POST? " . (($this->request->server['REQUEST_METHOD'] == 'POST') ? 'YES' : 'NO') . "\n", FILE_APPEND);
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->session->data['user_token'] = token(32);
@@ -93,48 +94,49 @@ class ControllerCommonLogin extends Controller {
 	}
 
 	protected function validate() {
-		error_log('=== DEBUG LOGIN START ===');
-		error_log('Username isset: ' . (isset($this->request->post['username']) ? 'YES' : 'NO'));
-		error_log('Password isset: ' . (isset($this->request->post['password']) ? 'YES' : 'NO'));
-		error_log('Username value: ' . (isset($this->request->post['username']) ? $this->request->post['username'] : 'NOT SET'));
+		$debug_log = DIR_LOGS . 'login_debug.log';
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - === VALIDATE START ===\n", FILE_APPEND);
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Username isset: " . (isset($this->request->post['username']) ? 'YES' : 'NO') . "\n", FILE_APPEND);
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Password isset: " . (isset($this->request->post['password']) ? 'YES' : 'NO') . "\n", FILE_APPEND);
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Username value: " . (isset($this->request->post['username']) ? $this->request->post['username'] : 'NOT SET') . "\n", FILE_APPEND);
 		
 		if(!isset($this->request->post['username']) || !isset($this->request->post['password']) || !$this->request->post['username'] || !$this->request->post['password']) {
-			error_log('DEBUG: Empty username or password');
+			file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Empty username or password\n", FILE_APPEND);
 			$this->error['warning'] = $this->language->get('error_login');
 		} else {
 			$this->load->model('user/user');
 
 			// Check how many login attempts have been made.
 			$login_info = $this->model_user_user->getLoginAttempts($this->request->post['username']);
-			error_log('DEBUG: Login attempts: ' . print_r($login_info, true));
+			file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Login attempts: " . print_r($login_info, true) . "\n", FILE_APPEND);
 
 			if ($login_info && ($login_info['total'] >= $this->config->get('config_login_attempts')) && strtotime('-1 hour') < strtotime($login_info['date_modified'])) {
-				error_log('DEBUG: Too many login attempts');
+				file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Too many login attempts\n", FILE_APPEND);
 				$this->error['error_attempts'] = $this->language->get('error_attempts');
 			}
 		}
 
 		if(!$this->error) {
-			error_log('DEBUG: About to attempt login');
+			file_put_contents($debug_log, date('Y-m-d H:i:s') . " - About to attempt login\n", FILE_APPEND);
 			$login_result = $this->user->login($this->request->post['username'], html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8'));
-			error_log('DEBUG: Login result: ' . ($login_result ? 'SUCCESS' : 'FAILED'));
+			file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Login result: " . ($login_result ? 'SUCCESS' : 'FAILED') . "\n", FILE_APPEND);
 			
 			if (!$login_result) {
-				error_log('DEBUG: Login failed - adding attempt');
+				file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Login failed - adding attempt\n", FILE_APPEND);
 				$this->error['warning'] = $this->language->get('error_login');
 
 				$this->model_user_user->addLoginAttempt($this->request->post['username']);
 
 				unset($this->session->data['user_token']);
 			} else {
-				error_log('DEBUG: Login successful - deleting attempts');
+				file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Login successful - deleting attempts\n", FILE_APPEND);
 				$this->model_user_user->deleteLoginAttempts($this->request->post['username']);
 			}
 		}
 
-		error_log('DEBUG: Has errors: ' . ($this->error ? 'YES' : 'NO'));
-		error_log('DEBUG: Return value: ' . (!$this->error ? 'TRUE' : 'FALSE'));
-		error_log('=== DEBUG LOGIN END ===');
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Has errors: " . ($this->error ? 'YES' : 'NO') . "\n", FILE_APPEND);
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Return value: " . (!$this->error ? 'TRUE' : 'FALSE') . "\n", FILE_APPEND);
+		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - === VALIDATE END ===\n\n", FILE_APPEND);
 		
 		return !$this->error;
 	}
