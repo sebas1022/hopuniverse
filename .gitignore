@@ -1,26 +1,151 @@
-.htaccess
-/config.php
-admin/config.php
+# OpenCart 3.x .gitignore
+# Optimizado para Journal 3
 
+# ==============================================
+# ARCHIVOS DE CONFIGURACIÓN SENSIBLES
+# ==============================================
+# Descomenta estas líneas en producción:
+# /config.php
+# /admin/config.php
+# /.htaccess
+
+# ==============================================
+# CACHE Y LOGS
+# ==============================================
+# Cache de imágenes
+/image/cache/
+/image/data/
+/upload/image/cache/
+/upload/image/data/
+
+# Cache del sistema
+/system/cache/
+/system/logs/
+/upload/system/cache/
+/upload/system/logs/
+
+# Storage cache y logs
+/storage/cache/
+/storage/logs/
+/storage/modification/cache/
+/storage/modification/logs/
+
+# ==============================================
+# JOURNAL 3 ASSETS (GENERADOS AUTOMÁTICAMENTE)
+# ==============================================
+# Assets compilados de Journal 3
+/catalog/view/theme/journal3/assets/
+/upload/catalog/view/theme/journal3/assets/
+/upload/catalog/view/theme/journal3/css/
+/upload/catalog/view/theme/journal3/js/
+
+# ==============================================
+# VQMOD/OCMOD (MODIFICACIONES)
+# ==============================================
+# IMPORTANTE: No ignorar /storage/modification/ completamente
+# Solo ignorar cache y logs, pero mantener los archivos .php modificados
+/storage/modification/cache/
+/storage/modification/logs/
+/vqmod/logs/
+/vqmod/vqcache/
+/vqmod/checked.cache
+/vqmod/mods.cache
+
+# ==============================================
+# ARCHIVOS DE DESARROLLO
+# ==============================================
+# Logs de desarrollo
+*.log
+error_log
+access_log
+
+# Archivos de entorno
+.env
+.env.local
+.env.production
+
+# ==============================================
+# ARCHIVOS DEL SISTEMA OPERATIVO
+# ==============================================
+# macOS
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+.nfs*
+
+# ==============================================
+# EDITORES Y IDEs
+# ==============================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PhpStorm/IntelliJ
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+
+# ==============================================
+# DEPENDENCIAS
+# ==============================================
+# Composer (descomenta si usas)
+# vendor/
+# composer.lock
+
+# NPM (si usas Node.js para Journal 3)
+# node_modules/
+# package-lock.json
+
+# ==============================================
+# BACKUPS Y ARCHIVOS TEMPORALES
+# ==============================================
+*.bak
+*.backup
+*.tmp
+*.temp
+
+# ==============================================
+# ARCHIVOS ESPECÍFICOS DE OPEN CART
+# ==============================================
+# Downloads
+/download/
+/upload/download/
+
+# ==============================================
+# ARCHIVOS QUE SÍ DEBEN VERSIONARSE
+# ==============================================
+# IMPORTANTE: Estos archivos SÍ deben estar en git:
+
+# Archivos modificados (OCMOD)
+!/storage/modification/*.php
+!/storage/modification/admin/
+!/storage/modification/catalog/
+
+# Configuraciones importantes
 !index.html
 
-download/
-image/data/
-image/cache/
-system/cache/
-system/logs/
+# ==============================================
+# REGLAS ESPECÍFICAS PARA JOURNAL 3
+# ==============================================
+# Ignorar assets compilados pero mantener templates
+!/upload/catalog/view/theme/journal3/template/
+!/upload/catalog/view/theme/journal3/language/
 
-system/storage/
-
-# vQmod log files
-vqmod/logs/*
-# vQmod cache files
-vqmod/vqcache/*
-vqmod/checked.cache
-vqmod/mods.cache
-
-# Storage directory
-storage/cache/*
-storage/session/*
-storage/logs/*
-!storage/**/index.html
+# Ignorar cache de Journal pero mantener configuración
+!/upload/system/storage/modification/
