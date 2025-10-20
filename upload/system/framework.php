@@ -85,12 +85,6 @@ if ($config->get('db_autostart')) {
 }
 
 // Session
-$debug_log = defined('DIR_LOGS') ? DIR_LOGS . 'framework_debug.log' : '/tmp/framework_debug.log';
-file_put_contents($debug_log, date('Y-m-d H:i:s') . " - === FRAMEWORK SESSION START ===\n", FILE_APPEND);
-file_put_contents($debug_log, date('Y-m-d H:i:s') . " - session_engine: " . $config->get('session_engine') . "\n", FILE_APPEND);
-file_put_contents($debug_log, date('Y-m-d H:i:s') . " - session_name: " . $config->get('session_name') . "\n", FILE_APPEND);
-file_put_contents($debug_log, date('Y-m-d H:i:s') . " - session_autostart: " . ($config->get('session_autostart') ? 'YES' : 'NO') . "\n", FILE_APPEND);
-
 $session = new Session($config->get('session_engine'), $registry);
 $registry->set('session', $session);
 
@@ -107,25 +101,15 @@ if ($config->get('session_autostart')) {
 	for all sessions!
 	*/
 
-	file_put_contents($debug_log, date('Y-m-d H:i:s') . " - COOKIES: " . print_r($_COOKIE, true) . "\n", FILE_APPEND);
-	
 	if (isset($_COOKIE[$config->get('session_name')])) {
 		$session_id = $_COOKIE[$config->get('session_name')];
-		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Found session cookie: " . $session_id . "\n", FILE_APPEND);
 	} else {
 		$session_id = '';
-		file_put_contents($debug_log, date('Y-m-d H:i:s') . " - No session cookie found\n", FILE_APPEND);
 	}
 
-	$new_session_id = $session->start($session_id);
-	file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Session started with ID: " . $new_session_id . "\n", FILE_APPEND);
-	file_put_contents($debug_log, date('Y-m-d H:i:s') . " - Session->getId(): " . $session->getId() . "\n", FILE_APPEND);
+	$session->start($session_id);
 
-	$cookie_result = setcookie($config->get('session_name'), $session->getId(), ini_get('session.cookie_lifetime'), ini_get('session.cookie_path'), ini_get('session.cookie_domain'));
-	file_put_contents($debug_log, date('Y-m-d H:i:s') . " - setcookie result: " . ($cookie_result ? 'SUCCESS' : 'FAILED') . "\n", FILE_APPEND);
-	file_put_contents($debug_log, date('Y-m-d H:i:s') . " - cookie_lifetime: " . ini_get('session.cookie_lifetime') . "\n", FILE_APPEND);
-	file_put_contents($debug_log, date('Y-m-d H:i:s') . " - cookie_path: " . ini_get('session.cookie_path') . "\n", FILE_APPEND);
-	file_put_contents($debug_log, date('Y-m-d H:i:s') . " - cookie_domain: " . ini_get('session.cookie_domain') . "\n", FILE_APPEND);
+	setcookie($config->get('session_name'), $session->getId(), ini_get('session.cookie_lifetime'), ini_get('session.cookie_path'), ini_get('session.cookie_domain'));
 }
 
 // Cache
