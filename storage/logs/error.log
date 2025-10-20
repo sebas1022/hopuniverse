@@ -1,0 +1,28 @@
+2025-10-18 16:35:07 - PHP Warning:  move_uploaded_file(/var/www/hopuniverse.com/upload/image/catalog/homepage/HOP_Banner_1.jpg): failed to open stream: Permission denied in /var/www/hopuniverse.com/upload/admin/controller/common/filemanager.php on line 277
+2025-10-18 16:35:07 - PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phps9TJxC' to '/var/www/hopuniverse.com/upload/image/catalog/homepage/HOP_Banner_1.jpg' in /var/www/hopuniverse.com/upload/admin/controller/common/filemanager.php on line 277
+2025-10-18 16:35:28 - PHP Warning:  move_uploaded_file(/var/www/hopuniverse.com/upload/image/catalog/homepage/HOP_Banner_1.jpg): failed to open stream: Permission denied in /var/www/hopuniverse.com/upload/admin/controller/common/filemanager.php on line 277
+2025-10-18 16:35:28 - PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpuVbpNk' to '/var/www/hopuniverse.com/upload/image/catalog/homepage/HOP_Banner_1.jpg' in /var/www/hopuniverse.com/upload/admin/controller/common/filemanager.php on line 277
+2025-10-18 16:44:22 - PHP Notice:  Undefined index: link in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 68
+2025-10-18 16:44:22 - PHP Notice:  Undefined index: title in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 73
+2025-10-18 16:44:22 - PHP Notice:  Undefined index: sub_title in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 73
+2025-10-18 16:44:22 - PHP Notice:  Undefined index: link in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 68
+2025-10-18 16:44:22 - PHP Notice:  Undefined index: title in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 73
+2025-10-18 16:44:22 - PHP Notice:  Undefined index: sub_title in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 73
+2025-10-18 18:22:43 - PHP Warning:  move_uploaded_file(/var/www/hopuniverse.com/upload/image/catalog/slider/HOP_Banner_1920_1.jpg): failed to open stream: Permission denied in /var/www/hopuniverse.com/upload/admin/controller/common/filemanager.php on line 277
+2025-10-18 18:22:43 - PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpnVjmH0' to '/var/www/hopuniverse.com/upload/image/catalog/slider/HOP_Banner_1920_1.jpg' in /var/www/hopuniverse.com/upload/admin/controller/common/filemanager.php on line 277
+2025-10-18 18:23:18 - PHP Warning:  move_uploaded_file(/var/www/hopuniverse.com/upload/image/catalog/slider/HOP_Banner_1920_1.jpg): failed to open stream: Permission denied in /var/www/hopuniverse.com/upload/admin/controller/common/filemanager.php on line 277
+2025-10-18 18:23:18 - PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpNQfd7K' to '/var/www/hopuniverse.com/upload/image/catalog/slider/HOP_Banner_1920_1.jpg' in /var/www/hopuniverse.com/upload/admin/controller/common/filemanager.php on line 277
+2025-10-19 0:10:06 - PHP Warning:  move_uploaded_file(/var/www/hopuniverse.com/upload/image/catalog/slider/HOP_Banner_1.jpg): failed to open stream: Permission denied in /var/www/hopuniverse.com/upload/admin/controller/common/filemanager.php on line 277
+2025-10-19 0:10:06 - PHP Warning:  move_uploaded_file(): Unable to move '/tmp/phpn311Wm' to '/var/www/hopuniverse.com/upload/image/catalog/slider/HOP_Banner_1.jpg' in /var/www/hopuniverse.com/upload/admin/controller/common/filemanager.php on line 277
+2025-10-20 14:41:44 - PHP Notice:  Undefined index: link in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 68
+2025-10-20 14:41:44 - PHP Notice:  Undefined index: title in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 73
+2025-10-20 14:41:44 - PHP Notice:  Undefined index: sub_title in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 73
+2025-10-20 14:41:44 - PHP Notice:  Undefined index: link in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 68
+2025-10-20 14:41:44 - PHP Notice:  Undefined index: title in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 73
+2025-10-20 14:41:44 - PHP Notice:  Undefined index: sub_title in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 73
+2025-10-20 14:44:08 - PHP Notice:  Undefined index: link in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 68
+2025-10-20 14:44:08 - PHP Notice:  Undefined index: title in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 73
+2025-10-20 14:44:08 - PHP Notice:  Undefined index: sub_title in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 73
+2025-10-20 14:44:08 - PHP Notice:  Undefined index: link in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 68
+2025-10-20 14:44:08 - PHP Notice:  Undefined index: title in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 73
+2025-10-20 14:44:08 - PHP Notice:  Undefined index: sub_title in /var/www/hopuniverse.com/upload/admin/model/ocslideshow/slide.php on line 73
