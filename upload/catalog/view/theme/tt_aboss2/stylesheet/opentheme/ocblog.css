@@ -12,7 +12,7 @@
     color: #292929;
 }
 .blog-page .post .post-title a:hover {
-    color: #222e3c;
+    color: #6DADCB;
 }
 .blog-page .post .post-meta {
     border-bottom: 1px solid #e5e5e5;
@@ -30,7 +30,7 @@
     margin-top: 5px;
 }
 .blog-page .post .post-button:hover {
-    color: #222e3c;
+    color: #6DADCB;
 }
 /* SINGLE POST
 -----------------------------*/

@@ -46,8 +46,8 @@
     font-size: 14px;
 }
 .a-qv-close:hover {
-    border: 1px solid #222e3c;
-    color: #222e3c;
+    border: 1px solid #6DADCB;
+    color: #6DADCB;
 }
 .qv-button-container {
     position: relative;
@@ -87,7 +87,7 @@
 }
 .product-quickview-image  a.thumbnail.current-additional,
 .product-quickview-image  a.thumbnail:hover {
-    border: 1px solid #222e3c;
+    border: 1px solid #6DADCB;
 }
 .thumbnails-additional {
     margin-top: 25px;
@@ -119,8 +119,8 @@
 }
 .thumbnails-additional.owl-theme .owl-nav > .owl-next:hover, 
 .thumbnails-additional.owl-theme .owl-nav > .owl-prev:hover {
-    background: #222e3c;
-    border-color: #222e3c;
+    background: #6DADCB;
+    border-color: #6DADCB;
     color: #fff;
 }
 .product-quickview-info .product-name {
@@ -154,7 +154,7 @@
     color: #adadad;
 }
 .product-quickview-info .product-rating-review .review a:hover {
-    color: #222e3c;
+    color: #6DADCB;
 }
 .product-quickview-info .price-wrapper {
     border-bottom: 1px solid #ebebeb;
@@ -321,7 +321,7 @@
     text-transform: uppercase;
 }
 .product-quickview-info  #button-cart:hover {
-    background: #222e3c;
+    background: #6DADCB;
 }
 .product-quickview-info .btn-actions .btn-group {
     float: left;
@@ -350,7 +350,7 @@
     margin-right: 0;
 }
 .product-quickview-info .btn-actions .btn-group button:hover {
-    color: #222e3c;
+    color: #6DADCB;
 }
 .product-quickview-info .btn-wishlist:before,
 .product-quickview-info .btn-compare:before {
