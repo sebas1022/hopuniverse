@@ -62,5 +62,13 @@ class ModelDesignTranslation extends Model {
 		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "translation`");
 		
 		return $query->row['total'];
-	}	
+	}
+
+	public function getTranslationsByRoute($route, $language_id, $store_id = 0) {
+		$sql = "SELECT * FROM `" . DB_PREFIX . "translation` WHERE `route` = '" . $this->db->escape($route) . "' AND `language_id` = '" . (int)$language_id . "' AND `store_id` = '" . (int)$store_id . "'";
+		
+		$query = $this->db->query($sql);
+		
+		return $query->rows;
+	}
 }

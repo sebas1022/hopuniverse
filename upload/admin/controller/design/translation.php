@@ -372,6 +372,7 @@ class ControllerDesignTranslation extends Controller {
 		if (!empty($translation_info)) {
 			$directory = DIR_CATALOG . 'language/';
 
+			// Intentar cargar desde archivo PHP
 			if (is_file($directory . $code . '/' . $translation_info['route'] . '.php') && substr(str_replace('\\', '/', realpath($directory . $code . '/' . $translation_info['route'] . '.php')), 0, strlen($directory)) == str_replace('\\', '/', $directory)) {
 				$_ = array();
 
@@ -382,10 +383,11 @@ class ControllerDesignTranslation extends Controller {
 						$data['default'] = $value;
 					}
 				}
+			}
 
-				if (empty($data['default'])) {
-					$data['default'] = $translation_info['value'];
-				}
+			// Si no se encontró en el archivo PHP, usar el valor de la base de datos
+			if (empty($data['default'])) {
+				$data['default'] = $translation_info['value'];
 			}
 		}
 
@@ -487,11 +489,13 @@ class ControllerDesignTranslation extends Controller {
 		}
 
 		$this->load->model('localisation/language');
+		$this->load->model('design/translation');
 
 		$language_info = $this->model_localisation_language->getLanguage($language_id);
 
 		$directory = DIR_CATALOG . 'language/';
 
+		// Cargar claves desde archivo PHP
 		if ($language_info && is_file($directory . $language_info['code'] . '/' . $route . '.php') && substr(str_replace('\\', '/', realpath($directory . $language_info['code'] . '/' . $route . '.php')), 0, strlen($directory)) == str_replace('\\', '/', $directory)) {
 			$_ = array();
 
@@ -501,6 +505,28 @@ class ControllerDesignTranslation extends Controller {
 				$json[] = array(
 					'key'   => $key,
 					'value' => $value
+				);
+			}
+		}
+
+		// También cargar claves desde la base de datos para esta ruta
+		$db_translations = $this->model_design_translation->getTranslationsByRoute($route, $language_id, $store_id);
+		
+		foreach ($db_translations as $translation) {
+			// Verificar si la clave ya existe en el JSON (desde archivo PHP)
+			$exists = false;
+			foreach ($json as $item) {
+				if ($item['key'] == $translation['key']) {
+					$exists = true;
+					break;
+				}
+			}
+			
+			// Si no existe, agregarla
+			if (!$exists) {
+				$json[] = array(
+					'key'   => $translation['key'],
+					'value' => $translation['value']
 				);
 			}
 		}
