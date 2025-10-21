@@ -38,13 +38,22 @@ class ControllerDesignTranslation extends Controller {
 
 		$this->load->model('design/translation');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			$this->model_design_translation->editTranslation($this->request->get['translation_id'], $this->request->post);
+		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+			// Debug: Log los datos recibidos
+			error_log('POST Data: ' . print_r($this->request->post, true));
+			error_log('GET Data: ' . print_r($this->request->get, true));
+			
+			if ($this->validateForm()) {
+				error_log('Validation passed, updating translation');
+				$this->model_design_translation->editTranslation($this->request->get['translation_id'], $this->request->post);
 
-			$this->session->data['success'] = $this->language->get('text_success');
+				$this->session->data['success'] = $this->language->get('text_success');
 
-			// Redirigir de vuelta a la misma traducción editada
-			$this->response->redirect($this->url->link('design/translation/edit', 'user_token=' . $this->session->data['user_token'] . '&translation_id=' . $this->request->get['translation_id'], true));
+				// Redirigir de vuelta a la misma traducción editada
+				$this->response->redirect($this->url->link('design/translation/edit', 'user_token=' . $this->session->data['user_token'] . '&translation_id=' . $this->request->get['translation_id'], true));
+			} else {
+				error_log('Validation failed: ' . print_r($this->error, true));
+			}
 		}
 
 		$this->getForm();
@@ -393,25 +402,35 @@ class ControllerDesignTranslation extends Controller {
 	}
 
 	protected function validateForm() {
+		error_log('Starting validation...');
+		
 		if (!$this->user->hasPermission('modify', 'design/translation')) {
 			$this->error['warning'] = $this->language->get('error_permission');
+			error_log('Permission check failed');
 		}
 
 		if (!isset($this->request->post['key']) || empty($this->request->post['key'])) {
 			$this->error['key'] = $this->language->get('error_key');
+			error_log('Key validation failed: key not set or empty');
 		} elseif ((strlen($this->request->post['key']) < 3) || (strlen($this->request->post['key']) > 64)) {
 			$this->error['key'] = $this->language->get('error_key');
+			error_log('Key validation failed: length ' . strlen($this->request->post['key']));
 		}
 
 		// Validar que la ruta no esté vacía
 		if (!isset($this->request->post['route']) || empty($this->request->post['route'])) {
 			$this->error['route'] = 'La ruta es requerida';
+			error_log('Route validation failed: route not set or empty');
 		}
 
 		// Validar que el valor no esté vacío
 		if (!isset($this->request->post['value']) || empty($this->request->post['value'])) {
 			$this->error['value'] = 'El valor es requerido';
+			error_log('Value validation failed: value not set or empty');
 		}
+
+		error_log('Validation result: ' . (empty($this->error) ? 'PASSED' : 'FAILED'));
+		error_log('Errors: ' . print_r($this->error, true));
 
 		return !$this->error;
 	}
