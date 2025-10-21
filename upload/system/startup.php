@@ -1,6 +1,7 @@
 <?php
-// Error Reporting
-error_reporting(E_ALL);
+// Error Reporting - Desactivar Notice, Warning y Deprecated
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
+ini_set('display_errors', '0');
 
 // Check Version
 if (version_compare(phpversion(), '7.3.0', '<') == true) {
