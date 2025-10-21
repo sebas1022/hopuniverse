@@ -123,9 +123,14 @@ class ControllerExtensionModuleOcProduct extends Controller {
 		$new_results = $this->model_catalog_product->getProducts($filter_data);
 		/* End */
 
-		if ($results) {
-			foreach ($results as $result) {
-				if ($result['image']) {
+	if ($results) {
+		foreach ($results as $result) {
+			// Validar que $result sea un array válido y no false
+			if (!is_array($result) || empty($result)) {
+				continue;
+			}
+			
+			if ($result['image']) {
 					$image = $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height']);
 				} else {
 					$image = $this->model_tool_image->resize('placeholder.png', $setting['width'], $setting['height']);
