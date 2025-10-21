@@ -1,6 +1,7 @@
 <?php
 //Fields
 $_['entry_title'] 		 = 'Sign Up For Newsletter';
+$_['entry_title_hop']   = 'Join the HOP Universe!';
 $_['entry_description']  = 'Subscribe to our newsletters now and stay up-to-date with new collections, the latest lookbooks and exclusive 							offers.';
 $_['entry_email'] 		 = 'Email';
 $_['entry_name'] 		 = 'Name';

@@ -1,6 +1,7 @@
 <?php
 //Fields
 $_['entry_title'] 		 = 'Suscríbete a Nuestro Boletín';
+$_['entry_title_hop']   = '¡Únete al Universo HOP!';
 $_['entry_description']  = 'Suscríbete a nuestros boletines ahora y mantente actualizado con las nuevas colecciones, los últimos catálogos y ofertas exclusivas.';
 $_['entry_email'] 		 = 'Correo Electrónico';
 $_['entry_name'] 		 = 'Nombre';
