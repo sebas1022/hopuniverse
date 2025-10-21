@@ -20,25 +20,12 @@ class ControllerDesignTranslation extends Controller {
 		$this->load->model('design/translation');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
-			$this->model_design_translation->addTranslation($this->request->post);
+			$translation_id = $this->model_design_translation->addTranslation($this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$url = '';
-
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
-			$this->response->redirect($this->url->link('design/translation', 'user_token=' . $this->session->data['user_token'] . $url, true));
+			// Redirigir a la traducción recién creada
+			$this->response->redirect($this->url->link('design/translation/edit', 'user_token=' . $this->session->data['user_token'] . '&translation_id=' . $translation_id, true));
 		}
 
 		$this->getForm();
@@ -56,21 +43,8 @@ class ControllerDesignTranslation extends Controller {
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
-			$url = '';
-
-			if (isset($this->request->get['sort'])) {
-				$url .= '&sort=' . $this->request->get['sort'];
-			}
-
-			if (isset($this->request->get['order'])) {
-				$url .= '&order=' . $this->request->get['order'];
-			}
-
-			if (isset($this->request->get['page'])) {
-				$url .= '&page=' . $this->request->get['page'];
-			}
-
-			$this->response->redirect($this->url->link('design/translation', 'user_token=' . $this->session->data['user_token'] . $url, true));
+			// Redirigir de vuelta a la misma traducción editada
+			$this->response->redirect($this->url->link('design/translation/edit', 'user_token=' . $this->session->data['user_token'] . '&translation_id=' . $this->request->get['translation_id'], true));
 		}
 
 		$this->getForm();
