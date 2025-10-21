@@ -409,7 +409,9 @@ class ControllerDesignTranslation extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if ((utf8_strlen($this->request->post['key']) < 3) || (utf8_strlen($this->request->post['key']) > 64)) {
+		if (!isset($this->request->post['key']) || empty($this->request->post['key'])) {
+			$this->error['key'] = $this->language->get('error_key');
+		} elseif ((strlen($this->request->post['key']) < 3) || (strlen($this->request->post['key']) > 64)) {
 			$this->error['key'] = $this->language->get('error_key');
 		}
 
