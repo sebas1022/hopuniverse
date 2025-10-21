@@ -24,9 +24,10 @@
 /upload/system/cache/
 /upload/system/logs/
 
-# Storage cache y logs
+# Storage cache, logs y sesiones
 /storage/cache/
 /storage/logs/
+/storage/session/
 /storage/modification/cache/
 /storage/modification/logs/
 
