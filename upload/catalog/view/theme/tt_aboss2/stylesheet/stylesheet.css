@@ -68,7 +68,7 @@ button,
 a:focus,
 a:active,
 a:hover {
-    color: #dd3a3f;
+    color: #222e3c;
     text-decoration: none;
 }
 legend {
@@ -237,28 +237,28 @@ div.required .control-label:before {
     white-space: nowrap !important;
 }
 .tooltip.top .tooltip-arrow {
-    border-top-color: #dd3a3f;
+    border-top-color: #222e3c;
 }
 .tooltip.top-left .tooltip-arrow {
-    border-top-color: #dd3a3f;
+    border-top-color: #222e3c;
 }
 .tooltip.top-right .tooltip-arrow {
-    border-top-color: #dd3a3f;
+    border-top-color: #222e3c;
 }
 .tooltip.right .tooltip-arrow {
-    border-right-color: #dd3a3f;
+    border-right-color: #222e3c;
 }
 .tooltip.left .tooltip-arrow {
-    border-left-color: #dd3a3f;
+    border-left-color: #222e3c;
 }
 .tooltip.bottom .tooltip-arrow {
-    border-bottom-color: #dd3a3f;
+    border-bottom-color: #222e3c;
 }
 .tooltip.bottom-left .tooltip-arrow {
-    border-bottom-color: #dd3a3f;
+    border-bottom-color: #222e3c;
 }
 .tooltip.bottom-right .tooltip-arrow {
-    border-bottom-color: #dd3a3f;
+    border-bottom-color: #222e3c;
 }
 .tooltip-inner {
     background: rgba(0, 0, 0, .5);
@@ -317,7 +317,7 @@ a.btn,
 }
 a.btn:hover,
 .button:hover {
-    background: #dd3a3f; /* override */
+    background: #222e3c; /* override */
     border: none; /* override */
     color: #fff; /* override */
 }
@@ -476,8 +476,8 @@ a.btn:hover,
 }
 .owl-theme .owl-nav > .owl-next:hover,
 .owl-theme .owl-nav > .owl-prev:hover {
-    background: #dd3a3f;
-    border-color: #dd3a3f;
+    background: #222e3c;
+    border-color: #222e3c;
     color: #fff;
 }
 .owl-nav > div i {
@@ -513,10 +513,10 @@ a.btn:hover,
     -webkit-backface-visibility: visible;
 }
 .owl-carousel .owl-dots .owl-dot:hover span {
-    background: #dd3a3f;
+    background: #222e3c;
 }
 .owl-carousel .owl-dots .owl-dot.active span {
-    background: #dd3a3f;
+    background: #222e3c;
     -webkit-border-radius: 50px;
             border-radius: 50px;
     height: 8px;
@@ -525,7 +525,7 @@ a.btn:hover,
 /* HEADER
 -----------------------------*/
 header {
-    background: #dd3a3f;
+    background: #222e3c;
     color: #fff;
 }
 header a {
@@ -803,7 +803,7 @@ header .social-icon ul li i {
     vertical-align: bottom;
 }
 .header-search #search button:hover {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 /* header setting */
 .header-setting {
@@ -845,7 +845,7 @@ header .social-icon ul li i {
     color: #6b6b6b;
 }
 .header-setting .setting-dropdown a:hover {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 .switcher-title,
 .setting-dropdown-title {
@@ -906,11 +906,11 @@ header .social-icon ul li i {
             transition: all .3s ease;
 }
 .switcher-option button:hover {
-    color: #dd3a3f;
+    color: #222e3c;
     text-decoration: none;
 }
 .language-currency .item-selected {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 .switcher-option button img {
     margin-right: 2px;
@@ -1033,7 +1033,7 @@ header .social-icon ul li i {
     display: block;
 }
 #cart .cart-item-image a:hover {
-    border: 1px solid #dd3a3f;
+    border: 1px solid #222e3c;
 }
 #cart .cart-info {
     border-top: 1px solid #ebebeb;
@@ -1051,7 +1051,7 @@ header .social-icon ul li i {
     line-height: 1;
 }
 #cart .cart-close button:hover {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 
 #cart .cart-item-title {
@@ -1063,7 +1063,7 @@ header .social-icon ul li i {
     margin-bottom: 5px;
 }
 #cart .cart-item-title:hover {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 #cart .cart-item-info small {
     display: block;
@@ -1116,7 +1116,7 @@ header .social-icon ul li i {
     width: 130px;
 }
 #cart .cart-button a:hover {
-    background: #dd3a3f;
+    background: #222e3c;
     color: #fff;
 }
 /* FOOTER
@@ -1132,7 +1132,7 @@ footer a {
     color: #626871;
 }
 footer a:hover {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 footer img {
     display: block;
@@ -1159,7 +1159,7 @@ footer .copyright {
     margin-top: 30px;
 }
 footer .copyright a {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 footer .copyright a:hover {
     text-decoration: underline;
@@ -1185,8 +1185,8 @@ footer .copyright a:hover {
     z-index: 999;
 }
 #back-top:hover {
-    background: #dd3a3f;
-    border-color: #dd3a3f;
+    background: #222e3c;
+    border-color: #222e3c;
     color: #fff;
 }
 #back-top span {
@@ -1276,7 +1276,7 @@ footer .copyright a:hover {
     text-transform: uppercase;
 }
 .newsletter-text h5 strong {
-    color: #dd3a3f;
+    color: #222e3c;
     font-weight: normal;
 }
 .newsletter-text h3 {
@@ -1339,7 +1339,7 @@ footer .copyright a:hover {
 }
 /* subcribe button */
 #subscribe .btn {
-    background: #dd3a3f;
+    background: #222e3c;
     border: none;
     color: #fff;
     float: left;
@@ -1410,7 +1410,7 @@ footer .copyright a:hover {
     margin: 0;
 }
 .fullbanner h3 {
-    color: #dd3a3f;
+    color: #222e3c;
     font-size: 90px;
     font-weight: 600;
     line-height: 1;
@@ -1429,7 +1429,7 @@ footer .copyright a:hover {
     padding: 13px 40px;
 }
 .fullbanner a:hover {
-    background: #dd3a3f;
+    background: #222e3c;
     color: #fff;
 }
 /* deal products */
@@ -1579,7 +1579,7 @@ footer .copyright a:hover {
 }
 .module-testimonial .owl-carousel .owl-dots .owl-dot.active span,
 .module-testimonial .owl-carousel .owl-dots .owl-dot:hover span {
-    background: #dd3a3f;
+    background: #222e3c;
 }
 /* List products */
 .list_product-brand .container {
@@ -1726,7 +1726,7 @@ footer .copyright a:hover {
             transition: all .3s ease;
 }
 .post-carousel .post-thumb .readmore {
-    background: #dd3a3f;
+    background: #222e3c;
     -webkit-border-radius: 50px;
             border-radius: 50px;
     color: #fff;
@@ -1761,7 +1761,7 @@ footer .copyright a:hover {
     color: #292929;
 }
 .post-carousel .post-title a:hover {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 .posts-carousel .post-meta {
     color: #9d9d9d;
@@ -1903,10 +1903,10 @@ footer .copyright a:hover {
     color: #292929;
 }
 .title-breadcrumb .breadcrumb li a:hover {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 .title-breadcrumb .breadcrumb li:last-child a {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 /* PAGINATION
 -----------------------------*/
@@ -1933,8 +1933,8 @@ footer .copyright a:hover {
 .pagination > li > a:hover,
 .pagination > li > span:focus,
 .pagination > li > span:hover {
-    background: #dd3a3f ;
-    border-color: #dd3a3f;
+    background: #222e3c ;
+    border-color: #222e3c;
     color: #fff;
 }
 .pagination > li > a,
@@ -1980,7 +1980,7 @@ footer .copyright a:hover {
     font-size: 1.083em;
 }
 #checkout-cart form table.table tbody a:hover {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 #checkout-cart form table.table tbody .form-control {
     min-width: 50px;
@@ -1991,7 +1991,7 @@ footer .copyright a:hover {
     color: #292929;
 }
 #checkout-checkout #collapse-checkout-confirm .text-left a:hover {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 /* TESTIMONIAL PAGE
 -----------------------------*/
@@ -2085,8 +2085,8 @@ footer .copyright a:hover {
     text-transform: uppercase;
 }
 .about-create_theme .create_theme-text a:hover {
-    background: #dd3a3f;
-    border-color: #dd3a3f;
+    background: #222e3c;
+    border-color: #222e3c;
     color: #fff;
 }
 .about-create_theme img {
@@ -2119,7 +2119,7 @@ footer .copyright a:hover {
     position: relative;
 }
 .about-we_do .icon {
-    border: 2px solid #dd3a3f;
+    border: 2px solid #222e3c;
     -webkit-border-radius: 100%;
             border-radius: 100%;
     height: 60px;
@@ -2131,7 +2131,7 @@ footer .copyright a:hover {
     width: 60px;
 }
 .about-we_do .icon i {
-    color: #dd3a3f;
+    color: #222e3c;
     font-size: 30px;
     line-height: 56px;
 }
@@ -2159,7 +2159,7 @@ footer .copyright a:hover {
     text-align: center;;;
 }
 .about-price .table-content:hover  .table-header {
-    background: #dd3a3f;
+    background: #222e3c;
 }
 .about-price .table-content:hover  .table-header .table-title {
     color: #fff;
@@ -2227,7 +2227,7 @@ footer .copyright a:hover {
     white-space: nowrap;
 }
 .about-price .table-description .table-button:hover {
-    background: #dd3a3f;
+    background: #222e3c;
     color: #fff;
 }
 .about-skill .about-skill-title {

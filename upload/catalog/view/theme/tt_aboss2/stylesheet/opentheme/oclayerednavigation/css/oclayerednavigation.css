@@ -57,7 +57,7 @@
     vertical-align: top;
 }
 .module-remove-attribute .remove-filter:hover {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 .module-remove-attribute .filter-clear-all {
     margin-bottom: 35px;
@@ -94,7 +94,7 @@
     height: 5px;
 }
 .module-filter-price .ui-slider .ui-slider-range {
-    background: #dd3a3f;
+    background: #222e3c;
     height: 100%;
     width: 100%;
 }
@@ -143,7 +143,7 @@
     position: relative;
 }
 .module-filter-attribute .a-filter:hover {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 .module-filter-attribute .a-filter:last-of-type {
     margin-bottom: 0;
@@ -166,8 +166,8 @@
     width: 18px;
 }
 .module-filter-attribute .a-filter:hover:before {
-    border-color: #dd3a3f;
-    color: #dd3a3f;
+    border-color: #222e3c;
+    color: #222e3c;
     content: '\f00c';
     font-family: FontAwesome;
     font-size: 12px;

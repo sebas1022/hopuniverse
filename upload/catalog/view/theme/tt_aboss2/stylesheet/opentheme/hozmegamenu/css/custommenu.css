@@ -114,7 +114,7 @@
     text-transform: capitalize;
 }
 .pt_custommenu .SubMenu a:hover {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 .pt_custommenu .SubMenu a.level1 {
     color: #292929;
@@ -125,7 +125,7 @@
     text-transform: uppercase;
 }
 .pt_custommenu .SubMenu a.level1:hover {
-    color: #dd3a3f;
+    color: #222e3c;
 }
 /* image */
 .pt_custommenu .SubMenu .SubMenu-content img:hover {
@@ -206,7 +206,7 @@
         text-transform: uppercase;
     }
     #ma-mobileSubMenu > li > a:hover {
-        color: #dd3a3f;
+        color: #222e3c;
     }
     /* level 2 and so on */
     #ma-mobileSubMenu ul {
@@ -222,7 +222,7 @@
         text-transform: capitalize;
     }
     #ma-mobileSubMenu ul li a:hover {
-        color: #dd3a3f;
+        color: #222e3c;
     }
     #ma-mobileSubMenu .ttclose,
     #ma-mobileSubMenu .ttopen {
@@ -251,6 +251,6 @@
     }
     #ma-mobileSubMenu .ttclose a:hover:before,
     #ma-mobileSubMenu .ttopen a:hover:before {
-        color: #dd3a3f;
+        color: #222e3c;
     }
 }
