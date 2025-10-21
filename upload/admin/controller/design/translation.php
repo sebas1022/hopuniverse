@@ -260,6 +260,18 @@ class ControllerDesignTranslation extends Controller {
 			$data['error_key'] = '';
 		}
 
+		if (isset($this->error['route'])) {
+			$data['error_route'] = $this->error['route'];
+		} else {
+			$data['error_route'] = '';
+		}
+
+		if (isset($this->error['value'])) {
+			$data['error_value'] = $this->error['value'];
+		} else {
+			$data['error_value'] = '';
+		}
+
 		$url = '';
 
 		if (isset($this->request->get['sort'])) {
@@ -415,6 +427,16 @@ class ControllerDesignTranslation extends Controller {
 			$this->error['key'] = $this->language->get('error_key');
 		} elseif ((strlen($this->request->post['key']) < 3) || (strlen($this->request->post['key']) > 64)) {
 			$this->error['key'] = $this->language->get('error_key');
+		}
+
+		// Validar que la ruta no esté vacía
+		if (!isset($this->request->post['route']) || empty($this->request->post['route'])) {
+			$this->error['route'] = 'La ruta es requerida';
+		}
+
+		// Validar que el valor no esté vacío
+		if (!isset($this->request->post['value']) || empty($this->request->post['value'])) {
+			$this->error['value'] = 'El valor es requerido';
 		}
 
 		return !$this->error;
