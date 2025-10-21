@@ -1,8 +1,7 @@
 <?php
 //Fields
-$_['entry_title'] 		 = 'Sign Up For Newsletter';
-$_['entry_title_hop']   = 'Join the HOP Universe!';
-$_['entry_description']  = 'Subscribe to our newsletters now and stay up-to-date with new collections, the latest lookbooks and exclusive 							offers.';
+$_['entry_title'] 		 = 'Join the HOP Universe!';
+$_['entry_description']  = 'Get intergalactic updates, exclusive sneak peeks, and be the first to discover the new adventures of HOP and UFOgato. We promise not to spam you from another dimension!';
 $_['entry_email'] 		 = 'Email';
 $_['entry_name'] 		 = 'Name';
 
