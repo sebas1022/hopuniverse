@@ -2347,14 +2347,14 @@ footer .copyright a:hover {
     color: #8d8d8d;
 }
 .bottom-menu li a:hover {
-    color: #a8ca01;
+    color: #6dadcb;
 }
 /* copyright */
 .copyright {
     margin: 0;
 }
 .copyright a {
-    color: #a8ca01;
+    color: #6dadcb;
 }
 .copyright a:hover {
     text-decoration: underline;
@@ -2417,7 +2417,7 @@ footer .social-icon ul li a {
     width: 38px;
 }
 footer .social-icon ul li a:hover {
-    background: #a8ca01;
+    background: #6dadcb;
     color: #fff;
 }
 #back-top {
@@ -2444,8 +2444,8 @@ footer .social-icon ul li a:hover {
     z-index: 999;
 }
 #back-top:hover {
-    background: #a8ca01;
-    border-color: #a8ca01;
+    background: #6dadcb;
+    border-color: #6dadcb;
     color: #fff;
 }
 #back-top span {
