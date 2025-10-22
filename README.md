@@ -78,6 +78,23 @@ hopuniverse/
 - **Título**: "¡Únete al Universo HOP!"
 - **Descripción**: "Recibe actualizaciones interestelares, avances exclusivos y sé el primero en descubrir las nuevas aventuras de HOP y UFOgato. ¡Prometemos no spamearte desde otra dimensión!"
 
+### 📧 Email de Bienvenida
+
+Cuando un usuario se suscribe al newsletter, automáticamente recibe un email de bienvenida personalizado con:
+
+- **Saludo personalizado** con temática espacial
+- **Código de descuento**: `WELCOME10OFF` (10% de descuento)
+- **Diseño responsive** con colores de la marca (#222e3c y #6DADCB)
+- **Links a redes sociales** (Instagram, TikTok, YouTube)
+- **Versión bilingüe** (inglés y español automático según idioma del sitio)
+
+#### Características del Email:
+- Diseño HTML con gradientes espaciales
+- Compatible con clientes de email modernos
+- Incluye código de cupón de bienvenida
+- Tip divertido de UFOgato
+- Footer con copyright y redes sociales
+
 ## 🗄️ Base de Datos
 
 ### 📊 Configuración
@@ -89,6 +106,7 @@ hopuniverse/
 
 ### 🔧 Scripts Disponibles
 - `insert_newslettersubscribe_translations.sql` - Traducciones del newsletter
+- `insert_welcome_email_translations.sql` - Traducciones del email de bienvenida
 - `insert_all_translations.sql` - Todas las traducciones en español
 - `insert_all_translations_english.sql` - Todas las traducciones en inglés
 - `fix_utf8_encoding.sql` - Corrección de codificación UTF-8
@@ -194,6 +212,7 @@ rm -rf storage/cache/* storage/modification/*
 - [x] Configuración para Colombia
 - [x] Optimización de métodos de pago
 - [x] Newsletter personalizado
+- [x] Email de bienvenida automático con cupón
 - [x] Corrección de problemas de codificación
 - [x] Sistema de respaldos
 - [x] Documentación completa

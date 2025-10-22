@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HopUniverse - Welcome Email Preview</title>
+	<style>
+		body { 
+			font-family: Arial, sans-serif; 
+			line-height: 1.6; 
+			color: #333;
+			background: #f5f5f5;
+			padding: 20px;
+		}
+		.preview-container {
+			max-width: 800px;
+			margin: 0 auto;
+			background: white;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+		}
+		h1 {
+			color: #222e3c;
+			text-align: center;
+			margin-bottom: 30px;
+		}
+		.language-tab {
+			display: flex;
+			gap: 10px;
+			margin-bottom: 20px;
+			justify-content: center;
+		}
+		.tab-btn {
+			padding: 10px 20px;
+			border: 2px solid #6DADCB;
+			background: white;
+			color: #222e3c;
+			cursor: pointer;
+			border-radius: 5px;
+			font-weight: bold;
+			transition: all 0.3s;
+		}
+		.tab-btn:hover, .tab-btn.active {
+			background: #6DADCB;
+			color: white;
+		}
+		.email-preview {
+			display: none;
+		}
+		.email-preview.active {
+			display: block;
+		}
+		.container { 
+			max-width: 600px; 
+			margin: 0 auto; 
+		}
+		.header { 
+			background: linear-gradient(135deg, #222e3c 0%, #6DADCB 100%); 
+			color: white; 
+			padding: 30px; 
+			text-align: center; 
+			border-radius: 10px 10px 0 0; 
+		}
+		.content { 
+			background: #ffffff; 
+			padding: 30px; 
+			border-left: 1px solid #ddd;
+			border-right: 1px solid #ddd;
+		}
+		.discount-box { 
+			background: #f8f9fa; 
+			border-left: 4px solid #6DADCB; 
+			padding: 20px; 
+			margin: 20px 0; 
+			border-radius: 5px; 
+		}
+		.discount-box p { 
+			margin: 5px 0; 
+			font-size: 16px; 
+		}
+		.tip-box { 
+			background: #fff3cd; 
+			border-left: 4px solid #ffc107; 
+			padding: 15px; 
+			margin: 20px 0; 
+			border-radius: 5px; 
+			font-style: italic; 
+		}
+		.footer { 
+			background: #222e3c; 
+			color: white; 
+			padding: 20px; 
+			text-align: center; 
+			border-radius: 0 0 10px 10px; 
+		}
+		.footer a { 
+			color: #6DADCB; 
+			text-decoration: none; 
+			margin: 0 10px; 
+		}
+		.footer a:hover {
+			text-decoration: underline;
+		}
+		.signature { 
+			margin-top: 20px; 
+			font-size: 18px; 
+		}
+	</style>
+</head>
+<body>
+	<div class="preview-container">
+		<h1>📧 Vista Previa del Email de Bienvenida</h1>
+		
+		<div class="language-tab">
+			<button class="tab-btn active" onclick="showLanguage('es')">🇪🇸 Español</button>
+			<button class="tab-btn" onclick="showLanguage('en')">🇬🇧 English</button>
+		</div>
+
+		<!-- VERSIÓN EN ESPAÑOL -->
+		<div id="preview-es" class="email-preview active">
+			<div class="container">
+				<div class="header">
+					<h1>¡Bienvenido a la Tripulación del Universo HOP!</h1>
+				</div>
+				<div class="content">
+					<p><strong>Hola viajero espacial,</strong></p>
+					<p>De ahora en adelante, recibirás historias exclusivas, nuevos lanzamientos y avances de las aventuras de Hop y UFOgato.</p>
+					
+					<p><strong>Como regalo de bienvenida, aquí tienes tu descuento intergaláctico del 10% para tu próxima compra:</strong></p>
+					
+					<div class="discount-box">
+						<p><strong>🎟️ Código: WELCOME10OFF</strong></p>
+						<p>📦 Úsalo en: www.hopuniverse.com</p>
+					</div>
+					
+					<div class="tip-box">
+						<p>Consejo de UFOgato: ¡Guárdalo bien… esos Doritos espaciales tienen patas pegajosas!</p>
+					</div>
+					
+					<p>Estamos encantados de tenerte a bordo y prometemos enviarte solo actualizaciones divertidas, creativas y positivas — ¡sin spam cósmico!</p>
+					
+					<div class="signature">
+						<p>Con amor,<br>
+						<strong>La Tripulación del Universo HOP</strong><br>
+						💙 Hop & UFOgato</p>
+					</div>
+				</div>
+				<div class="footer">
+					<p><em>"HOP Universe — Donde la diversión y la amistad son universales."</em></p>
+					<p>
+						<a href="https://www.instagram.com/hop_universe/">Instagram</a> |
+						<a href="https://www.tiktok.com/@hopuniverse">TikTok</a> |
+						<a href="https://www.youtube.com/@Hop_Universe">YouTube</a>
+					</p>
+					<p style="font-size: 12px; color: #999; margin-top: 20px;">
+						Copyright © 2025 <a href="http://www.Frubik.com/" style="color: #6DADCB;">Frubik SAS</a>. Todos los derechos reservados.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- ENGLISH VERSION -->
+		<div id="preview-en" class="email-preview">
+			<div class="container">
+				<div class="header">
+					<h1>Welcome to the HOP Universe Crew!</h1>
+				</div>
+				<div class="content">
+					<p><strong>Hey space traveler,</strong></p>
+					<p>From now on, you'll receive exclusive stories, new launches, and sneak peeks from Hop and UFOgato's adventures.</p>
+					
+					<p><strong>As a welcome gift, here's your intergalactic 10% discount for your next purchase:</strong></p>
+					
+					<div class="discount-box">
+						<p><strong>🎟️ Code: WELCOME10OFF</strong></p>
+						<p>📦 Use it at: www.hopuniverse.com</p>
+					</div>
+					
+					<div class="tip-box">
+						<p>UFOgato's tip: Keep it safe… those space Doritos have sticky paws!</p>
+					</div>
+					
+					<p>We're thrilled to have you on board and promise to send only fun, creative, and positive updates — no cosmic spam!</p>
+					
+					<div class="signature">
+						<p>With love,<br>
+						<strong>The HOP Universe Crew</strong><br>
+						💙 Hop & UFOgato</p>
+					</div>
+				</div>
+				<div class="footer">
+					<p><em>"HOP Universe — Where fun and friendship are universal."</em></p>
+					<p>
+						<a href="https://www.instagram.com/hop_universe/">Instagram</a> |
+						<a href="https://www.tiktok.com/@hopuniverse">TikTok</a> |
+						<a href="https://www.youtube.com/@Hop_Universe">YouTube</a>
+					</p>
+					<p style="font-size: 12px; color: #999; margin-top: 20px;">
+						Copyright © 2025 <a href="http://www.Frubik.com/" style="color: #6DADCB;">Frubik SAS</a>. All Rights Reserved.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #6DADCB;">
+			<h3 style="margin-top: 0;">📋 Información Importante</h3>
+			<ul>
+				<li><strong>Código de descuento:</strong> WELCOME10OFF (10% de descuento)</li>
+				<li><strong>Idiomas disponibles:</strong> Español e Inglés</li>
+				<li><strong>Colores de marca:</strong> #222e3c (azul oscuro) y #6DADCB (azul claro)</li>
+				<li><strong>Envío automático:</strong> Al suscribirse al newsletter</li>
+				<li><strong>Diseño:</strong> Responsive y compatible con todos los clientes de email</li>
+			</ul>
+		</div>
+	</div>
+
+	<script>
+		function showLanguage(lang) {
+			// Hide all previews
+			document.querySelectorAll('.email-preview').forEach(el => {
+				el.classList.remove('active');
+			});
+			
+			// Remove active from all buttons
+			document.querySelectorAll('.tab-btn').forEach(btn => {
+				btn.classList.remove('active');
+			});
+			
+			// Show selected preview
+			document.getElementById('preview-' + lang).classList.add('active');
+			
+			// Add active to clicked button
+			event.target.classList.add('active');
+		}
+	</script>
+</body>
+</html>
+
