@@ -4,5 +4,5 @@ $_['button_read_more']    = 'Read more ...';
 $_['text_empty']          = 'No articles';
 $_['text_headingtitle']   = 'Latest From Our blog';
 $_['text_blog'] 		  = 'Blog';
-$_['text_subtitle']       = 'Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas.';
+$_['text_subtitle']       = 'Stay informed with the latest news, tips, and updates from our blog.';
 $_['text_post_by']        = 'By';
