@@ -1512,7 +1512,7 @@ footer .copyright a:hover {
 /* TESTIMONIAL
 -----------------------------*/
 .common-home .testimonial-container {
-    background: #131d2d url('../image/home1-testimonial-bg.jpg') center center no-repeat;
+    background: #131d2d url('../image/home1-testimonial-bg.jpg?12346') center center no-repeat;
     background-size: cover;
     margin-bottom: 65px;
     padding: 150px 0;
