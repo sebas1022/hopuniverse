@@ -2332,13 +2332,10 @@ footer {
     z-index: 25;
 }
 footer a {
-    color: white;
+    color: #626871;
 }
 footer a:hover {
     color: #6DADCB;
-}
-footer .footer-column {
-    margin-bottom: 50px;
 }
 /* footer title */
 .footer-title {
