@@ -2322,6 +2322,169 @@ footer .copyright a:hover {
 #information-contact .contact-form {
     margin-top: 50px;
 }
+/* FOOTER
+-----------------------------*/
+footer {
+    background: #131e2c;
+    color: #626871;
+    font-size: 1em;
+    padding: 75px 0 0;
+    position: relative;
+    z-index: 25;
+}
+footer .container {
+    padding-bottom: 55px;
+    padding-top: 105px;
+}
+footer a {
+    color: #626871;
+}
+footer a:hover {
+    color: #a8ca01;
+}
+footer .footer-column {
+    margin-bottom: 50px;
+}
+/* footer title */
+.footer-title {
+    color: #fff;
+    font-size: 14px;
+    margin: 0 0 30px 0;
+    text-transform: uppercase;
+}
+/* footer logo */
+.logo-footer {
+    display: inline-block;
+    margin-bottom: 30px;
+}
+.about-text {
+    line-height: 2;
+}
+/* bottom menu */
+.bottom-menu {
+    list-style-type: none;
+    margin: 25px 0;
+    padding: 0; /* override */
+}
+.bottom-menu li {
+    display: inline-block;
+    margin: 0 10px 0 0;
+    vertical-align: top;
+}
+.bottom-menu li:last-child {
+    margin-right: 0;
+}
+.bottom-menu li a {
+    color: #8d8d8d;
+}
+.bottom-menu li a:hover {
+    color: #a8ca01;
+}
+/* copyright */
+.copyright {
+    margin: 0;
+}
+.copyright a {
+    color: #a8ca01;
+}
+.copyright a:hover {
+    text-decoration: underline;
+}
+/* footer menu */
+.footer-menu {
+    list-style-type: none;
+    margin: 0; /* override */
+    padding: 0; /* override */
+}
+.footer-menu li {
+    margin-bottom: 7px;
+}
+.footer-menu li:last-child {
+    margin-bottom: 0;
+}
+/* footer social icon and payment */
+footer .social-icon,
+footer .payment {
+    text-align: right;
+}
+footer .social-icon {
+    margin-bottom: 45px;
+}
+footer .social-icon p,
+footer .payment p {
+    margin-bottom: 15px;
+}
+footer .social-icon ul {
+    list-style-type: none;
+    margin: 0; /* override */
+    padding: 0; /* override */
+}
+footer .social-icon ul:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+}
+footer .social-icon ul li {
+    display: inline-block;
+    margin: 0 0 10px 12px;
+    vertical-align: middle;
+}
+footer .social-icon ul li:first-child {
+    margin-left: 0;
+}
+footer .social-icon ul li a {
+    background: #1b2634;
+    -webkit-border-radius: 4px;
+            border-radius: 4px;
+    color: #4d535b;
+    display: block;
+    font-size: 14px;
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    width: 38px;
+}
+footer .social-icon ul li a:hover {
+    background: #a8ca01;
+    color: #fff;
+}
+#back-top {
+    background: rgba(255,255,255,.9);
+    border: 2px solid #e5e5e5;
+    bottom: 10%;
+    color: #292929;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 15px;
+    position: fixed;
+    right: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    -webkit-transform: rotate(-90deg) translateY(45px);
+       -moz-transform: rotate(-90deg) translateY(45px);
+         -o-transform: rotate(-90deg) translateY(45px);
+            transform: rotate(-90deg) translateY(45px);
+    -webkit-transition: all .3s ease;
+       -moz-transition: all .3s ease;
+        -ms-transition: all .3s ease;
+         -o-transition: all .3s ease;
+            transition: all .3s ease;
+    z-index: 999;
+}
+#back-top:hover {
+    background: #a8ca01;
+    border-color: #a8ca01;
+    color: #fff;
+}
+#back-top span {
+    margin-right: 15px;
+}
+#back-top i {
+    font-size: 12px;
+}
 /* PAGE LOGIN
 -----------------------------*/
 .account-login .title-breadcrumb .breadcrumb {
