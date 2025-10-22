@@ -9,17 +9,31 @@ class ControllerExtensionModuleHTML extends Controller {
 
 		$this->load->model('setting/module');
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			if (!isset($this->request->get['module_id'])) {
-				$this->model_setting_module->addModule('html', $this->request->post);
-			} else {
-				$this->model_setting_module->editModule($this->request->get['module_id'], $this->request->post);
-			}
-
-			$this->session->data['success'] = $this->language->get('text_success');
-
-			$this->response->redirect($this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true));
+	if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+		// Guardar el módulo
+		if (!isset($this->request->get['module_id'])) {
+			$this->model_setting_module->addModule('html', $this->request->post);
+		} else {
+			$this->model_setting_module->editModule($this->request->get['module_id'], $this->request->post);
 		}
+
+		// Limpiar caché automáticamente después de guardar
+		$this->cache->delete('*');
+		
+		// Limpiar archivos de caché y modificaciones
+		$files = glob(DIR_CACHE . '*');
+		if ($files) {
+			foreach ($files as $file) {
+				if (is_file($file)) {
+					@unlink($file);
+				}
+			}
+		}
+
+		$this->session->data['success'] = $this->language->get('text_success');
+
+		$this->response->redirect($this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true));
+	}
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];

@@ -203,6 +203,14 @@ rm -rf storage/cache/* storage/modification/*
 - **Síntoma**: No se pueden editar claves desde el admin
 - **Solución**: Ya corregido en el controlador y modelo
 
+#### Problema de Módulo HTML No Guarda
+- **Síntoma**: El módulo HTML muestra éxito al guardar pero los cambios no persisten
+- **Causa**: El caché de OpenCart no se limpia automáticamente
+- **Solución**: Ya corregido - ahora limpia caché automáticamente
+- **Documentación**: Ver `SOLUCION_MODULO_HTML.md` para detalles completos
+- **Script de limpieza**: `./clear_cache.sh`
+- **Script de diagnóstico**: `./fix_html_module.sh`
+
 ## 📈 Estado del Proyecto
 
 ### ✅ Completado
@@ -216,6 +224,7 @@ rm -rf storage/cache/* storage/modification/*
 - [x] Corrección de problemas de codificación
 - [x] Sistema de respaldos
 - [x] Documentación completa
+- [x] Corrección de módulo HTML con limpieza automática de caché
 
 ### 🔄 En Progreso
 - [ ] Optimización de rendimiento
