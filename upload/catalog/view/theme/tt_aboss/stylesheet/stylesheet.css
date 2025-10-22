@@ -340,6 +340,10 @@ a.btn:hover,
 -----------------------------*/
 .newsletter-popup {
     background: #fff;
+    background-image: url('../../image/catalog/homepage/Suscribe.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: none;
     left: 50% !important;
     margin-right: -50%;
