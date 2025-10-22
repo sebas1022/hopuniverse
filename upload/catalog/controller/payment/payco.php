@@ -255,11 +255,11 @@ class ControllerExtensionPaymentPayco extends Controller {
                 }
 
                 }else{
-                    die("Firma no valida");
+                    $this->response->redirect($this->url->link('checkout/failure'));
                 }                	
 
 		}else{
-			echo "no hay  request";
+			$this->response->redirect($this->url->link('checkout/failure'));
 		}
 	}
 
