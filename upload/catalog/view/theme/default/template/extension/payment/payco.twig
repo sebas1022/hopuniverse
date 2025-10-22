@@ -32,7 +32,48 @@
 <script>
   $("#button_confirm").on( "click", function(e) {
     e.preventDefault();
-    $( ".epayco-button-render" ).trigger( "click" );
+          var handler = ePayco.checkout.configure({
+  				      key: "{{ p_public_key }}",
+  				      test: "{{ p_test_mode }}"
+  			      });
+            var data={
+                name: "{{ p_itemname }}",
+                description: "{{ p_itemname }}",
+                invoice: "{{ p_id_invoice }}",
+                currency: "{{ p_currency_code }}",
+                amount: "{{ p_amount }}",
+                tax_base: "{{ p_amount_base }}",
+                tax: "{{ p_tax }}",
+                country: "co",
+                lang: "en",
+                external: "{{ p_payco_checkout_type }}",
+                extra1: "{{ p_id_invoice }}",
+                confirmation: "{{ p_url_confirmation }}",
+                response: "{{ p_url_response }}",
+                name_billing: "{{ p_billing_first_name ~' '~ p_billing_last_name }}",
+                address_billing: "{{ p_billing_address }}",
+                mobilephone_billing: "{{ p_billing_phone }}"
+              }  
+
+    	$.ajax({
+        url: 'index.php?route=extension/payment/payco/confirm',
+        dataType: 'json',
+        beforeSend: function() {
+          $('#button-confirm').button('loading');
+        },
+        complete: function() {
+          handler.open(data)
+          $('#button-confirm').button('reset');
+        },
+        success: function(json) {
+           $('#button-confirm').button('loading');
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+          console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+	  });
+    //$( ".epayco-button-render" ).trigger( "click" );
 
   });
 

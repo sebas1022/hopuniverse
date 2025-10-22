@@ -1,7 +1,7 @@
 <?php
 // Heading
 $_['heading_title']      = 'ePayco';
-$_['text_payco']					= '<a href="https://epayco.co/" target="_blank"><img src="https://multimedia.epayco.co/epayco-landing/btns/epayco-logo-fondo-oscuro-lite.png" alt="ePayco" style="max-width: 100px;" /></a>';
+$_['text_payco']					= '<a href="https://epayco.co/" target="_blank"><img src="https://369969691f476073508a-60bf0867add971908d4f26a64519c2aa.ssl.cf5.rackcdn.com/logos/logo_epayco_200px.png" alt="ePayco" title="ePayco" style="max-width: 90px;" /></a>';
 $_['text_extension'] = 'Extensiones';
 // Text 
 $_['text_payment']       = 'Payment';
