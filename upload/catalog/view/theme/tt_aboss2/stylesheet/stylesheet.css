@@ -2779,3 +2779,12 @@ footer .social-icon ul li a:hover {
         text-align: center;
     }
 }
+
+/** Footer */
+
+.footer-title {
+    color: #fff;
+    font-size: 14px;
+    margin: 0 0 30px 0;
+    text-transform: uppercase;
+}
