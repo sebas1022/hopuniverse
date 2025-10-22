@@ -2325,21 +2325,17 @@ footer .copyright a:hover {
 /* FOOTER
 -----------------------------*/
 footer {
-    background: #131e2c;
+    background: #222e3c;
     color: #626871;
     font-size: 1em;
     position: relative;
     z-index: 25;
 }
-footer .container {
-    padding-bottom: 55px;
-    padding-top: 105px;
-}
 footer a {
-    color: #626871;
+    color: white;
 }
 footer a:hover {
-    color: #a8ca01;
+    color: #6DADCB;
 }
 footer .footer-column {
     margin-bottom: 50px;
