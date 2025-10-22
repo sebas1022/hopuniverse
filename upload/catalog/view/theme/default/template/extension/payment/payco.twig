@@ -76,8 +76,7 @@
     //$( ".epayco-button-render" ).trigger( "click" );
 
   });
-
-  document.getElementById("epayco_form").addEventListener("DOMNodeInserted", function (event) {
+  setTimeout(function() {
     document.getElementById("button_confirm").removeAttribute("disabled");
-  }, false);
+  }, 1000);
 </script>
