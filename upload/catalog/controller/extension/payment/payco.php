@@ -88,14 +88,14 @@ class ControllerExtensionPaymentPayco extends Controller {
 			$_REQUEST=(array)$response->data;
 			
 		}
+
 		if (isset($_REQUEST['x_id_invoice'])) {
-			$order_id = $_REQUEST['x_id_invoice'];
+			$order_id = $_REQUEST['x_extra1'];
 		} else {
 			$order_id = 0;
 		}
 		if (isset($_REQUEST['x_ref_payco'])) {
 			$this->load->model('checkout/order');
-			$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('payment_payco_final_order_status_id'));
 			$p_cust_id_cliente=$this->config->get('payment_payco_merchant');
              $p_key=$this->config->get('payment_payco_key');
 
@@ -104,7 +104,14 @@ class ControllerExtensionPaymentPayco extends Controller {
                 $x_amount=$_REQUEST['x_amount'];
                 $x_currency_code=$_REQUEST['x_currency_code'];
                 $x_signature=$_REQUEST['x_signature'];
-
+				$x_cod_response=$_REQUEST['x_cod_response'];
+				$isTest=$_REQUEST['x_test_request'];
+				if($isTest == "TRUE"){
+					$isTest_= 1;
+				}else{
+					$isTest_= 2;
+				}
+				
                 $signature=hash('sha256',
                        $p_cust_id_cliente.'^'
                       .$p_key.'^'
@@ -113,28 +120,136 @@ class ControllerExtensionPaymentPayco extends Controller {
                       .$x_amount.'^'
                       .$x_currency_code
                     );
+				$queryOrderEpayco = $this->db->query("SELECT * FROM " . DB_PREFIX . "epayco_order WHERE order_id = '" . (int)$order_id . "'");
+				if(count($queryOrderEpayco->row)>0){
+					$queryProduct_ = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
+				}else{
+					$queryProduct_ = null;
+				}
+
 
 				//Validamos la firma
                 if($x_signature==$signature){
-                $x_cod_response=$_REQUEST['x_cod_response'];
+               
                 switch ((int)$x_cod_response) {
-                    case 1:
-                       $this->model_checkout_order->addOrderHistory($order_id, $this->config->get('payment_payco_final_order_status_id'), '', true);
-                        break;
-                    case 2:
-                        $this->model_checkout_order->addOrderHistory($order_id, 8, '', true);
-                        break;
-                    case 3:
-                        $this->model_checkout_order->addOrderHistory($order_id, 1, '', true);
-                        break;
-                    case 4:
-                       $this->model_checkout_order->addOrderHistory($order_id, 10, '', true);
-                        break;              
+                    case 1:{
+						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Complete test'");
+						if($isTest_== 1){
+							if(count($query->row)>0){
+								$orderStatus = $query->row["order_status_id"];
+							}
+						}else{
+							$orderStatus = $this->config->get('payment_payco_final_order_status_id');
+						}
+                       $this->model_checkout_order->addOrderHistory($order_id,$orderStatus, '', true);
+					}break;
+                    case 2:{
+						if($queryProduct_){
+							if($queryOrderEpayco->row["discount"] == "1"){
+							$queryProduct = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$queryProduct_->row["product_id"] . "'");
+							$disconut = (int)$queryProduct->row["quantity"] + (int)$queryProduct_->row["quantity"];
+							$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = '" . $this->db->escape($disconut) . "' WHERE `product_id` = '" . (int)$queryProduct_->row["product_id"] . "' LIMIT 1");	
+							
+							$this->db->query("UPDATE `" . DB_PREFIX . "epayco_order` SET `discount` = '" . 2 . 
+								"' WHERE `order_id` = '" .  (int) $order_id . "' LIMIT 1");
+							}
+						}
+						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Canceled test'");
+						if($isTest_== 1){
+							if(count($query->row)>0){
+								$orderStatus = $query->row["order_status_id"];
+							}
+						}else{
+							$orderStatus = 7;
+						}
+                        $this->model_checkout_order->addOrderHistory($order_id, $orderStatus, '', true);
+					}break;
+                    case 3:{
+						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Pending test'");
+						if($isTest_== 1){
+							if(count($query->row)>0){
+								$orderStatus = $query->row["order_status_id"];
+							}
+						}else{
+							$orderStatus = 1;
+						}
+                        $this->model_checkout_order->addOrderHistory($order_id, $orderStatus, '', true);
+					}break;
+                    case 4:{
+						if($queryProduct_){
+							if($queryOrderEpayco->row["discount"] == "1"){
+							$queryProduct = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$queryProduct_->row["product_id"] . "'");
+							$disconut = (int)$queryProduct->row["quantity"] + (int)$queryProduct_->row["quantity"];
+							$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = '" . $this->db->escape($disconut) . "' WHERE `product_id` = '" . (int)$queryProduct_->row["product_id"] . "' LIMIT 1");	
+							
+							$this->db->query("UPDATE `" . DB_PREFIX . "epayco_order` SET `discount` = '" . 2 . 
+								"' WHERE `order_id` = '" .  (int) $order_id . "' LIMIT 1");
+							}
+		
+						}
+                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Canceled test'");
+						if($isTest_== 1){
+							if(count($query->row)>0){
+								$orderStatus = $query->row["order_status_id"];
+							}
+						}else{
+							$orderStatus = 7;
+						}
+                        $this->model_checkout_order->addOrderHistory($order_id, $orderStatus, '', true);
+					 } break; 
+					 case 10:{
+						if($queryProduct_){
+							if($queryOrderEpayco->row["discount"] == "1"){
+							$queryProduct = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$queryProduct_->row["product_id"] . "'");
+							$disconut = (int)$queryProduct->row["quantity"] + (int)$queryProduct_->row["quantity"];
+							$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = '" . $this->db->escape($disconut) . "' WHERE `product_id` = '" . (int)$queryProduct_->row["product_id"] . "' LIMIT 1");	
+							
+							$this->db->query("UPDATE `" . DB_PREFIX . "epayco_order` SET `discount` = '" . 2 . 
+								"' WHERE `order_id` = '" .  (int) $order_id . "' LIMIT 1");
+							}
+		
+						}
+                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Canceled test'");
+						if($isTest_== 1){
+							if(count($query->row)>0){
+								$orderStatus = $query->row["order_status_id"];
+							}
+						}else{
+							$orderStatus = 7;
+						}
+                        $this->model_checkout_order->addOrderHistory($order_id, $orderStatus, '', true);
+					 } break;  
+					 case 11:{
+						if($queryProduct_){
+							if($queryOrderEpayco->row["discount"] == "1"){
+							$queryProduct = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$queryProduct_->row["product_id"] . "'");
+							$disconut = (int)$queryProduct->row["quantity"] + (int)$queryProduct_->row["quantity"];
+							$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = '" . $this->db->escape($disconut) . "' WHERE `product_id` = '" . (int)$queryProduct_->row["product_id"] . "' LIMIT 1");	
+							
+							$this->db->query("UPDATE `" . DB_PREFIX . "epayco_order` SET `discount` = '" . 2 . 
+								"' WHERE `order_id` = '" .  (int) $order_id . "' LIMIT 1");
+							}
+		
+						}
+                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Canceled test'");
+						if($isTest_== 1){
+							if(count($query->row)>0){
+								$orderStatus = $query->row["order_status_id"];
+							}
+						}else{
+							$orderStatus = 7;
+						}
+                        $this->model_checkout_order->addOrderHistory($order_id, $orderStatus, '', true);
+					 } break;           
                     
                 }
 
                 if($x_cod_response==1 || $x_cod_response==3){
-                	$this->response->redirect($this->url->link('checkout/success'));
+					if (isset($_REQUEST['x_ref_payco'])) {
+						die($x_cod_response);
+					}else{
+						$this->response->redirect($this->url->link('checkout/success'));
+					}
                 }else{
                 	$this->response->redirect($this->url->link('checkout/failure'));
                 }
@@ -146,5 +261,47 @@ class ControllerExtensionPaymentPayco extends Controller {
 		}else{
 			echo "no hay  request";
 		}
+	}
+
+
+	public function confirm() {
+
+		$queryOrderEpayco = $this->db->query("SELECT * FROM " . DB_PREFIX . "epayco_order WHERE order_id = '" . (int)$this->session->data['order_id'] . "'");
+		if(count($queryOrderEpayco->row)<=0){
+			foreach ($this->cart->getProducts() as $product) {
+				$queryProduct = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product['product_id'] . "'");
+				$disconut = (int)$queryProduct->row["quantity"] - (int)$product['quantity'];
+				$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = '" . $this->db->escape($disconut) . "' WHERE `product_id` = '" . (int)$product['product_id'] . "' LIMIT 1");		
+			}
+			$this->db->query("INSERT INTO " . DB_PREFIX . "epayco_order (order_id, is_test, discount)  VALUES ( '" . (int)$this->session->data['order_id'] . "','" . (int) $this->config->get('payment_payco_test') . "','" . 1 . "')
+			");
+		}
+	   
+	    if ((int) $this->config->get('payment_payco_test') == 1) {
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Pending test'");
+			if(count($query->row)>0){
+				$orderStatus = $query->row["order_status_id"];
+			}else{
+				$orderStatus = 1;
+			}
+		} else {
+			$orderStatus = 1;
+		}
+
+		$json = array();
+		if (isset($this->session->data['payment_method']['code']) && $this->session->data['payment_method']['code'] == 'payco') {
+			$this->load->language('extension/payment/cheque');
+
+			$this->load->model('checkout/order');
+			
+			$this->model_checkout_order->addOrderHistory($this->session->data['order_id'], (int)$orderStatus, '', true);
+		
+			$json['action'] = true;
+		}else{
+			$json['action'] = false;
+		}
+		
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
 	}
 }
