@@ -393,16 +393,59 @@ class ControllerExtensionPaymentPayco extends Controller {
 
 
 	public function confirm() {
-
-		$queryOrderEpayco = $this->db->query("SELECT * FROM " . DB_PREFIX . "epayco_order WHERE order_id = '" . (int)$this->session->data['order_id'] . "'");
-		if(count($queryOrderEpayco->row)<=0){
-			foreach ($this->cart->getProducts() as $product) {
-				$queryProduct = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product['product_id'] . "'");
-				$disconut = (int)$queryProduct->row["quantity"] - (int)$product['quantity'];
-				$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = '" . $this->db->escape($disconut) . "' WHERE `product_id` = '" . (int)$product['product_id'] . "' LIMIT 1");		
+		// Log específico para Payco confirm
+		$log_file = DIR_LOGS . 'payco_callback.log';
+		$log_message = "\n" . str_repeat('=', 80) . "\n";
+		$log_message .= "[" . date('Y-m-d H:i:s') . "] PAYCO CONFIRM INICIADO\n";
+		$log_message .= str_repeat('=', 80) . "\n";
+		
+		try {
+			// Verificar sesión
+			if (!isset($this->session->data['order_id'])) {
+				$error_msg = "[" . date('Y-m-d H:i:s') . "] ERROR: No hay order_id en sesión\n";
+				$error_msg .= "Session data: " . print_r($this->session->data, true) . "\n";
+				file_put_contents($log_file, $log_message . $error_msg, FILE_APPEND);
+				
+				$json = array('action' => false, 'error' => 'No order_id in session');
+				$this->response->addHeader('Content-Type: application/json');
+				$this->response->setOutput(json_encode($json));
+				return;
 			}
-			$this->db->query("INSERT INTO " . DB_PREFIX . "epayco_order (order_id, is_test, discount)  VALUES ( '" . (int)$this->session->data['order_id'] . "','" . (int) $this->config->get('payment_payco_test') . "','" . 1 . "')
-			");
+			
+			$order_id = $this->session->data['order_id'];
+			$log_message .= "Order ID: " . $order_id . "\n";
+			file_put_contents($log_file, $log_message, FILE_APPEND);
+
+			$queryOrderEpayco = $this->db->query("SELECT * FROM " . DB_PREFIX . "epayco_order WHERE order_id = '" . (int)$order_id . "'");
+			
+			$log_message = "[" . date('Y-m-d H:i:s') . "] Query epayco_order ejecutado\n";
+			$log_message .= "Resultados encontrados: " . count($queryOrderEpayco->row) . "\n";
+			file_put_contents($log_file, $log_message, FILE_APPEND);
+			
+			if(count($queryOrderEpayco->row)<=0){
+				$log_message = "[" . date('Y-m-d H:i:s') . "] Procesando productos del carrito\n";
+				file_put_contents($log_file, $log_message, FILE_APPEND);
+				
+				foreach ($this->cart->getProducts() as $product) {
+					$queryProduct = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product['product_id'] . "'");
+					$disconut = (int)$queryProduct->row["quantity"] - (int)$product['quantity'];
+					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = '" . $this->db->escape($disconut) . "' WHERE `product_id` = '" . (int)$product['product_id'] . "' LIMIT 1");		
+				}
+				
+				$this->db->query("INSERT INTO " . DB_PREFIX . "epayco_order (order_id, is_test, discount)  VALUES ( '" . (int)$order_id . "','" . (int) $this->config->get('payment_payco_test') . "','" . 1 . "')");
+				
+				$log_message = "[" . date('Y-m-d H:i:s') . "] Registro epayco_order insertado\n";
+				file_put_contents($log_file, $log_message, FILE_APPEND);
+			}
+		} catch (Exception $e) {
+			$error_msg = "[" . date('Y-m-d H:i:s') . "] EXCEPTION en confirm(): " . $e->getMessage() . "\n";
+			$error_msg .= "Stack trace: " . $e->getTraceAsString() . "\n";
+			file_put_contents($log_file, $error_msg, FILE_APPEND);
+			
+			$json = array('action' => false, 'error' => $e->getMessage());
+			$this->response->addHeader('Content-Type: application/json');
+			$this->response->setOutput(json_encode($json));
+			return;
 		}
 	   
 	    if ((int) $this->config->get('payment_payco_test') == 1) {
@@ -415,6 +458,9 @@ class ControllerExtensionPaymentPayco extends Controller {
 		} else {
 			$orderStatus = 1;
 		}
+		
+		$log_message = "[" . date('Y-m-d H:i:s') . "] Order status determinado: " . $orderStatus . "\n";
+		file_put_contents($log_file, $log_message, FILE_APPEND);
 
 		$json = array();
 		if (isset($this->session->data['payment_method']['code']) && $this->session->data['payment_method']['code'] == 'payco') {
@@ -422,11 +468,23 @@ class ControllerExtensionPaymentPayco extends Controller {
 
 			$this->load->model('checkout/order');
 			
+			$log_message = "[" . date('Y-m-d H:i:s') . "] Actualizando historial de orden\n";
+			file_put_contents($log_file, $log_message, FILE_APPEND);
+			
 			$this->model_checkout_order->addOrderHistory($this->session->data['order_id'], (int)$orderStatus, '', true);
 		
 			$json['action'] = true;
+			
+			$log_message = "[" . date('Y-m-d H:i:s') . "] ✓ CONFIRM exitoso - action=true\n";
+			$log_message .= str_repeat('=', 80) . "\n";
+			file_put_contents($log_file, $log_message, FILE_APPEND);
 		}else{
 			$json['action'] = false;
+			
+			$log_message = "[" . date('Y-m-d H:i:s') . "] ✗ CONFIRM fallido - método de pago incorrecto\n";
+			$log_message .= "Payment method: " . (isset($this->session->data['payment_method']['code']) ? $this->session->data['payment_method']['code'] : 'NO SET') . "\n";
+			$log_message .= str_repeat('=', 80) . "\n";
+			file_put_contents($log_file, $log_message, FILE_APPEND);
 		}
 		
 		$this->response->addHeader('Content-Type: application/json');
