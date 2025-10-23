@@ -41,7 +41,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 		$data['p_shiping_country'] = html_entity_decode($order_info['shipping_country'], ENT_QUOTES, 'UTF-8');
 		$data['p_customer_ip'] = $this->request->server['REMOTE_ADDR'];
 		$data['p_email'] = $order_info['email'];
-		$data['p_extra1'] = $this->session->data['order_id']; // Enviamos el order_id para recuperarlo en el callback
+		$data['p_extra1'] = $this->session->data['order_id']; // Enviar order_id en extra1 para recuperarlo en callback
 		$data['p_url_response'] =$this->config->get('payment_payco_callback');
 		$data['p_url_confirmation'] =$this->config->get('payment_payco_confirmation');
 
@@ -120,7 +120,8 @@ class ControllerExtensionPaymentPayco extends Controller {
 			
 			if($response_raw === false) {
 				$error_msg = "\n[" . date('Y-m-d H:i:s') . "] ERROR CRÍTICO: No se pudo obtener respuesta de Payco\n";
-				$error_msg .= "Error de PHP: " . error_get_last()['message'] . "\n";
+				$last_error = error_get_last();
+				$error_msg .= "Error de PHP: " . ($last_error ? $last_error['message'] : 'N/A') . "\n";
 				file_put_contents($log_file, $error_msg, FILE_APPEND);
 				
 				$this->log->write('Payco Callback - ERROR: No se pudo obtener respuesta de Payco');
@@ -157,8 +158,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 			$this->log->write('Payco Callback - Datos recibidos: ' . print_r($payco_data, true));
 		}
 
-		// Obtener order_id correctamente
-		// Puede venir en x_id_invoice (id de factura) o en x_extra1 (datos extras)
+		// Obtener order_id correctamente - puede venir en x_id_invoice o x_extra1
 		if (isset($_REQUEST['x_id_invoice'])) {
 			$order_id = $_REQUEST['x_id_invoice'];
 		} elseif (isset($_REQUEST['x_extra1'])) {
@@ -191,24 +191,15 @@ class ControllerExtensionPaymentPayco extends Controller {
                 $x_amount=$_REQUEST['x_amount'];
                 $x_currency_code=$_REQUEST['x_currency_code'];
                 $x_signature=$_REQUEST['x_signature'];
-				$x_cod_response=$_REQUEST['x_cod_response'];
-				$isTest=$_REQUEST['x_test_request'];
-				if($isTest == "TRUE"){
-					$isTest_= 1;
-				}else{
-					$isTest_= 2;
-				}
 				
 				$log_message = "\n[" . date('Y-m-d H:i:s') . "] Datos de la transacción:\n";
 				$log_message .= "  - Ref Payco: " . $x_ref_payco . "\n";
 				$log_message .= "  - Transaction ID: " . $x_transaction_id . "\n";
 				$log_message .= "  - Amount: " . $x_amount . "\n";
 				$log_message .= "  - Currency: " . $x_currency_code . "\n";
-				$log_message .= "  - Response Code: " . $x_cod_response . "\n";
-				$log_message .= "  - Is Test: " . $isTest . " (" . $isTest_ . ")\n";
 				$log_message .= "  - Signature recibida: " . $x_signature . "\n";
 				file_put_contents($log_file, $log_message, FILE_APPEND);
-				
+
                 $signature=hash('sha256',
                        $p_cust_id_cliente.'^'
                       .$p_key.'^'
@@ -223,137 +214,35 @@ class ControllerExtensionPaymentPayco extends Controller {
 				$log_message .= "  - Signature recibida: " . $x_signature . "\n";
 				$log_message .= "  - ¿Coinciden?: " . ($x_signature == $signature ? 'SÍ ✓' : 'NO ✗') . "\n";
 				file_put_contents($log_file, $log_message, FILE_APPEND);
-				$queryOrderEpayco = $this->db->query("SELECT * FROM " . DB_PREFIX . "epayco_order WHERE order_id = '" . (int)$order_id . "'");
-				if(count($queryOrderEpayco->row)>0){
-					$queryProduct_ = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_product WHERE order_id = '" . (int)$order_id . "'");
-				}else{
-					$queryProduct_ = null;
-				}
-
 
 				//Validamos la firma
                 if($x_signature==$signature){
-               		$log_message = "\n[" . date('Y-m-d H:i:s') . "] ✓ Firma válida - Procesando código de respuesta: " . $x_cod_response . "\n";
-					file_put_contents($log_file, $log_message, FILE_APPEND);
-					
+                $x_cod_response=$_REQUEST['x_cod_response'];
+				
+				$log_message = "\n[" . date('Y-m-d H:i:s') . "] ✓ Firma válida - Procesando código de respuesta: " . $x_cod_response . "\n";
+				file_put_contents($log_file, $log_message, FILE_APPEND);
+				
                 switch ((int)$x_cod_response) {
-                    case 1:{
+                    case 1:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 1 - Transacción APROBADA\n";
 						file_put_contents($log_file, $log_message, FILE_APPEND);
-						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Complete test'");
-						if($isTest_== 1){
-							if(count($query->row)>0){
-								$orderStatus = $query->row["order_status_id"];
-							}
-						}else{
-							$orderStatus = $this->config->get('payment_payco_final_order_status_id');
-						}
-						$log_message = "[" . date('Y-m-d H:i:s') . "] Actualizando orden #" . $order_id . " a estado: " . $orderStatus . "\n";
-						file_put_contents($log_file, $log_message, FILE_APPEND);
-                       $this->model_checkout_order->addOrderHistory($order_id,$orderStatus, '', true);
-					}break;
-                    case 2:{
+                       $this->model_checkout_order->addOrderHistory($order_id, $this->config->get('payment_payco_final_order_status_id'), '', true);
+                        break;
+                    case 2:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 2 - Transacción RECHAZADA\n";
 						file_put_contents($log_file, $log_message, FILE_APPEND);
-						if($queryProduct_){
-							if($queryOrderEpayco->row["discount"] == "1"){
-							$queryProduct = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$queryProduct_->row["product_id"] . "'");
-							$disconut = (int)$queryProduct->row["quantity"] + (int)$queryProduct_->row["quantity"];
-							$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = '" . $this->db->escape($disconut) . "' WHERE `product_id` = '" . (int)$queryProduct_->row["product_id"] . "' LIMIT 1");	
-							
-							$this->db->query("UPDATE `" . DB_PREFIX . "epayco_order` SET `discount` = '" . 2 . 
-								"' WHERE `order_id` = '" .  (int) $order_id . "' LIMIT 1");
-							}
-						}
-						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Canceled test'");
-						if($isTest_== 1){
-							if(count($query->row)>0){
-								$orderStatus = $query->row["order_status_id"];
-							}
-						}else{
-							$orderStatus = 7;
-						}
-                        $this->model_checkout_order->addOrderHistory($order_id, $orderStatus, '', true);
-					}break;
-                    case 3:{
+                        $this->model_checkout_order->addOrderHistory($order_id, 8, '', true);
+                        break;
+                    case 3:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 3 - Transacción PENDIENTE\n";
 						file_put_contents($log_file, $log_message, FILE_APPEND);
-						$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Pending test'");
-						if($isTest_== 1){
-							if(count($query->row)>0){
-								$orderStatus = $query->row["order_status_id"];
-							}
-						}else{
-							$orderStatus = 1;
-						}
-                        $this->model_checkout_order->addOrderHistory($order_id, $orderStatus, '', true);
-					}break;
-                    case 4:{
-						if($queryProduct_){
-							if($queryOrderEpayco->row["discount"] == "1"){
-							$queryProduct = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$queryProduct_->row["product_id"] . "'");
-							$disconut = (int)$queryProduct->row["quantity"] + (int)$queryProduct_->row["quantity"];
-							$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = '" . $this->db->escape($disconut) . "' WHERE `product_id` = '" . (int)$queryProduct_->row["product_id"] . "' LIMIT 1");	
-							
-							$this->db->query("UPDATE `" . DB_PREFIX . "epayco_order` SET `discount` = '" . 2 . 
-								"' WHERE `order_id` = '" .  (int) $order_id . "' LIMIT 1");
-							}
-		
-						}
-                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Canceled test'");
-						if($isTest_== 1){
-							if(count($query->row)>0){
-								$orderStatus = $query->row["order_status_id"];
-							}
-						}else{
-							$orderStatus = 7;
-						}
-                        $this->model_checkout_order->addOrderHistory($order_id, $orderStatus, '', true);
-					 } break; 
-					 case 10:{
-						if($queryProduct_){
-							if($queryOrderEpayco->row["discount"] == "1"){
-							$queryProduct = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$queryProduct_->row["product_id"] . "'");
-							$disconut = (int)$queryProduct->row["quantity"] + (int)$queryProduct_->row["quantity"];
-							$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = '" . $this->db->escape($disconut) . "' WHERE `product_id` = '" . (int)$queryProduct_->row["product_id"] . "' LIMIT 1");	
-							
-							$this->db->query("UPDATE `" . DB_PREFIX . "epayco_order` SET `discount` = '" . 2 . 
-								"' WHERE `order_id` = '" .  (int) $order_id . "' LIMIT 1");
-							}
-		
-						}
-                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Canceled test'");
-						if($isTest_== 1){
-							if(count($query->row)>0){
-								$orderStatus = $query->row["order_status_id"];
-							}
-						}else{
-							$orderStatus = 7;
-						}
-                        $this->model_checkout_order->addOrderHistory($order_id, $orderStatus, '', true);
-					 } break;  
-					 case 11:{
-						if($queryProduct_){
-							if($queryOrderEpayco->row["discount"] == "1"){
-							$queryProduct = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$queryProduct_->row["product_id"] . "'");
-							$disconut = (int)$queryProduct->row["quantity"] + (int)$queryProduct_->row["quantity"];
-							$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = '" . $this->db->escape($disconut) . "' WHERE `product_id` = '" . (int)$queryProduct_->row["product_id"] . "' LIMIT 1");	
-							
-							$this->db->query("UPDATE `" . DB_PREFIX . "epayco_order` SET `discount` = '" . 2 . 
-								"' WHERE `order_id` = '" .  (int) $order_id . "' LIMIT 1");
-							}
-		
-						}
-                        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Canceled test'");
-						if($isTest_== 1){
-							if(count($query->row)>0){
-								$orderStatus = $query->row["order_status_id"];
-							}
-						}else{
-							$orderStatus = 7;
-						}
-                        $this->model_checkout_order->addOrderHistory($order_id, $orderStatus, '', true);
-					 } break;           
+                        $this->model_checkout_order->addOrderHistory($order_id, 1, '', true);
+                        break;
+                    case 4:
+						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 4 - Transacción FALLIDA\n";
+						file_put_contents($log_file, $log_message, FILE_APPEND);
+                       $this->model_checkout_order->addOrderHistory($order_id, 10, '', true);
+                        break;              
                     
                 }
 
@@ -361,12 +250,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 					$log_message = "\n[" . date('Y-m-d H:i:s') . "] ✓ Redirigiendo a SUCCESS\n";
 					$log_message .= str_repeat('=', 80) . "\n";
 					file_put_contents($log_file, $log_message, FILE_APPEND);
-					
-					if (isset($_REQUEST['x_ref_payco'])) {
-						die($x_cod_response);
-					}else{
-						$this->response->redirect($this->url->link('checkout/success'));
-					}
+                	$this->response->redirect($this->url->link('checkout/success'));
                 }else{
 					$log_message = "\n[" . date('Y-m-d H:i:s') . "] ✗ Redirigiendo a FAILURE (código: " . $x_cod_response . ")\n";
 					$log_message .= str_repeat('=', 80) . "\n";
@@ -379,7 +263,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 					$error_msg .= "Redirigiendo a FAILURE\n";
 					$error_msg .= str_repeat('=', 80) . "\n";
 					file_put_contents($log_file, $error_msg, FILE_APPEND);
-                    $this->response->redirect($this->url->link('checkout/failure'));
+                    die("Firma no valida");
                 }                	
 
 		}else{
@@ -387,107 +271,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 			$error_msg .= "Redirigiendo a FAILURE\n";
 			$error_msg .= str_repeat('=', 80) . "\n";
 			file_put_contents($log_file, $error_msg, FILE_APPEND);
-			$this->response->redirect($this->url->link('checkout/failure'));
+			echo "no hay request";
 		}
-	}
-
-
-	public function confirm() {
-		// Log específico para Payco confirm
-		$log_file = DIR_LOGS . 'payco_callback.log';
-		$log_message = "\n" . str_repeat('=', 80) . "\n";
-		$log_message .= "[" . date('Y-m-d H:i:s') . "] PAYCO CONFIRM INICIADO\n";
-		$log_message .= str_repeat('=', 80) . "\n";
-		
-		try {
-			// Verificar sesión
-			if (!isset($this->session->data['order_id'])) {
-				$error_msg = "[" . date('Y-m-d H:i:s') . "] ERROR: No hay order_id en sesión\n";
-				$error_msg .= "Session data: " . print_r($this->session->data, true) . "\n";
-				file_put_contents($log_file, $log_message . $error_msg, FILE_APPEND);
-				
-				$json = array('action' => false, 'error' => 'No order_id in session');
-				$this->response->addHeader('Content-Type: application/json');
-				$this->response->setOutput(json_encode($json));
-				return;
-			}
-			
-			$order_id = $this->session->data['order_id'];
-			$log_message .= "Order ID: " . $order_id . "\n";
-			file_put_contents($log_file, $log_message, FILE_APPEND);
-
-			$queryOrderEpayco = $this->db->query("SELECT * FROM " . DB_PREFIX . "epayco_order WHERE order_id = '" . (int)$order_id . "'");
-			
-			$log_message = "[" . date('Y-m-d H:i:s') . "] Query epayco_order ejecutado\n";
-			$log_message .= "Resultados encontrados: " . count($queryOrderEpayco->row) . "\n";
-			file_put_contents($log_file, $log_message, FILE_APPEND);
-			
-			if(count($queryOrderEpayco->row)<=0){
-				$log_message = "[" . date('Y-m-d H:i:s') . "] Procesando productos del carrito\n";
-				file_put_contents($log_file, $log_message, FILE_APPEND);
-				
-				foreach ($this->cart->getProducts() as $product) {
-					$queryProduct = $this->db->query("SELECT quantity FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product['product_id'] . "'");
-					$disconut = (int)$queryProduct->row["quantity"] - (int)$product['quantity'];
-					$this->db->query("UPDATE `" . DB_PREFIX . "product` SET `quantity` = '" . $this->db->escape($disconut) . "' WHERE `product_id` = '" . (int)$product['product_id'] . "' LIMIT 1");		
-				}
-				
-				$this->db->query("INSERT INTO " . DB_PREFIX . "epayco_order (order_id, is_test, discount)  VALUES ( '" . (int)$order_id . "','" . (int) $this->config->get('payment_payco_test') . "','" . 1 . "')");
-				
-				$log_message = "[" . date('Y-m-d H:i:s') . "] Registro epayco_order insertado\n";
-				file_put_contents($log_file, $log_message, FILE_APPEND);
-			}
-		} catch (Exception $e) {
-			$error_msg = "[" . date('Y-m-d H:i:s') . "] EXCEPTION en confirm(): " . $e->getMessage() . "\n";
-			$error_msg .= "Stack trace: " . $e->getTraceAsString() . "\n";
-			file_put_contents($log_file, $error_msg, FILE_APPEND);
-			
-			$json = array('action' => false, 'error' => $e->getMessage());
-			$this->response->addHeader('Content-Type: application/json');
-			$this->response->setOutput(json_encode($json));
-			return;
-		}
-	   
-	    if ((int) $this->config->get('payment_payco_test') == 1) {
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Pending test'");
-			if(count($query->row)>0){
-				$orderStatus = $query->row["order_status_id"];
-			}else{
-				$orderStatus = 1;
-			}
-		} else {
-			$orderStatus = 1;
-		}
-		
-		$log_message = "[" . date('Y-m-d H:i:s') . "] Order status determinado: " . $orderStatus . "\n";
-		file_put_contents($log_file, $log_message, FILE_APPEND);
-
-		$json = array();
-		if (isset($this->session->data['payment_method']['code']) && $this->session->data['payment_method']['code'] == 'payco') {
-			$this->load->language('extension/payment/cheque');
-
-			$this->load->model('checkout/order');
-			
-			$log_message = "[" . date('Y-m-d H:i:s') . "] Actualizando historial de orden\n";
-			file_put_contents($log_file, $log_message, FILE_APPEND);
-			
-			$this->model_checkout_order->addOrderHistory($this->session->data['order_id'], (int)$orderStatus, '', true);
-		
-			$json['action'] = true;
-			
-			$log_message = "[" . date('Y-m-d H:i:s') . "] ✓ CONFIRM exitoso - action=true\n";
-			$log_message .= str_repeat('=', 80) . "\n";
-			file_put_contents($log_file, $log_message, FILE_APPEND);
-		}else{
-			$json['action'] = false;
-			
-			$log_message = "[" . date('Y-m-d H:i:s') . "] ✗ CONFIRM fallido - método de pago incorrecto\n";
-			$log_message .= "Payment method: " . (isset($this->session->data['payment_method']['code']) ? $this->session->data['payment_method']['code'] : 'NO SET') . "\n";
-			$log_message .= str_repeat('=', 80) . "\n";
-			file_put_contents($log_file, $log_message, FILE_APPEND);
-		}
-		
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
 	}
 }
