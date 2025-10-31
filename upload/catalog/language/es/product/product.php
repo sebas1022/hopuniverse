@@ -58,5 +58,5 @@ $_['button_capture_payment'] = 'Capturar';
 $_['button_reauthorize_payment'] = 'Reautorizar';
 $_['button_void_payment'] = 'Anular';
 $_['button_refund_payment'] = 'Reembolsar';
-$_['button_quickview'] = 'Ver rápido';
+
 
