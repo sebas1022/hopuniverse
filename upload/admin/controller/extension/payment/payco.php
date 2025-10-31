@@ -18,35 +18,6 @@ class ControllerExtensionPaymentPayco extends Controller {
 
 		}
 
-
-
-		$this->db->query("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "epayco_order` (
-            `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-            `order_id` INT(11),
-            `is_test` INT(11) NOT NULL DEFAULT '0',
-            `discount` TINYINT(1) NOT NULL DEFAULT '0',
-            PRIMARY KEY (`id`)
-        ) ENGINE=MyISAM DEFAULT CHARSET=utf8");
-		
-
-		$this->load->model('localisation/order_status');
-		$epaycoOrderStatus = [
-            "Complete test",
-            "Canceled test",
-            "Processing test",
-            "Failed test",
-            "Pending test"
-        ];
-		$queryw = $this->db->query("SELECT * FROM " . DB_PREFIX . "order_status WHERE name = 'Pending'");
-        foreach ( $epaycoOrderStatus as $status){
-			$this->db->query("INSERT INTO " . DB_PREFIX . "order_status (name, language_id)  SELECT * FROM (SELECT '" . $this->db->escape($status) . "','" . (int)$queryw->row["order_status_id"] . "') AS tmp
-			WHERE NOT EXISTS (
-				SELECT name FROM " . DB_PREFIX . "order_status  WHERE name = '" . $this->db->escape($status) . "'
-			) LIMIT 1;  
-			");
-        }
-
-
 		$data['heading_title'] = $this->language->get('heading_title');
 
 		$data['text_edit'] = $this->language->get('text_edit');
@@ -378,7 +349,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 
 	public function uninstall()
     {
-       // $this->load->model('extension/payment/payco');
+        $this->load->model('extension/payment/payco');
         $this->load->model('setting/setting');
         $this->model_setting_setting->deleteSetting('payment_payco');
     }
