@@ -49,3 +49,14 @@ $_['error_name']               = 'Advertencia: ¡El nombre de la reseña debe te
 $_['error_text']               = 'Advertencia: ¡El texto de la reseña debe tener entre 25 y 1000 caracteres!';
 $_['error_rating']             = 'Advertencia: ¡Por favor selecciona una calificación para la reseña!';
 $_['error_product']            = "Advertencia: ¡Producto requerido para agregar la reseña!";
+
+$_['button_wishlist']         = 'Añadir a la lista de deseos';
+$_['button_cart']             = 'Comprar Ahora';
+$_['button_checkout']         = 'Finalizar Compra';
+$_['button_pay']              = 'Pagar con Tarjeta';
+$_['button_capture_payment'] = 'Capturar';
+$_['button_reauthorize_payment'] = 'Reautorizar';
+$_['button_void_payment'] = 'Anular';
+$_['button_refund_payment'] = 'Reembolsar';
+$_['button_quickview'] = 'Ver rápido';
+
