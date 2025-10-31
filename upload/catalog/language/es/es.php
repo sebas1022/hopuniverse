@@ -110,6 +110,15 @@ $_['button_reauthorize_payment'] = 'Reautorizar';
 $_['button_void_payment'] = 'Anular';
 $_['button_refund_payment'] = 'Reembolsar';
 $_['button_quickview'] = 'Vista rápida';
+$_['text_label_new'] = 'Nuevo';
+$_['text_label_sale'] = 'Oferta';
+$_['text_label_best'] = 'Mejor';
+$_['text_label_bestseller'] = 'Mejor vendido';
+$_['text_label_featured'] = 'Destacado';
+$_['text_label_special'] = 'Especial';
+$_['text_label_new'] = 'Nuevo';
+$_['text_label_sale'] = 'Oferta';
+$_['text_label_best'] = 'Mejor';
 
 // Tab
 $_['tab_affiliate']           = 'Afiliado';
