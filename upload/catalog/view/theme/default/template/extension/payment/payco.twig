@@ -30,35 +30,13 @@
 </form>
 
 <script>
-  // Función para habilitar el botón cuando epayco esté listo
-  function enablePaycoButton() {
-    var button = document.getElementById("button_confirm");
-    var epaycoButton = document.querySelector(".epayco-button-render");
-    
-    if (epaycoButton) {
-      // El botón de epayco está listo
-      button.removeAttribute("disabled");
-      console.log("Botón de Payco habilitado");
-    } else {
-      // Intentar de nuevo en 100ms
-      setTimeout(enablePaycoButton, 100);
-    }
-  }
-  
-  // Iniciar la verificación cuando el DOM esté listo
-  $(document).ready(function() {
-    // Esperar un momento para que el script de epayco se cargue
-    setTimeout(enablePaycoButton, 500);
+  $("#button_confirm").on( "click", function(e) {
+    e.preventDefault();
+    $( ".epayco-button-render" ).trigger( "click" );
+
   });
 
-  // Cuando se haga clic en confirmar, disparar el botón de epayco
-  $("#button_confirm").on("click", function(e) {
-    e.preventDefault();
-    var epaycoButton = $(".epayco-button-render");
-    if (epaycoButton.length > 0) {
-      epaycoButton.trigger("click");
-    } else {
-      alert("Error: El botón de pago aún no está listo. Por favor espera un momento e intenta de nuevo.");
-    }
-  });
+  document.getElementById("epayco_form").addEventListener("DOMNodeInserted", function (event) {
+    document.getElementById("button_confirm").removeAttribute("disabled");
+  }, false);
 </script>
