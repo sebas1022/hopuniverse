@@ -188,3 +188,14 @@ $_['datepicker']            = 'en-gb';
 //$_['datepicker']            = 'zh-cn';
 //$_['datepicker']            = 'zh-hk';
 //$_['datepicker']            = 'zh-tw';
+
+$_['button_quickview'] = 'Quick view';
+$_['text_label_new'] = 'New';
+$_['text_label_sale'] = 'Sale';
+$_['text_label_best'] = 'Best';
+$_['text_label_bestseller'] = 'Best seller';
+$_['text_label_featured'] = 'Featured';
+$_['text_label_special'] = 'Special';
+$_['text_label_new'] = 'New';
+$_['text_label_sale'] = 'Sale';
+$_['text_label_best'] = 'Best';
