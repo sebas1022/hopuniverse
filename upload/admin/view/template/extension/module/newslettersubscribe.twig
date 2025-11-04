@@ -454,11 +454,11 @@ $('#product div img').bind('click', function() {
 });
 
 function send(url) { 
-	
+	console.log('data', $('#form-module').serialize());
 	$.ajax({
 		url: url,
 		type: 'post',
-		data: $('#form-html').serialize(),		
+		data: $('#form-module').serialize(),		
 		dataType: 'json',
 		beforeSend: function() {
 			$('#button-send').attr('disabled', true);
