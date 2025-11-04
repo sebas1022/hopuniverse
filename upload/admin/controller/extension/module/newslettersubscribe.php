@@ -519,34 +519,6 @@ class ControllerExtensionModuleNewslettersubscribe extends Controller {
 					$message .= '  <body>' . html_entity_decode($this->request->post['message'], ENT_QUOTES, 'UTF-8') . '</body>' . "\n";
 					$message .= '</html>' . "\n";
 
-					echo '<br>--------------config for mail------------------<br>';
-					print_r($this->config->get('config_mail_protocol'));
-					echo '<br>--------------------------------<br>';
-					print_r($this->config->get('config_mail_parameter'));
-					echo '<br>--------------------------------<br>';
-					print_r($this->config->get('config_mail_smtp_hostname'));
-					echo '<br>--------------------------------<br>';
-					print_r($this->config->get('config_mail_smtp_username'));
-					echo '<br>--------------------------------<br>';
-					print_r($this->config->get('config_mail_smtp_password'));
-					echo '<br>--------------------------------<br>';
-					print_r($this->config->get('config_mail_smtp_port'));
-					echo '<br>--------------------------------<br>';
-					print_r($this->config->get('config_mail_smtp_timeout'));
-					echo '<br>--------------------------------<br>';
-					print_r($this->config->get('config_email'));
-					echo '<br>--------------------------------<br>';
-					print_r($this->config->get('config_name'));
-					echo '<br>--------------------------------<br>';
-					print_r($store_name);
-					echo '<br>--------------------------------<br>';
-					print_r($this->request->post['subject']);
-					echo '<br>--------------------------------<br>';
-					print_r($message);
-					echo '<br>--------------------------------<br>';
-					print_r($emails);
-					echo '<br>--------------------------------<br>';
-					exit;
 					foreach ($emails as $email) {
 						$mail = new Mail();	
 						$mail->protocol = $this->config->get('config_mail_protocol');
