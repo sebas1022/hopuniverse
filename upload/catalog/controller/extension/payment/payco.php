@@ -218,6 +218,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 			//Validamos la firma
 			if($x_signature==$signature){
 				$x_cod_response=$_REQUEST['x_cod_response'];
+				$x_response_reason_text=isset($_REQUEST['x_response_reason_text'])?$_REQUEST['x_response_reason_text']:'';
 				
 				$log_message = "\n[" . date('Y-m-d H:i:s') . "] ✓ Firma válida - Procesando código de respuesta: " . $x_cod_response . "\n";
 				file_put_contents($log_file, $log_message, FILE_APPEND);
@@ -231,7 +232,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 					case 2:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 2 - Transacción RECHAZADA\n";
 						file_put_contents($log_file, $log_message, FILE_APPEND);
-						$this->model_checkout_order->addOrderHistory($order_id, 8, '', true);
+						$this->model_checkout_order->addOrderHistory($order_id, 15, $x_response_reason_text, true);
 						break;
 					case 3:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 3 - Transacción PENDIENTE\n";
@@ -241,7 +242,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 					case 4:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 4 - Transacción FALLIDA\n";
 						file_put_contents($log_file, $log_message, FILE_APPEND);
-						$this->model_checkout_order->addOrderHistory($order_id, 10, '', true);
+						$this->model_checkout_order->addOrderHistory($order_id, 2, $x_response_reason_text, true);
 						break;              
 					
 				}
