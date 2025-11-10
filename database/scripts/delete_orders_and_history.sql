@@ -14,7 +14,7 @@
 -- =====================================================
 -- Descomentar las siguientes líneas para eliminar todas las órdenes:
 
-/*
+
 -- Eliminar transacciones de clientes relacionadas con órdenes
 DELETE FROM `oc_customer_transaction` WHERE order_id > 0;
 
@@ -43,7 +43,7 @@ DELETE FROM `oc_order_product` WHERE order_id > 0;
 
 -- Eliminar órdenes principales
 DELETE FROM `oc_order` WHERE order_id > 0;
-*/
+
 
 -- =====================================================
 -- OPCIÓN 2: Eliminar órdenes por rango de IDs
