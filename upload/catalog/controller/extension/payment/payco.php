@@ -184,87 +184,87 @@ class ControllerExtensionPaymentPayco extends Controller {
 		if (isset($_REQUEST['x_ref_payco'])) {
 			$this->load->model('checkout/order');
 			$p_cust_id_cliente=$this->config->get('payment_payco_merchant');
-             $p_key=$this->config->get('payment_payco_key');
+			$p_key=$this->config->get('payment_payco_key');
 
-                $x_ref_payco=$_REQUEST['x_ref_payco'];
-                $x_transaction_id=$_REQUEST['x_transaction_id'];
-                $x_amount=$_REQUEST['x_amount'];
-                $x_currency_code=$_REQUEST['x_currency_code'];
-                $x_signature=$_REQUEST['x_signature'];
-				
-				$log_message = "\n[" . date('Y-m-d H:i:s') . "] Datos de la transacción:\n";
-				$log_message .= "  - Ref Payco: " . $x_ref_payco . "\n";
-				$log_message .= "  - Transaction ID: " . $x_transaction_id . "\n";
-				$log_message .= "  - Amount: " . $x_amount . "\n";
-				$log_message .= "  - Currency: " . $x_currency_code . "\n";
-				$log_message .= "  - Signature recibida: " . $x_signature . "\n";
-				file_put_contents($log_file, $log_message, FILE_APPEND);
+			$x_ref_payco=$_REQUEST['x_ref_payco'];
+			$x_transaction_id=$_REQUEST['x_transaction_id'];
+			$x_amount=$_REQUEST['x_amount'];
+			$x_currency_code=$_REQUEST['x_currency_code'];
+			$x_signature=$_REQUEST['x_signature'];
+			
+			$log_message = "\n[" . date('Y-m-d H:i:s') . "] Datos de la transacción:\n";
+			$log_message .= "  - Ref Payco: " . $x_ref_payco . "\n";
+			$log_message .= "  - Transaction ID: " . $x_transaction_id . "\n";
+			$log_message .= "  - Amount: " . $x_amount . "\n";
+			$log_message .= "  - Currency: " . $x_currency_code . "\n";
+			$log_message .= "  - Signature recibida: " . $x_signature . "\n";
+			file_put_contents($log_file, $log_message, FILE_APPEND);
 
-                $signature=hash('sha256',
-                       $p_cust_id_cliente.'^'
-                      .$p_key.'^'
-                      .$x_ref_payco.'^'
-                      .$x_transaction_id.'^'
-                      .$x_amount.'^'
-                      .$x_currency_code
-                    );
-				
-				$log_message = "\n[" . date('Y-m-d H:i:s') . "] Validación de firma:\n";
-				$log_message .= "  - Signature calculada: " . $signature . "\n";
-				$log_message .= "  - Signature recibida: " . $x_signature . "\n";
-				$log_message .= "  - ¿Coinciden?: " . ($x_signature == $signature ? 'SÍ ✓' : 'NO ✗') . "\n";
-				file_put_contents($log_file, $log_message, FILE_APPEND);
+			$signature=hash('sha256',
+				$p_cust_id_cliente.'^'
+				.$p_key.'^'
+				.$x_ref_payco.'^'
+				.$x_transaction_id.'^'
+				.$x_amount.'^'
+				.$x_currency_code
+			);
+			
+			$log_message = "\n[" . date('Y-m-d H:i:s') . "] Validación de firma:\n";
+			$log_message .= "  - Signature calculada: " . $signature . "\n";
+			$log_message .= "  - Signature recibida: " . $x_signature . "\n";
+			$log_message .= "  - ¿Coinciden?: " . ($x_signature == $signature ? 'SÍ ✓' : 'NO ✗') . "\n";
+			file_put_contents($log_file, $log_message, FILE_APPEND);
 
-				//Validamos la firma
-                if($x_signature==$signature){
-                $x_cod_response=$_REQUEST['x_cod_response'];
+			//Validamos la firma
+			if($x_signature==$signature){
+				$x_cod_response=$_REQUEST['x_cod_response'];
 				
 				$log_message = "\n[" . date('Y-m-d H:i:s') . "] ✓ Firma válida - Procesando código de respuesta: " . $x_cod_response . "\n";
 				file_put_contents($log_file, $log_message, FILE_APPEND);
 				
-                switch ((int)$x_cod_response) {
-                    case 1:
+				switch ((int)$x_cod_response) {
+					case 1:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 1 - Transacción APROBADA\n";
 						file_put_contents($log_file, $log_message, FILE_APPEND);
-                       $this->model_checkout_order->addOrderHistory($order_id, $this->config->get('payment_payco_final_order_status_id'), '', true);
-                        break;
-                    case 2:
+						$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('payment_payco_final_order_status_id'), '', true);
+						break;
+					case 2:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 2 - Transacción RECHAZADA\n";
 						file_put_contents($log_file, $log_message, FILE_APPEND);
-                        $this->model_checkout_order->addOrderHistory($order_id, 8, '', true);
-                        break;
-                    case 3:
+						$this->model_checkout_order->addOrderHistory($order_id, 8, '', true);
+						break;
+					case 3:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 3 - Transacción PENDIENTE\n";
 						file_put_contents($log_file, $log_message, FILE_APPEND);
-                        $this->model_checkout_order->addOrderHistory($order_id, 1, '', true);
-                        break;
-                    case 4:
+						$this->model_checkout_order->addOrderHistory($order_id, 1, '', true);
+						break;
+					case 4:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 4 - Transacción FALLIDA\n";
 						file_put_contents($log_file, $log_message, FILE_APPEND);
-                       $this->model_checkout_order->addOrderHistory($order_id, 10, '', true);
-                        break;              
-                    
-                }
+						$this->model_checkout_order->addOrderHistory($order_id, 10, '', true);
+						break;              
+					
+				}
 
-                if($x_cod_response==1 || $x_cod_response==3){
+				if($x_cod_response==1 || $x_cod_response==3){
 					$log_message = "\n[" . date('Y-m-d H:i:s') . "] ✓ Redirigiendo a SUCCESS\n";
 					$log_message .= str_repeat('=', 80) . "\n";
 					file_put_contents($log_file, $log_message, FILE_APPEND);
-                	$this->response->redirect($this->url->link('checkout/success'));
-                }else{
+					$this->response->redirect($this->url->link('checkout/success'));
+				} else {
 					$log_message = "\n[" . date('Y-m-d H:i:s') . "] ✗ Redirigiendo a FAILURE (código: " . $x_cod_response . ")\n";
 					$log_message .= str_repeat('=', 80) . "\n";
 					file_put_contents($log_file, $log_message, FILE_APPEND);
-                	$this->response->redirect($this->url->link('checkout/failure'));
-                }
+					$this->response->redirect($this->url->link('checkout/failure'));
+				}
 
-                }else{
-					$error_msg = "\n[" . date('Y-m-d H:i:s') . "] ✗ ERROR CRÍTICO: Firma NO válida\n";
-					$error_msg .= "Redirigiendo a FAILURE\n";
-					$error_msg .= str_repeat('=', 80) . "\n";
-					file_put_contents($log_file, $error_msg, FILE_APPEND);
-                    die("Firma no valida");
-                }                	
+			} else {
+				$error_msg = "\n[" . date('Y-m-d H:i:s') . "] ✗ ERROR CRÍTICO: Firma NO válida\n";
+				$error_msg .= "Redirigiendo a FAILURE\n";
+				$error_msg .= str_repeat('=', 80) . "\n";
+				file_put_contents($log_file, $error_msg, FILE_APPEND);
+				die("Firma no valida");
+			}                	
 
 		}else{
 			$error_msg = "\n[" . date('Y-m-d H:i:s') . "] ✗ ERROR: No se encontró x_ref_payco en REQUEST\n";
