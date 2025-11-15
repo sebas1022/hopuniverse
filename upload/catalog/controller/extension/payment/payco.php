@@ -227,7 +227,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 					case 1:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 1 - Transacción APROBADA\n";
 						file_put_contents($log_file, $log_message, FILE_APPEND);
-						$this->model_checkout_order->addOrderHistory($order_id, $this->config->get('payment_payco_final_order_status_id'), '', true);
+						$this->model_checkout_order->addOrderHistory($order_id, 8 , $x_response_reason_text, true);
 						break;
 					case 2:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 2 - Transacción RECHAZADA\n";
@@ -237,7 +237,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 					case 3:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 3 - Transacción PENDIENTE\n";
 						file_put_contents($log_file, $log_message, FILE_APPEND);
-						$this->model_checkout_order->addOrderHistory($order_id, 1, '', true);
+						$this->model_checkout_order->addOrderHistory($order_id, 1, $x_response_reason_text, true);
 						break;
 					case 4:
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 4 - Transacción FALLIDA\n";
