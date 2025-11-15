@@ -243,7 +243,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 						$log_message = "[" . date('Y-m-d H:i:s') . "] Case 4 - Transacción FALLIDA\n";
 						file_put_contents($log_file, $log_message, FILE_APPEND);
 						$this->model_checkout_order->addOrderHistory($order_id, 2, $x_response_reason_text, true);
-						break;              
+						break;       
 					
 				}
 
@@ -264,7 +264,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 				$error_msg .= "Redirigiendo a FAILURE\n";
 				$error_msg .= str_repeat('=', 80) . "\n";
 				file_put_contents($log_file, $error_msg, FILE_APPEND);
-				die("Firma no valida");
+				$this->response->redirect($this->url->link('checkout/failure'));
 			}                	
 
 		}else{
@@ -272,7 +272,7 @@ class ControllerExtensionPaymentPayco extends Controller {
 			$error_msg .= "Redirigiendo a FAILURE\n";
 			$error_msg .= str_repeat('=', 80) . "\n";
 			file_put_contents($log_file, $error_msg, FILE_APPEND);
-			echo "no hay request";
+			$this->response->redirect($this->url->link('checkout/failure'));
 		}
 	}
 }
