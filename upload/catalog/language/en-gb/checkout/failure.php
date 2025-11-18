@@ -8,7 +8,6 @@ $_['text_checkout'] = 'Checkout';
 $_['text_failure']  = 'Failed Payment';
 $_['text_message']  = '<div style="display:flex; align-items:flex-start; gap:20px; padding:20px; border:1px solid #eee; border-radius:10px;">
     <div style="flex:1; font-size:16px; line-height:1.6;">
-        <h2 style="margin-top:0; font-weight:700; color:#d9534f;">FAILED PAYMENT</h2>
         <p>Oh no… a meteor just crashed into your payment!</p>
         <p>It looks like the universe glitched for a moment and your payment couldn’t be completed.<br>But don’t worry — even UFOcat doesn’t cry forever!</p>
         <p><strong>Possible cosmic reasons:</strong></p>
@@ -24,6 +23,6 @@ $_['text_message']  = '<div style="display:flex; align-items:flex-start; gap:20p
         </p>
     </div>
     <div style="flex-shrink:0;">
-        <img src="image/catalog/ufo-cat.png" alt="Cosmic Error" style="width:160px; height:auto;">
+        <img src="image/catalog/payment/checkout/en-gb/failure.jpg" alt="Cosmic Error" style="width:160px; height:auto;">
     </div>
 </div>';
