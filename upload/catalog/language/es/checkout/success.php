@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']        = '¡Tu pedido ha sido realizado!';
+$_['heading_title']        = '¡Gracias por tu compra intergaláctica!';
 
 // Text
 $_['text_basket']          = 'Carrito de Compras';
