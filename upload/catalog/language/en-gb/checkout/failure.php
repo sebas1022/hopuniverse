@@ -23,6 +23,6 @@ $_['text_message']  = '<div style="display:flex; align-items:flex-start; gap:20p
         </p>
     </div>
     <div style="flex-shrink:0;">
-        <img src="image/payment/checkout/en-gb/failure.jpg" alt="Cosmic Error" style="width:160px; height:auto;">
+        <img src="image/payment/checkout/en-gb/failure.jpg" alt="Cosmic Error" style="width:40rem; height:auto;">
     </div>
 </div>';
