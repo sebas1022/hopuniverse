@@ -21,6 +21,6 @@ $_['text_message']  = '<div style="display:flex; align-items:flex-start; gap:20p
         <p>Si el problema persiste, por favor <a href="%s">contáctanos</a> con los detalles del pedido que estás intentando realizar.</p>
     </div>
     <div style="flex-shrink:0;">
-        <img src="image/payment/checkout/es-es/failure.jpg" alt="Cosmic Error" style="width:40rem; height:auto;">
+        <img src="image/payment/checkout/es-es/fallido.jpg" alt="Cosmic Error" style="width:40rem; height:auto;">
     </div>
 </div>';
