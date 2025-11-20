@@ -1,11 +1,17 @@
 <?php
 // Heading
 $_['heading_title']    = 'Cup&oacute;n';
-//Traducción V.3.0.3.8 Realizada por Reitier - ©Reitier - www.reitier.com
+//Traducciï¿½n V.3.0.3.8 Realizada por Reitier - ï¿½Reitier - www.reitier.com
 // Text
 $_['text_extension']   = 'Extensiones';
 $_['text_success']     = 'Correcto: Ha modificado total del coup&oacute;n.';
 $_['text_edit']        = 'Editar Cup&oacute;n';
+
+$_['entry_coupon']   = 'Ingresa tu cup&oacute;n aqu&iacute;';
+
+// Buttonq
+$_['button_apply'] = 'Aplicar';
+$_['text_loading'] = 'Cargando...';
 
 // Entry
 $_['entry_status']     = 'Estado:';
