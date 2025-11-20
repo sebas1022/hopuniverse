@@ -997,7 +997,7 @@ header .social-icon ul li i {
     position: absolute;
     right: 0;
     top: 100%;
-    z-index: 9999;
+    z-index: 10002;
 }
 #cart .cart-empty {
     margin: 0; /* override */
