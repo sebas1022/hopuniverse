@@ -91,3 +91,16 @@ $_['error_no_shipping']              = 'Advertencia: No hay opciones de envío d
 $_['error_payment']                  = 'Advertencia: ¡Método de pago requerido!';
 $_['error_no_payment']               = 'Advertencia: No hay opciones de pago disponibles. Por favor <a href="%s">contáctanos</a> para obtener ayuda!';
 $_['error_custom_field']             = '¡%s requerido!';
+
+
+// Button
+$_['button_login']   = 'Acceder';
+$_['button_register']   = 'Registrarse';
+$_['button_guest']   = 'Continuar como invitado';
+$_['button_checkout']   = 'Pagar';
+$_['button_update']   = 'Actualizar';
+$_['button_remove']   = 'Eliminar';
+$_['button_shopping']   = 'Continuar comprando';
+$_['button_wishlist']   = 'Agregar a la lista de deseos';
+$_['button_compare']   = 'Comparar';
+$_['button_confirm']        = 'Confirmar pedido';
