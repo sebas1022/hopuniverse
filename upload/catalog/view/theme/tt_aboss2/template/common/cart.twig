@@ -51,6 +51,9 @@
                 </table>
             </div>
         </li>
+        <li class="cart-button">
+            <a href="{{ cart }}">{{ text_cart }}</a><a href="{{ checkout }}">{{ text_checkout }}</a>
+        </li>
         {% else %}
         <li>
             <p class="text-center cart-empty">{{ text_empty }}</p>
