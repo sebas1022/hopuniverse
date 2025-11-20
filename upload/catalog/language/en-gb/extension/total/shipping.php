@@ -12,6 +12,10 @@ $_['entry_country']        = 'Country';
 $_['entry_zone']           = 'Region / State';
 $_['entry_postcode']       = 'Post Code';
 
+// Buttonq
+$_['button_quote'] = 'Get Quote';
+$_['text_loading'] = 'Loading...';
+
 // Error
 $_['error_postcode']       = 'Postcode must be between 2 and 10 characters!';
 $_['error_country']        = 'Please select a country!';
