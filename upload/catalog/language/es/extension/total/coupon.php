@@ -11,6 +11,7 @@ $_['entry_coupon']   = 'Ingresa tu cup&oacute;n aqu&iacute;';
 
 // Buttonq
 $_['button_apply'] = 'Aplicar';
+$_['button_coupon'] = 'Aplicar Cup&oacute;n';
 $_['text_loading'] = 'Cargando...';
 
 // Entry
