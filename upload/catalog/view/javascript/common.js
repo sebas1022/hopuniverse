@@ -170,7 +170,8 @@ var cart = {
 				}
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
-				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				//alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				window.location.href = 'index.php?route=product/product&product_id=' + product_id;
 			}
 		});
 	},
@@ -199,7 +200,8 @@ var cart = {
 				}
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
-				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				//alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				window.location.href = 'index.php?route=product/product&product_id=' + product_id;
 			}
 		});
 	},
@@ -263,7 +265,8 @@ var voucher = {
 				}
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
-				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				//alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				window.location.href = 'index.php?route=product/product&product_id=' + product_id;
 			}
 		});
 	}
