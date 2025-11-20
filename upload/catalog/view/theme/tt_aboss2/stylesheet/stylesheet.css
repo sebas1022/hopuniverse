@@ -1123,6 +1123,19 @@ header .social-icon ul li i {
     background: #6DADCB;
     color: #fff;
 }
+
+/* Primer enlace ocupa el 100% */
+#cart .cart-button a:first-child {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+}
+
+/* Ocultar el segundo enlace */
+#cart .cart-button a:nth-child(2) {
+    display: none !important;
+}
+
 /* FOOTER
 -----------------------------*/
 footer {
