@@ -12,13 +12,17 @@
 .pt_custommenu {
     font-size: 12px;
     text-align: left;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
 }
 .pt_custommenu .pt_menu {
-    display: inline-block;
+   /*display: inline-block;
     margin-right: 0;
     position: relative;
     text-align: left;
     vertical-align: middle;
+*/
 }
 .pt_custommenu .pt_menu:last-child {
     margin-right: 0;
