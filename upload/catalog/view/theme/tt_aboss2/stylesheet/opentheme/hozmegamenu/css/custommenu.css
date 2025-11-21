@@ -15,7 +15,7 @@
 }
 .pt_custommenu .pt_menu {
     display: inline-block;
-    margin-right: 40px;
+    margin-right: 0;
     position: relative;
     text-align: left;
     vertical-align: middle;
