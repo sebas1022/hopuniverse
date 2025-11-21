@@ -26,7 +26,7 @@ $_['text_loading']            = 'Cargando...';
 $_['text_no_results']         = '&iexcl;Sin resultados!';
 $_['text_confirm']            = '¿Está usted seguro?';
 $_['text_home']               = 'Inicio';
-//Traducción realizada        por Reitier - ©Reitier - www.reitier.com - Opencart V.3.0.3.8 - 05/09/2021
+
 // Button
 $_['button_add']              = 'A&ntilde;adir nuevo';
 $_['button_delete']           = 'Eliminar';
@@ -46,6 +46,8 @@ $_['button_back']             = 'Volver';
 $_['button_remove']           = 'Quitar';
 $_['button_refresh']          = 'Refrescar';
 $_['button_export']           = 'Exportar';
+$_['button_shipping']         = 'Calcular envío';
+$_['button_apply_shipping']   = 'Aplicar envío';
 $_['button_import']           = 'Importar';
 $_['button_download']         = 'Descargar';
 $_['button_rebuild']          = 'Recargar';
