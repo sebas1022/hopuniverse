@@ -53,6 +53,7 @@ $_['button_upload']           = 'Subir';
 $_['button_submit']           = 'Presentar';
 $_['button_invoice_print']    = 'Imprimir factura';
 $_['button_shipping_print']   = 'Imprimir lista de envios';
+$_['button_shipping']         = 'Calcular envío';
 $_['button_address_add']      = 'A&ntilde;adir direcci&oacute;n';
 $_['button_attribute_add']    = 'A&ntilde;adir atributo';
 $_['button_banner_add']       = 'A&ntilde;adir banner';
