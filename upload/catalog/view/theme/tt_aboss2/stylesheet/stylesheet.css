@@ -2801,3 +2801,7 @@ footer .social-icon ul li a:hover {
     margin: 0 0 30px 0;
     text-transform: uppercase;
 }
+
+.newsletter-image iframe {
+    max-width: 100%;
+}
