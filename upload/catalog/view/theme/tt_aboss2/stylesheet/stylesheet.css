@@ -568,9 +568,8 @@ body.common-home {
     background: #fff;
 }
 .common-home header {
-    background: none;
+    background-color: #222e3c;
     left: 0;
-    position: absolute;
     top: 0;
     width: 100%;
     z-index: 101;
